@@ -1,4 +1,3 @@
-
 packages/*/yarn.lock
 packages/*/package-lock.json
 
@@ -63,3 +62,6 @@ package-lock.json
 !themes/gatsby-starter-notes-theme/package-lock.json
 !themes/gatsby-starter-theme/package-lock.json
 !themes/gatsby-starter-theme-workspace/package-lock.json
+
+# code editor stuff
+*.code-workspace

@@ -1,5 +1,5 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledSkipLink = styled.a`
     align-items: center;
@@ -23,6 +23,7 @@ const StyledSkipLink = styled.a`
         overflow: visible;
         padding: 0.5rem;
         width: 100%;
+        z-index: 1000;
 
         > span {
             outline: auto;
@@ -32,12 +33,12 @@ const StyledSkipLink = styled.a`
     > span {
         white-space: nowrap;
     }
-`
+`;
 
 const SkipLink = () => (
     <StyledSkipLink href="#main-content">
         <span>Skip to main content</span>
     </StyledSkipLink>
-)
+);
 
-export default SkipLink
+export default SkipLink;

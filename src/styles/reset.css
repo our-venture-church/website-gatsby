@@ -1,5 +1,5 @@
 html {
-    background: #423f3b;
+    background: #343333;
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -28,6 +28,9 @@ canvas,
 progress,
 video {
     display: inline-block;
+}
+:focus {
+    outline-color: #fde164;
 }
 audio:not([controls]) {
     display: none;
