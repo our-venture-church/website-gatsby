@@ -46,7 +46,7 @@ class Header extends Component {
         this.handleResize = this.handleResize.bind(this);
         this.throttled = false;
 
-        if (window) {
+        if (typeof window !== 'undefined') {
             window.addEventListener(
                 'resize',
                 _throttled(this.handleResize, THROTTLE_TIME),
@@ -66,7 +66,7 @@ class Header extends Component {
     }
 
     handleResize() {
-        if (window && window.innerWidth < 1050) {
+        if (typeof window !== 'undefined' && window.innerWidth < 1050) {
             this.props.enableNavDrawer();
         } else {
             this.props.disableNavDrawer();
@@ -74,7 +74,7 @@ class Header extends Component {
     }
 
     componentWillMount() {
-        if (window && window.innerWidth < 800) {
+        if (typeof window !== 'undefined' && window.innerWidth < 800) {
             this.props.enableNavDrawer();
         } else {
             this.props.disableNavDrawer();
