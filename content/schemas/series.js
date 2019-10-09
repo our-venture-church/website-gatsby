@@ -1,8 +1,8 @@
-import icon from 'react-icons/lib/md/person';
+import icon from 'react-icons/lib/io/ios-browsers';
 
 export default {
     name: 'series',
-    title: 'Series',
+    title: 'Sermon Series',
     type: 'document',
     icon,
     fields: [

@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/md/person';
+import icon from 'react-icons/lib/io/ios-book';
 
 export default {
     name: 'sermon',
@@ -24,7 +24,7 @@ export default {
         {
             name: 'date',
             title: 'Date',
-            type: 'datetime',
+            type: 'date',
             description: 'When was the sermon?',
         },
         {
@@ -38,7 +38,7 @@ export default {
             name: 'speaker',
             title: 'Speaker',
             type: 'reference',
-            to: [{ type: 'staff' }],
+            to: [{ type: 'person' }],
         },
         {
             name: 'artwork',
@@ -50,6 +50,10 @@ export default {
         },
     ],
     preview: {
-        select: { title: 'title', media: 'artwork' || 'series.artwork', subtitle: 'series.title' },
+        select: {
+            title: 'title',
+            media: 'artwork' || 'series.artwork',
+            subtitle: 'series.title',
+        },
     },
 };

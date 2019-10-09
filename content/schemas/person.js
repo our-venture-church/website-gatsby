@@ -33,7 +33,8 @@ export default {
             name: 'personType',
             title: 'What role does this person serve in?',
             description: 'Select all that apply',
-            type: 'string',
+            type: 'array',
+            of: [{ type: 'string' }],
             options: {
                 list: [
                     { title: 'Pastor', value: 'pastor' },
@@ -41,13 +42,17 @@ export default {
                     { title: 'Lead Team Member', value: 'leadTeam' },
                     { title: 'Volunteer', value: 'volunteer' },
                 ],
-                layout: 'checkbox',
             },
         },
         {
             name: 'title',
             title: 'Title',
             type: 'string',
+        },
+        {
+            name: 'email',
+            title: 'Email Address',
+            type: 'email',
         },
     ],
     preview: {

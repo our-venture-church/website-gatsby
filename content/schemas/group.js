@@ -1,3 +1,5 @@
+import icon from 'react-icons/lib/md/people';
+
 export default {
     name: 'group',
     title: 'Group',
@@ -8,7 +10,7 @@ export default {
             name: 'title',
             title: 'Title',
             type: 'string',
-            description: 'E.g.: Golf Tournament',
+            description: "Mom's Night Out",
         },
         {
             name: 'location',
@@ -27,6 +29,23 @@ export default {
             type: 'image',
             options: {
                 hotspot: true,
+            },
+        },
+        {
+            name: 'day',
+            title: 'Day of the week',
+            type: 'array',
+            of: [{ type: 'string' }],
+            options: {
+                list: [
+                    { title: 'Sunday', value: 'sun' },
+                    { title: 'Monday', value: 'mon' },
+                    { title: 'Tuesday', value: 'tue' },
+                    { title: 'Wednesday', value: 'wed' },
+                    { title: 'Thursday', value: 'thur' },
+                    { title: 'Friday', value: 'fri' },
+                    { title: 'Saturday', value: 'sat' },
+                ],
             },
         },
     ],

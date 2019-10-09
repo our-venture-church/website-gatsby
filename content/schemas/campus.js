@@ -1,3 +1,5 @@
+import icon from 'react-icons/lib/ti/location';
+
 export default {
     name: 'campus',
     title: 'Campus',
@@ -14,7 +16,8 @@ export default {
             name: 'published',
             title: 'Published',
             type: 'boolean',
-            description: 'Set to published when this campus should be visible on a the website',
+            description:
+                'Set to published when this campus should be visible on a the website',
         },
         {
             name: 'location',

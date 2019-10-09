@@ -11,6 +11,8 @@ import series from './series';
 import ministry from './ministry';
 import campus from './campus';
 import event from './event';
+import group from './group';
+import homePage from './homePage';
 import page from './page';
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -22,13 +24,15 @@ export default createSchema({
     types: schemaTypes.concat([
         // The following are document types which will appear
         // in the studio.
-        ministry,
-        series,
-        sermon,
-        person,
-        campus,
-        event,
+        homePage,
         page,
+        event,
+        ministry,
+        campus,
+        person,
+        sermon,
+        series,
+        group,
         // When added to this list, object types can be used as
         // { type: 'typename' } in other document schemas
         blockContent,

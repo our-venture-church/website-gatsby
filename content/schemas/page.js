@@ -1,3 +1,5 @@
+import icon from 'react-icons/lib/ti/document';
+
 export default {
     name: 'page',
     title: 'Page',
