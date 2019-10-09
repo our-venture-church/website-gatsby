@@ -17,8 +17,6 @@ npm install
 # Install or upgrade the Sanity CLI to
 # make sure you are on v0.140.0 or higher
 npm install -g @sanity/cli
-# Set up Sanity.io account and project (≈ 45s)
-npm run init
 
 ```
 
