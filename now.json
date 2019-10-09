@@ -1,0 +1,37 @@
+{
+    "version": 2,
+    "name": "venture-church-website-gatsby-sanity-combo",
+    "builds": [
+        {
+            "src": "web/package.json",
+            "use": "@now/static-build",
+            "config": {
+                "distDir": "public"
+            }
+        },
+        {
+            "src": "content/package.json",
+            "use": "@now/static-build",
+            "config": {
+                "distDir": "dist"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "^/content/static/(.*)",
+            "dest": "/content/static/$1"
+        },
+        {
+            "src": "^/content/(.*)",
+            "dest": "/content/index.html"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/web/$1"
+        }
+    ],
+    "alias": [
+        "venture-church-website-gatsby-sanity-combo.now.sh"
+    ]
+}

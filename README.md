@@ -1,97 +1,83 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
+# THe Venture Church website is built with [Gatsby](https://www.gatsbyjs.org/) & [Sanity.io](https://www.sanity.io)
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+-   [Installation](#installation)
+-   [Enable Gatsby watch mode for drafts](#enable-gatsby-watch-mode-for-drafts)
+-   [Usage example](#usage-example)
+-   [Development setup](#development-setup)
+    -   [Run it](#run-it)
+    -   [Development workflow](#development-workflow)
+-   [Deployment](#deployment)
+-   [License](#license)
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
+## Installation
 
-## 🚀 Quick start
+```sh
+npm install
 
-1.  **Create a Gatsby site.**
+# Install or upgrade the Sanity CLI to
+# make sure you are on v0.140.0 or higher
+npm install -g @sanity/cli
+# Set up Sanity.io account and project (≈ 45s)
+npm run init
 
-    Use the Gatsby CLI to create a new site, specifying the default starter.
+```
 
-    ```sh
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
+See the [getting started video](https://www.youtube.com/watch?v=qU4lFYp3KiQ) for a walkthrough of the installation.
 
-1.  **Start developing.**
+## Enable Gatsby watch mode for drafts
 
-    Navigate into your new site’s directory and start it up.
+We have enabled the watch mode in the `gatsby-source-sanity` plugin, which means that your frontend will automatically update with content changes whenever you publish them. If you want the frontend to show content changes in real time, you must do the following:
 
-    ```sh
-    cd my-default-starter/
-    gatsby develop
-    ```
+-   Go to [manage.sanity.io](https://manage.sanity.io) and find your project (or run the command `sanity manage` in the studio folder)
+-   Navigate to Settings->API and scroll down to the **Tokens** section
+-   Add a new token and give it **read** privileges.
+-   Copy the `.env-example` file to a file called `.env` in the `/web` folder
+-   Add your new token to the key: `SANITY_TOKEN="<token here>"`
 
-1.  **Open the source code and start editing!**
+If you restart the local development server, it will now show unpublished changes from the Studio. Note that the `.env` file is ignored by Git, because the token gives access to unpublished content in the API.
 
-    Your site is now running at `http://localhost:8000`!
+## Usage example
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+This project demos Sanity.io with Gatsby using our [source plugin](https://www.gatsbyjs.org/packages/gatsby-source-sanity). It's a good starter for a simple company site, a portfolio site for an agency or a personal blog with an attached portfolio.
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+We tried to strike a balance between a useful example and a minimal footprint to make it easier to iterate on design and content model. [Let us know](https://slack.sanity.io) should you have questions!
 
-## 🧐 What's inside?
+## Development setup
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+### Run it
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+```sh
+npm start
+# Studio at http://localhost:3333
+# Web frontend at http://localhost:8000
+# GraphiQL explorer at http://localhost:8000/___graphql
+```
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+### Development workflow
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+We wrote a [blog post](https://www.sanity.io/blog/get-started-with-gatsby-and-structured-content) about how to use this example, but if you would like to just start tinkering:
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+-   The Sanity Studio keeps its schemas in `./studio/schemas`. We will hot reload the editor when you edit them so just start experimenting. [Read more about our schemas here](https://www.sanity.io/docs/content-studio/the-schema).
+-   We followed Gatsby conventions and [you can read all about them here](https://www.gatsbyjs.org/tutorial/).
+-   If you want Gatsby to not throw errors on missing fields for unpopulated data you need to redeploy the GraphQL API so we can generate schemas – `npm run graphql-deploy`
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+## Deployment
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+```sh
+# Deploy a GraphQL API and schema to Sanity
+npm run graphql-deploy
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.org/docs/gatsby-config/) for more detail).
+# Deploy the Sanity Studio to *.sanity.studio
+npm run sanity-deploy
 
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
+# Build & deploy to Zeit's Now. Remember to set `basePath` to "/studio" in sanity.json
+npm run now-deploy
+```
 
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
+> **Deploy on Netlify:** If you want to deploy the Gatsby site to Netlify we added a netlify.toml config for you.
+>
+> Fork or clone the example to your GitHub account. After adding your repo to Netlify you’ll get automatic builds & deploys when pushing to master. You can also add a [webhook](https://www.sanity.io/docs/webhooks) to get deploys on content changes.
 
-9.  **`LICENSE`**: Gatsby is licensed under the MIT license.
+## License
 
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
-
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
-
-12. **`README.md`**: A text file containing useful reference information about your project.
-
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
-
-<!-- AUTO-GENERATED-CONTENT:END -->
+MIT
