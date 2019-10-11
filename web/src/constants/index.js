@@ -10,3 +10,9 @@ export const OPEN_DROPDOWN = 'OPEN_DROPDOWN';
 export const CLOSE_DROPDOWN = 'CLOSE_DROPDOWN';
 export const ENABLE_NAV_DRAWER = 'ENABLE_NAV_DRAWER';
 export const DISABLE_NAV_DRAWER = 'DISABLE_NAV_DRAWER';
+
+export const HERO_TYPES = {
+    CURRENT_SERIES: 'currentSeries',
+    SERVICE_TIMES: 'serviceTimes',
+    CUSTOM: 'custom',
+};

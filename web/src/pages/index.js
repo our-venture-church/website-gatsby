@@ -1,19 +1,12 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 
+import { HERO_TYPES } from '../constants';
+
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Button from '../components/button';
-import Image from '../components/image';
-
-const getAnnouncmentItem = ({ title, text, link }) => (
-    <li>
-        <Link to={link}>
-            {title}
-            {text}
-        </Link>
-    </li>
-);
+import Hero from '../components/hero';
 
 const getEventItem = ({ title, date, link }) => (
     <li>
@@ -27,59 +20,72 @@ const getEventItem = ({ title, date, link }) => (
 const IndexPage = () => {
     const data = useStaticQuery(graphql`
         query HomepageQuery {
-            site {
-                siteMetadata {
-                    homepage {
-                        hero {
-                            text
-                            type
-                            image
-                        }
-                        welcomeMessage {
-                            title
-                            text
-                        }
-                        announcements {
-                            title
-                            text
-                            link
-                        }
-                        events {
-                            title
-                            date
-                            link
+            sanitySeries {
+                title
+                slug {
+                    current
+                }
+                artwork {
+                    asset {
+                        url
+                    }
+                }
+            }
+            allSanityEvent(
+                limit: 5
+                filter: { published: { eq: true } }
+                sort: { fields: beginAt }
+            ) {
+                nodes {
+                    title
+                    link
+                    beginAt
+                }
+            }
+            sanityHomePage {
+                welcome {
+                    title
+                    message
+                }
+                heroType
+                customHero {
+                    text
+                    image {
+                        asset {
+                            url
                         }
                     }
+                    link
                 }
             }
         }
     `);
 
-    const {
-        hero,
-        welcomeMessage,
-        announcements,
-        events,
-    } = data.site.siteMetadata.homepage;
+    console.log(data);
+    const { heroType, welcome, customHero } = data.sanityHomePage;
+    const { nodes: events } = data.allSanityEvent;
+    const { sanitySeries: currentSeries } = data;
+
+    let heroProps;
+    if (heroType === HERO_TYPES.CURRENT_SERIES) {
+        heroProps = { ...currentSeries };
+        console.log(heroProps);
+        heroProps.image = heroProps.artwork.asset.url;
+        heroProps.link = `/sermon/series/${heroProps.slug.current}`;
+    } else if (heroType === HERO_TYPES.SERVICE_TIMES) {
+        // TODO make a default ServiceTimes
+        heroProps = {};
+    } else if (heroType === HERO_TYPES.CUSTOMcustom) {
+        heroProps = { ...customHero };
+    }
 
     return (
         <Layout>
             <SEO title="Home" />
-            <div className="hero">
-                <h2>
-                    {hero.type} {hero.text}
-                </h2>
-                <Image src={hero.image} />
-            </div>
+            <Hero type={heroType} {...heroProps} />
             <div className="welcome">
-                <h1>{welcomeMessage.title}</h1>
-                <p>{welcomeMessage.text}</p>
-            </div>
-            <div className="announcements">
-                <h2>Announcements</h2>
-                <ul className="announcements">
-                    {announcements.map(getAnnouncmentItem)}
-                </ul>
+                <h1>{welcome.title}</h1>
+                <p>{welcome.message}</p>
             </div>
             <div className="events">
                 <h2>Upcoming Events</h2>

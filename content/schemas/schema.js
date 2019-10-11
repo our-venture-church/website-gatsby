@@ -4,7 +4,6 @@ import createSchema from 'part:@sanity/base/schema-creator';
 import schemaTypes from 'all:part:@sanity/base/schema-type';
 
 // We import object and document schemas
-import blockContent from './blockContent';
 import person from './person';
 import sermon from './sermon';
 import series from './series';
@@ -14,6 +13,13 @@ import event from './event';
 import group from './group';
 import homePage from './homePage';
 import page from './page';
+import blockContent from './objects/blockContent';
+import heroBlock from './objects/heroBlock';
+import internalLink from './objects/internalLink';
+import richText from './objects/richText';
+import socialLink from './objects/socialLink';
+import titleMessage from './objects/titleMessage';
+import siteSettings from './siteSettings';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -33,8 +39,14 @@ export default createSchema({
         sermon,
         series,
         group,
+        siteSettings,
         // When added to this list, object types can be used as
         // { type: 'typename' } in other document schemas
         blockContent,
+        heroBlock,
+        internalLink,
+        richText,
+        socialLink,
+        titleMessage,
     ]),
 });

@@ -30,12 +30,20 @@ export default {
             title: 'Starts at',
             type: 'datetime',
             description: 'When does the event start?',
+            options: {
+                dateFormat: 'dddd, MMMM Do YYYY',
+                timeFormat: 'h:mm A',
+            },
         },
         {
             name: 'endAt',
             title: 'Ends at',
             type: 'datetime',
             description: 'When does the event end?',
+            options: {
+                dateFormat: 'dddd, MMMM Do YYYY',
+                timeFormat: 'h:mm A',
+            },
         },
         {
             name: 'image',
@@ -48,7 +56,12 @@ export default {
         {
             name: 'description',
             title: 'Description',
-            type: 'blockContent',
+            type: 'richText',
+        },
+        {
+            name: 'link',
+            title: 'Link for more info',
+            type: 'internalLink',
         },
     ],
     preview: {

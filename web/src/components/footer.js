@@ -1,7 +1,6 @@
-import PropTypes from "prop-types";
-import React from "react";
-import Search from "./search";
-import styled from "styled-components";
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
 
 const FooterStyled = styled.footer`
     background: #b7b7b4;
@@ -18,7 +17,6 @@ const getSocialLink = ({ title, url, text }) => (
 
 const Footer = ({ phoneNumber, siteTitle, socialLinks }) => (
     <FooterStyled>
-        <Search />
         <h3>Connect with us:</h3>
         <ul className="social-links">
             {socialLinks.map(item => getSocialLink(item))}

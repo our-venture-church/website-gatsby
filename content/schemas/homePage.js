@@ -7,8 +7,8 @@ export default {
     icon,
     fields: [
         {
-            name: 'heroContentType',
-            title: '',
+            name: 'heroType',
+            title: 'What type of hero image should be displayed',
             type: 'string',
             options: {
                 list: [
@@ -18,35 +18,23 @@ export default {
                         default: true,
                     },
                     { title: 'Service Times', value: 'serviceTimes' },
-                    { title: 'Custom', value: 'custom' },
+                    { title: 'Custom (Use fields below)', value: 'custom' },
                 ],
                 layout: 'radio',
             },
         },
         {
-            name: 'heroCustomText',
-            type: 'text',
-            title: 'Hero Text',
+            name: 'customHero',
+            type: 'heroBlock',
+            title: 'Custom Hero Image',
         },
         {
-            name: 'heroCustomImage',
-            type: 'image',
-            title: 'Hero image',
-        },
-        {
-            name: 'heroCustomLink',
-            type: 'string',
-            title: 'Hero Link',
-        },
-        {
-            name: 'aboutText',
-            type: 'string',
-            title: 'About Text',
-        },
-        {
-            name: 'aboutImage',
-            type: 'image',
-            title: 'About image',
+            name: 'welcome',
+            type: 'titleMessage',
+            title: 'Welcome',
         },
     ],
+    preview: {
+        select: { title: 'welcome.title' },
+    },
 };

@@ -17,9 +17,14 @@ export default {
             title: 'Slug',
             type: 'slug',
             options: {
-                source: 'name',
+                source: 'title',
                 maxLength: 100,
             },
+        },
+        {
+            name: 'description',
+            title: 'Description',
+            type: 'richText',
         },
         {
             name: 'artwork',
@@ -31,6 +36,6 @@ export default {
         },
     ],
     preview: {
-        select: { title: 'title', media: 'image' },
+        select: { title: 'title', media: 'artwork' },
     },
 };

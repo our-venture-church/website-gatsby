@@ -17,18 +17,17 @@ import '../styles/reset.css';
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`
         query SiteInfoQuery {
+            sanitySiteSettings {
+                name
+                phoneNumber
+                socialLinks {
+                    url
+                    title
+                    text
+                }
+            }
             site {
                 siteMetadata {
-                    title
-                    author
-                    contactInfo {
-                        phone
-                        social {
-                            title
-                            url
-                            text
-                        }
-                    }
                     navigation {
                         text
                         href
@@ -43,15 +42,16 @@ const Layout = ({ children }) => {
     `);
 
     const {
-        title,
-        contactInfo: { phone, social },
-        navigation,
-    } = data.site.siteMetadata;
+        name: siteName,
+        phoneNumber: phone,
+        socialLinks: social,
+    } = data.sanitySiteSettings;
+    const { navigation } = data.site.siteMetadata;
 
     return (
         <>
             <SkipLink />
-            <Header siteTitle={title} navigation={navigation} />
+            <Header siteTitle={siteName} navigation={navigation} />
             <div
                 style={{
                     margin: `0 auto`,
@@ -65,7 +65,7 @@ const Layout = ({ children }) => {
             </div>
             <Footer
                 phoneNumber={phone}
-                siteTitle={title}
+                siteTitle={siteName}
                 socialLinks={social}
             />
         </>
