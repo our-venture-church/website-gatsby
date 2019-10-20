@@ -27,7 +27,7 @@ const IndexPage = () => {
                 }
                 artwork {
                     asset {
-                        url
+                        _id
                     }
                 }
             }
@@ -52,7 +52,7 @@ const IndexPage = () => {
                     text
                     image {
                         asset {
-                            url
+                            _id
                         }
                     }
                     link
@@ -69,13 +69,12 @@ const IndexPage = () => {
     let heroProps;
     if (heroType === HERO_TYPES.CURRENT_SERIES) {
         heroProps = { ...currentSeries };
-        console.log(heroProps);
-        heroProps.image = heroProps.artwork.asset.url;
+        heroProps.image = heroProps.artwork;
         heroProps.link = `/sermon/series/${heroProps.slug.current}`;
     } else if (heroType === HERO_TYPES.SERVICE_TIMES) {
         // TODO make a default ServiceTimes
         heroProps = {};
-    } else if (heroType === HERO_TYPES.CUSTOMcustom) {
+    } else if (heroType === HERO_TYPES.CUSTOM) {
         heroProps = { ...customHero };
     }
 

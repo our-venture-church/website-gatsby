@@ -31,7 +31,7 @@ Hero.propTypes = {
         HERO_TYPES.CUSTOM,
     ]).isRequired,
     text: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.object.isRequired,
     link: PropTypes.string.isRequired,
 };
 
