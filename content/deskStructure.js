@@ -6,5 +6,5 @@ const otherDocumentTypes = S.documentTypeListItems().filter(
 
 export default () =>
     S.list()
-        .title('zContent')
+        .title('Content')
         .items([...otherDocumentTypes]);

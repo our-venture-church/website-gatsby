@@ -41,6 +41,7 @@ export default {
                     { title: 'Staff', value: 'staff' },
                     { title: 'Lead Team Member', value: 'leadTeam' },
                     { title: 'Volunteer', value: 'volunteer' },
+                    { title: 'Guest Speaker', value: 'guestSpeaker' },
                 ],
             },
         },

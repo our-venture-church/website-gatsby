@@ -6,8 +6,6 @@ import styled from 'styled-components';
 import { KEYCODES } from '../constants';
 import { openDropdown, closeDropdown, closeNav } from '../actions';
 
-import sizes from '../theme/tokens/sizes';
-
 import NavItem from './navItem';
 
 const NavList = styled.ul`

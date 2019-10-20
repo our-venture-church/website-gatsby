@@ -10,22 +10,33 @@ export default {
             name: 'title',
             title: 'Title',
             type: 'string',
-            description: 'Sermon Title',
+            description: 'Required. Sermon Title',
+            validation: Rule => Rule.required(),
         },
         {
             name: 'slug',
             title: 'Slug',
             type: 'slug',
+            description:
+                'Required. This is used to build the URL for this sermon',
             options: {
-                source: 'name',
+                source: 'title',
                 maxLength: 100,
             },
+            validation: Rule => Rule.required(),
         },
         {
             name: 'date',
             title: 'Date',
             type: 'date',
-            description: 'When was the sermon?',
+            description: 'Required. When was the sermon?',
+            validation: Rule => Rule.required(),
+        },
+        {
+            name: 'speaker',
+            title: 'Speaker',
+            type: 'reference',
+            to: [{ type: 'person' }],
         },
         {
             name: 'series',
@@ -35,18 +46,15 @@ export default {
             description: 'Which series is this part of',
         },
         {
-            name: 'speaker',
-            title: 'Speaker',
-            type: 'reference',
-            to: [{ type: 'person' }],
+            name: 'video',
+            title: 'Video',
+            type: 'youtube',
         },
         {
-            name: 'artwork',
-            title: 'Artwork',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
+            name: 'audio',
+            title: 'Audio',
+            type: 'string',
+            description: 'The name of the sermon audio file uploaded.',
         },
     ],
     preview: {

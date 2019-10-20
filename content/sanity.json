@@ -1,28 +1,29 @@
 {
-  "root": true,
-  "project": {
-    "name": "venture"
-  },
-  "api": {
-    "projectId": "3deuluc8",
-    "dataset": "prod"
-  },
-  "plugins": [
-    "@sanity/base",
-    "@sanity/components",
-    "@sanity/default-layout",
-    "@sanity/default-login",
-    "@sanity/desk-tool",
-    "@sanity/google-maps-input"
-  ],
-  "parts": [
-    {
-      "name": "part:@sanity/base/schema",
-      "path": "./schemas/schema.js"
+    "root": true,
+    "project": {
+        "name": "venture",
+        "basePath": "/"
     },
-    {
-      "name": "part:@sanity/desk-tool/structure",
-      "path": "./deskStructure.js"
-    }
-  ]
+    "api": {
+        "projectId": "3deuluc8",
+        "dataset": "prod"
+    },
+    "plugins": [
+        "@sanity/base",
+        "@sanity/components",
+        "@sanity/default-layout",
+        "@sanity/default-login",
+        "@sanity/desk-tool",
+        "@sanity/google-maps-input"
+    ],
+    "parts": [
+        {
+            "name": "part:@sanity/base/schema",
+            "path": "./schemas/schema.js"
+        },
+        {
+            "name": "part:@sanity/desk-tool/structure",
+            "path": "./deskStructure.js"
+        }
+    ]
 }

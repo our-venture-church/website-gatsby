@@ -8,6 +8,9 @@ const dataset = 'prod';
 
 module.exports = {
     siteMetadata: {
+        title: 'Is this thing on?',
+        description: 'Here we go!',
+        author: 'Jim Arment',
         navigation: [
             {
                 text: "I'm New",

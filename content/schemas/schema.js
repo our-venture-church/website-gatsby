@@ -13,13 +13,21 @@ import event from './event';
 import group from './group';
 import homePage from './homePage';
 import page from './page';
+import siteSettings from './siteSettings';
+
 import blockContent from './objects/blockContent';
 import heroBlock from './objects/heroBlock';
 import internalLink from './objects/internalLink';
 import richText from './objects/richText';
 import socialLink from './objects/socialLink';
 import titleMessage from './objects/titleMessage';
-import siteSettings from './siteSettings';
+import youTube from './objects/youTube';
+import imNewPage from './imNewPage';
+import locationsPage from './locationsPage';
+import givePage from './givePage';
+import watchListenPage from './watchListenPage';
+import whatWeDoPage from './whatWeDoPage';
+import whoWeArePage from './whoWeArePage';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -30,8 +38,6 @@ export default createSchema({
     types: schemaTypes.concat([
         // The following are document types which will appear
         // in the studio.
-        homePage,
-        page,
         event,
         ministry,
         campus,
@@ -39,7 +45,16 @@ export default createSchema({
         sermon,
         series,
         group,
+        page,
         siteSettings,
+
+        homePage,
+        imNewPage,
+        locationsPage,
+        givePage,
+        watchListenPage,
+        whatWeDoPage,
+        whoWeArePage,
         // When added to this list, object types can be used as
         // { type: 'typename' } in other document schemas
         blockContent,
@@ -48,5 +63,6 @@ export default createSchema({
         richText,
         socialLink,
         titleMessage,
+        youTube,
     ]),
 });

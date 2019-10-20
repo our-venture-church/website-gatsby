@@ -28,6 +28,7 @@ const Layout = ({ children }) => {
             }
             site {
                 siteMetadata {
+                    title
                     navigation {
                         text
                         href

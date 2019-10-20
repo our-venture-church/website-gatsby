@@ -6,7 +6,7 @@ export default {
         {
             name: 'text',
             type: 'string',
-            title: 'Texr',
+            title: 'Text',
         },
         {
             name: 'link',
