@@ -20,6 +20,7 @@ const NavList = styled.ul`
 const getBottomVal = isOpen => (isOpen ? '0%' : '100%');
 
 const StyledNav = styled.nav`
+    align-self: center;
     bottom: ${props => (props.navDrawer ? getBottomVal(props.isOpen) : 'auto')};
     display: block;
     position: relative;

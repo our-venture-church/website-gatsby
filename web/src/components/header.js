@@ -25,7 +25,6 @@ const StyledHeader = styled.header`
     grid-template-rows: auto 1fr;
     height: 100%;
     left: 0;
-    margin-bottom: 1.45rem;
     overflow: auto;
     position: ${props => (props.isOpen ? 'fixed' : 'static')};
     top: 0;

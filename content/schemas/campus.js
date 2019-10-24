@@ -11,6 +11,19 @@ export default {
             title: 'Title',
             type: 'string',
             description: 'E.g.: Central, Everett, Mill Creek, etc.',
+            validation: Rule => Rule.required(),
+        },
+        {
+            name: 'slug',
+            title: 'Slug',
+            type: 'slug',
+            description:
+                'Required. This is used to build the URL for this campus',
+            options: {
+                source: 'title',
+                maxLength: 100,
+            },
+            validation: Rule => Rule.required(),
         },
         {
             name: 'published',
@@ -22,8 +35,7 @@ export default {
         {
             name: 'location',
             title: 'Location',
-            type: 'geopoint',
-            description: 'Where will the screening take place?',
+            type: 'location',
         },
         {
             name: 'serviceTimes',
@@ -40,15 +52,10 @@ export default {
             },
         },
         {
-            name: 'capusPastor',
+            name: 'campusPastor',
             title: 'Campus Pastor',
             type: 'reference',
             to: [{ type: 'person' }],
-        },
-        {
-            name: 'description',
-            title: 'Description',
-            type: 'blockContent',
         },
     ],
     preview: {

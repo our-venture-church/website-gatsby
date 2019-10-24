@@ -1,8 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 
-import { HERO_TYPES } from '../constants';
-
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Button from '../components/button';
@@ -47,7 +45,6 @@ const IndexPage = () => {
                     title
                     message
                 }
-                heroType
                 customHero {
                     text
                     image {
@@ -66,26 +63,15 @@ const IndexPage = () => {
     const { nodes: events } = data.allSanityEvent;
     const { sanitySeries: currentSeries } = data;
 
-    let heroProps;
-    if (heroType === HERO_TYPES.CURRENT_SERIES) {
-        heroProps = { ...currentSeries };
-        heroProps.image = heroProps.artwork;
-        heroProps.link = `/sermon/series/${heroProps.slug.current}`;
-    } else if (heroType === HERO_TYPES.SERVICE_TIMES) {
-        // TODO make a default ServiceTimes
-        heroProps = {};
-    } else if (heroType === HERO_TYPES.CUSTOM) {
-        heroProps = { ...customHero };
-    }
-
     return (
         <Layout>
             <SEO title="Home" />
-            <Hero type={heroType} {...heroProps} />
+            <Hero type={heroType} {...customHero} />
             <div className="welcome">
                 <h1>{welcome.title}</h1>
                 <p>{welcome.message}</p>
             </div>
+            <div>{currentSeries.title}</div>
             <div className="events">
                 <h2>Upcoming Events</h2>
                 <ul>{events.map(getEventItem)}</ul>

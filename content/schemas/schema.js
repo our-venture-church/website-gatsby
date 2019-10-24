@@ -11,23 +11,25 @@ import ministry from './ministry';
 import campus from './campus';
 import event from './event';
 import group from './group';
-import homePage from './homePage';
+import homePage from './singletons/homePage';
 import page from './page';
-import siteSettings from './siteSettings';
+import siteSettings from './singletons/siteSettings';
 
 import blockContent from './objects/blockContent';
 import heroBlock from './objects/heroBlock';
 import internalLink from './objects/internalLink';
+import location from './objects/location';
+import pageIntro from './objects/pageIntro';
 import richText from './objects/richText';
 import socialLink from './objects/socialLink';
 import titleMessage from './objects/titleMessage';
 import youTube from './objects/youTube';
-import imNewPage from './imNewPage';
-import locationsPage from './locationsPage';
-import givePage from './givePage';
-import watchListenPage from './watchListenPage';
-import whatWeDoPage from './whatWeDoPage';
-import whoWeArePage from './whoWeArePage';
+import imNewPage from './singletons/imNewPage';
+import locationsPage from './singletons/locationsPage';
+import givePage from './singletons/givePage';
+import watchListenPage from './singletons/watchListenPage';
+import whatWeDoPage from './singletons/whatWeDoPage';
+import whoWeArePage from './singletons/whoWeArePage';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -60,6 +62,8 @@ export default createSchema({
         blockContent,
         heroBlock,
         internalLink,
+        location,
+        pageIntro,
         richText,
         socialLink,
         titleMessage,

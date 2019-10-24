@@ -9,9 +9,14 @@ const StyledH1 = styled.button`
     border: 0;
     color: ${colors.white};
     display: block;
-    padding: 1.45rem 1.0875rem;
+    padding: 1.45rem 1rem;
     text-align: left;
     text-decoration: none;
+
+    @media (min-width: 500px) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 `;
 
 const StyledMark = styled.svg`

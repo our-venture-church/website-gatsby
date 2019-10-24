@@ -34,6 +34,7 @@ const ExpandoButton = styled.button`
 `;
 
 const NavLink = styled(Link)`
+    border-bottom: 0;
     border-top: ${props => (props.stackedNav ? '1px solid #595959' : 'none')};
     display: block;
     padding: ${props =>
