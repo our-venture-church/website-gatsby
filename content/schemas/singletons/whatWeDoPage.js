@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/ti/document';
+import { Document as icon } from 'react-icons/ti';
 
 export default {
     name: 'whatWeDoPage',

@@ -6,12 +6,15 @@ import Layout from '../components/layout';
 import PageIntro from '../components/PageIntro';
 import SEO from '../components/seo';
 import { getLayoutTransitionFor } from '../utils/styles';
+import Series from '../components/Series';
 
-const StyledCampusList = styled.ul`
+const StyledSeriesList = styled.ul`
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     list-style: none;
     margin-left: auto;
     margin-right: auto;
-    max-width: 800px;
     padding-left: 1rem;
     padding-right: 1rem;
 
@@ -20,6 +23,9 @@ const StyledCampusList = styled.ul`
     @media (min-width: 500px) {
         padding-left: 2rem;
         padding-right: 2rem;
+    }
+
+    > li {
     }
 `;
 
@@ -40,12 +46,11 @@ const SermonsPage = props => {
                 nodes {
                     id
                     title
-                    startDate
+                    startDate(formatString: "MMM YYYY")
+                    endDate(formatString: "MMM YYYY")
                     slug {
                         current
                     }
-                    endDate
-                    _rawDescription
                     artwork {
                         asset {
                             _id
@@ -65,11 +70,15 @@ const SermonsPage = props => {
 
             <PageIntro title={title} tag={tag} />
 
-            <StyledCampusList>
+            <StyledSeriesList>
                 {series.map(node => {
-                    return <li key={node.id}>{node.title}</li>;
+                    return (
+                        <li key={node.id}>
+                            <Series {...node} />
+                        </li>
+                    );
                 })}
-            </StyledCampusList>
+            </StyledSeriesList>
         </Layout>
     );
 };

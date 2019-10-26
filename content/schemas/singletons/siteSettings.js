@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/md/settings';
+import { Settings as icon } from 'react-icons/md';
 
 export default {
     name: 'siteSettings',
@@ -27,6 +27,11 @@ export default {
             title: 'Social Media Links',
             type: 'array',
             of: [{ type: 'socialLink' }],
+        },
+        {
+            name: 'seoDescription',
+            title: 'SEO Description',
+            type: 'seoDescription',
         },
         // {
         //     name: 'mainNav',

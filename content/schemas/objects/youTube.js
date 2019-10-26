@@ -1,6 +1,4 @@
 import React from 'react';
-import getYouTubeId from 'get-youtube-id';
-import YouTube from 'react-youtube';
 
 const Preview = ({ value }) => {
     const { url } = value;
@@ -20,8 +18,9 @@ export default {
         },
         {
             name: 'thumbnail',
-            type: 'Custom thumbnail on top of the video',
+            title: 'Custom thumbnail',
             type: 'image',
+            description: 'If not added, the YouTube thumbnail will be used.',
             options: {
                 hotspot: true,
             },

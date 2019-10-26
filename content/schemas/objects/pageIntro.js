@@ -17,10 +17,8 @@ export default {
         },
         {
             name: 'seoDescription',
-            type: 'text',
+            type: 'seoDescription',
             title: 'SEO Description',
-            description:
-                "Optional: 1 or 2 sentences shown on Google's search page.",
         },
     ],
 };

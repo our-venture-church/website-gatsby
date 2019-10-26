@@ -73,11 +73,7 @@ const NavItem = ({
                 handleKeyUp(e, isOpen);
             }}
         >
-            <NavLink
-                to={href}
-                stackedNav={stackedNav}
-                onHover={() => console.log('hover')}
-            >
+            <NavLink to={href} stackedNav={stackedNav}>
                 {text}
             </NavLink>
             {subLinks && (

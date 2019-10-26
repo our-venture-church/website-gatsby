@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/ti/calendar';
+import { Calendar as icon } from 'react-icons/ti';
 
 export default {
     name: 'event',

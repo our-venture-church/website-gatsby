@@ -4,16 +4,23 @@ import createSchema from 'part:@sanity/base/schema-creator';
 import schemaTypes from 'all:part:@sanity/base/schema-type';
 
 // We import object and document schemas
-import person from './person';
-import sermon from './sermon';
-import series from './series';
-import ministry from './ministry';
-import campus from './campus';
-import event from './event';
-import group from './group';
+import person from './documents/person';
+import sermon from './documents/sermon';
+import series from './documents/series';
+import ministry from './documents/ministry';
+import campus from './documents/campus';
+import event from './documents/event';
+import group from './documents/group';
+import page from './documents/page';
+
 import homePage from './singletons/homePage';
-import page from './page';
 import siteSettings from './singletons/siteSettings';
+import imNewPage from './singletons/imNewPage';
+import locationsPage from './singletons/locationsPage';
+import givePage from './singletons/givePage';
+import watchListenPage from './singletons/watchListenPage';
+import whatWeDoPage from './singletons/whatWeDoPage';
+import whoWeArePage from './singletons/whoWeArePage';
 
 import blockContent from './objects/blockContent';
 import heroBlock from './objects/heroBlock';
@@ -21,15 +28,10 @@ import internalLink from './objects/internalLink';
 import location from './objects/location';
 import pageIntro from './objects/pageIntro';
 import richText from './objects/richText';
+import seoDescription from './objects/seoDescription';
 import socialLink from './objects/socialLink';
 import titleMessage from './objects/titleMessage';
 import youTube from './objects/youTube';
-import imNewPage from './singletons/imNewPage';
-import locationsPage from './singletons/locationsPage';
-import givePage from './singletons/givePage';
-import watchListenPage from './singletons/watchListenPage';
-import whatWeDoPage from './singletons/whatWeDoPage';
-import whoWeArePage from './singletons/whoWeArePage';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -57,6 +59,7 @@ export default createSchema({
         watchListenPage,
         whatWeDoPage,
         whoWeArePage,
+
         // When added to this list, object types can be used as
         // { type: 'typename' } in other document schemas
         blockContent,
@@ -65,6 +68,7 @@ export default createSchema({
         location,
         pageIntro,
         richText,
+        seoDescription,
         socialLink,
         titleMessage,
         youTube,

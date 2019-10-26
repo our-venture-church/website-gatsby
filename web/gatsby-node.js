@@ -11,6 +11,7 @@ async function createSermonSeriesPages(graphql, actions, reporter) {
             allSanitySeries(filter: { slug: { current: { ne: null } } }) {
                 edges {
                     node {
+                        id
                         title
                         startDate
                         endDate

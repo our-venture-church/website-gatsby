@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/io/ios-browsers';
+import { IosBrowsers as icon } from 'react-icons/io';
 
 export default {
     name: 'series',
@@ -57,6 +57,11 @@ export default {
                 dateFormat: 'M/D/YYYY',
             },
             validation: Rule => Rule.required(),
+        },
+        {
+            title: 'SEO Description',
+            name: 'seoDescription',
+            type: 'seoDescription',
         },
     ],
     preview: {

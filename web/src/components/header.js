@@ -52,6 +52,12 @@ class Header extends Component {
                 this
             );
         }
+
+        if (typeof window !== 'undefined' && window.innerWidth < 1050) {
+            this.props.enableNavDrawer();
+        } else {
+            this.props.disableNavDrawer();
+        }
     }
 
     toggleNav() {
@@ -66,14 +72,6 @@ class Header extends Component {
 
     handleResize() {
         if (typeof window !== 'undefined' && window.innerWidth < 1050) {
-            this.props.enableNavDrawer();
-        } else {
-            this.props.disableNavDrawer();
-        }
-    }
-
-    componentWillMount() {
-        if (typeof window !== 'undefined' && window.innerWidth < 800) {
             this.props.enableNavDrawer();
         } else {
             this.props.disableNavDrawer();

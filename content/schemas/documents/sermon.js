@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/io/ios-book';
+import { IosBook as icon } from 'react-icons/io';
 
 export default {
     name: 'sermon',
