@@ -6,6 +6,7 @@ import BlockContent from '../components/block-content';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 import { pluralizeString } from '../utils/strings';
+import Layout from '../components/layout';
 
 export const query = graphql`
     query SermonSeriesTemplateQuery($id: String!) {
@@ -54,7 +55,7 @@ const SermonSeriesTemplate = props => {
         });
 
     return (
-        <div>
+        <Layout>
             <SEO title={`${series.title}`} description={seoDescription} />
             <h1>{series.title}</h1>
             <img
@@ -79,7 +80,7 @@ const SermonSeriesTemplate = props => {
                     ))}
                 </ul>
             )}
-        </div>
+        </Layout>
     );
 };
 

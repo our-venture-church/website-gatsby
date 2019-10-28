@@ -1,4 +1,4 @@
-import { Location as icon } from 'react-icons/ti';
+import { TiLocation as icon } from 'react-icons/ti';
 
 export default {
     name: 'campus',

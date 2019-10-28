@@ -4,6 +4,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 
 import Layout from '../../components/layout';
 import SEO from '../../components/seo';
+import BasicPageIntro from '../../components/BasicPageIntro';
 
 const StaffPage = () => {
     const data = useStaticQuery(graphql`
@@ -31,7 +32,8 @@ const StaffPage = () => {
 
     return (
         <Layout>
-            <SEO title="Staff" />
+            <SEO title="Staff" desciption="Meet the staff at Venture Church." />
+            <BasicPageIntro title="Staff" />
             <ul>
                 {staffMembers.map(staffObj => {
                     return (

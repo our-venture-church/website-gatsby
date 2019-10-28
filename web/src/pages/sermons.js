@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import Layout from '../components/layout';
-import PageIntro from '../components/PageIntro';
+import BasicPageIntro from '../components/BasicPageIntro';
 import SEO from '../components/seo';
 import { getLayoutTransitionFor } from '../utils/styles';
 import Series from '../components/Series';
@@ -15,14 +15,11 @@ const StyledSeriesList = styled.ul`
     list-style: none;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-
+    padding: 0;
     ${getLayoutTransitionFor('padding')}
 
-    @media (min-width: 500px) {
-        padding-left: 2rem;
-        padding-right: 2rem;
+    @media (min-width: 620px) {
+        padding: 0 calc(2rem - 10px);
     }
 
     > li {
@@ -35,13 +32,13 @@ const SermonsPage = props => {
             sanityWatchListenPage {
                 pageIntro {
                     title
-                    tag
                     seoDescription
                 }
             }
             allSanitySeries(
                 sort: { fields: startDate, order: DESC }
-                limit: 6
+                limit: 8
+                filter: { hide: { ne: true } }
             ) {
                 nodes {
                     id
@@ -62,13 +59,13 @@ const SermonsPage = props => {
     `);
 
     const { nodes: series } = data.allSanitySeries;
-    const { title, tag, seoDescription } = data.sanityWatchListenPage.pageIntro;
+    const { title, seoDescription } = data.sanityWatchListenPage.pageIntro;
 
     return (
         <Layout>
             <SEO title={title} description={seoDescription} />
 
-            <PageIntro title={title} tag={tag} />
+            <BasicPageIntro title={title} />
 
             <StyledSeriesList>
                 {series.map(node => {

@@ -1,9 +1,30 @@
-import { IosBrowsers as icon } from 'react-icons/io';
+import { IoIosBrowsers as icon } from 'react-icons/io';
+
+const getSubtitle = ({ startDate, endDate }) => {
+    const startingDate = new Date(startDate).toLocaleString('default', {
+        month: 'short',
+        year: 'numeric',
+    });
+    const endingDate = new Date(endDate).toLocaleString('default', {
+        month: 'short',
+        year: 'numeric',
+    });
+
+    if (startingDate === endingDate) {
+        return startingDate;
+    }
+
+    return `${startingDate} – ${endingDate}`;
+};
 
 export default {
     name: 'series',
     title: 'Sermon Series',
     type: 'document',
+    initialValue: () => ({
+        hide: false,
+        startDate: new Date().toISOString(),
+    }),
     icon,
     fields: [
         {
@@ -24,6 +45,13 @@ export default {
                 maxLength: 100,
             },
             validation: Rule => Rule.required(),
+        },
+        {
+            name: 'hide',
+            title: 'Hide this Series',
+            type: 'boolean',
+            description:
+                "Check this box if you'd like to hide this Sermon Series on the site. Maybe it hasn't launched yet.",
         },
         {
             name: 'description',
@@ -68,15 +96,22 @@ export default {
         select: {
             title: 'title',
             media: 'artwork',
-            subtitle: 'startDate',
+            startDate: 'startDate',
+            endDate: 'endDate',
         },
-        // TODO customize the subtitle to have the start and end date
-        // prepare(entry) {
-        //     return {
-        //         title: entry.title,
-        //         media: entry.artwork,
-        //         subTitle: `${entry.startDate} - ${entry.endDate}`,
-        //     };
-        // },
+        prepare(selection) {
+            return {
+                title: selection.title,
+                media: selection.media,
+                subtitle: getSubtitle(selection),
+            };
+        },
     },
+    orderings: [
+        {
+            title: 'Start Date',
+            name: 'startDateDesc',
+            by: [{ field: 'startDate', direction: 'desc' }],
+        },
+    ],
 };

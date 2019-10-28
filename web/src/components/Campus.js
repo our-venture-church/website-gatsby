@@ -30,7 +30,7 @@ const StyledCampusHeading = styled.h2`
     margin-bottom: 0.5em;
 `;
 
-const Campus = ({ title, serviceTimes, image, campusPastor, location }) => (
+const Campus = ({ title, serviceTimes, image, location }) => (
     <StyledContainer>
         <StyledCampusImage
             src={imageUrlFor(buildImageObj(image))
@@ -55,9 +55,8 @@ const Campus = ({ title, serviceTimes, image, campusPastor, location }) => (
                 </p>
             )}
             <p>
-                <div>
-                    <b>Service Times:</b>
-                </div>
+                <b>Service Times:</b>
+                <br />
                 {serviceTimes}
             </p>
         </StyledCampusDetails>
@@ -67,7 +66,6 @@ const Campus = ({ title, serviceTimes, image, campusPastor, location }) => (
 Campus.propTypes = {
     title: PropTypes.string.isRequired,
     serviceTimes: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
 };
 
 export default Campus;

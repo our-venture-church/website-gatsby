@@ -1,4 +1,4 @@
-import { Document as icon } from 'react-icons/ti';
+import { TiDocument as icon } from 'react-icons/ti';
 
 export default {
     name: 'watchListenPage',
@@ -9,7 +9,7 @@ export default {
         {
             name: 'pageIntro',
             title: 'Page Intro',
-            type: 'pageIntro',
+            type: 'basicPageIntro',
             validation: Rule => Rule.required(),
         },
     ],

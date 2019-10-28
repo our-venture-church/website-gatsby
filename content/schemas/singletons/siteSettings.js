@@ -1,4 +1,4 @@
-import { Settings as icon } from 'react-icons/md';
+import { MdSettings as icon } from 'react-icons/md';
 
 export default {
     name: 'siteSettings',

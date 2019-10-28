@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import colors from '../theme/tokens/colors';
 
 const StyledSkipLink = styled.a`
     align-items: center;
+    color: ${colors.charcoalBlack} !important;
     display: flex;
     height: 1px;
     justify-content: center;

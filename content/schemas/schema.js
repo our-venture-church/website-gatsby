@@ -22,6 +22,7 @@ import watchListenPage from './singletons/watchListenPage';
 import whatWeDoPage from './singletons/whatWeDoPage';
 import whoWeArePage from './singletons/whoWeArePage';
 
+import basicPageIntro from './objects/basicPageIntro';
 import blockContent from './objects/blockContent';
 import heroBlock from './objects/heroBlock';
 import internalLink from './objects/internalLink';
@@ -30,6 +31,7 @@ import pageIntro from './objects/pageIntro';
 import richText from './objects/richText';
 import seoDescription from './objects/seoDescription';
 import socialLink from './objects/socialLink';
+import socialMediaLink from './objects/socialMediaLink';
 import titleMessage from './objects/titleMessage';
 import youTube from './objects/youTube';
 
@@ -62,6 +64,7 @@ export default createSchema({
 
         // When added to this list, object types can be used as
         // { type: 'typename' } in other document schemas
+        basicPageIntro,
         blockContent,
         heroBlock,
         internalLink,
@@ -70,6 +73,7 @@ export default createSchema({
         richText,
         seoDescription,
         socialLink,
+        socialMediaLink,
         titleMessage,
         youTube,
     ]),

@@ -39,6 +39,7 @@ const LocationsPage = props => {
                 filter: { published: { eq: true } }
             ) {
                 nodes {
+                    id
                     location {
                         address
                         location {
@@ -52,9 +53,6 @@ const LocationsPage = props => {
                         asset {
                             _id
                         }
-                    }
-                    campusPastor {
-                        title
                     }
                 }
             }

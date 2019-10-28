@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import _throttled from 'lodash.throttle';
 
+import Hamburger from './Hamburger';
 import {
     closeNav,
     openNav,
@@ -58,6 +59,10 @@ class Header extends Component {
         } else {
             this.props.disableNavDrawer();
         }
+
+        if (this.props.pathChanged && this.props.isOpen) {
+            this.props.closeNav();
+        }
     }
 
     toggleNav() {
@@ -78,14 +83,18 @@ class Header extends Component {
         }
     }
 
+    componentWillUpdate(nextProps) {
+        if (nextProps.pathChange && nextProps.isOpen) {
+            this.props.closeNav();
+        }
+    }
+
     render() {
         const { isOpen, navDrawer, navigation } = this.props;
         return (
             <StyledHeader isOpen={isOpen}>
-                <StyledLogo
-                    handleLogoClick={this.toggleNav}
-                    navDrawer={navDrawer}
-                />
+                <StyledLogo navDrawer={navDrawer} />
+                <Hamburger handleButtonClick={this.toggleNav} isOpen={isOpen} />
                 <Nav items={navigation} isOpen={isOpen} navDrawer={navDrawer} />
             </StyledHeader>
         );
@@ -101,6 +110,7 @@ Header.propTypes = {
             href: PropTypes.string.isRequired,
         })
     ),
+    pathChanged: PropTypes.bool,
     siteTitle: PropTypes.string,
 };
 
@@ -108,6 +118,7 @@ Header.defaultProps = {
     isOpen: true,
     navDrawer: true,
     navigation: [],
+    pathChanged: false,
     siteTitle: ``,
 };
 

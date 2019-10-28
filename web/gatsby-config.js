@@ -16,20 +16,6 @@ module.exports = {
             {
                 text: 'Locations',
                 href: '/locations',
-                subLinks: [
-                    {
-                        text: 'Mill Creek',
-                        href: '/locations/mill-creek',
-                    },
-                    {
-                        text: 'Everett',
-                        href: '/locations/everett',
-                    },
-                    {
-                        text: 'Palouse',
-                        href: '/locations/palouse',
-                    },
-                ],
             },
             {
                 text: 'Who we are',

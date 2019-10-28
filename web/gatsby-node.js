@@ -52,7 +52,12 @@ async function createPersonPages(graphql, actions, reporter) {
     const { createPage } = actions;
     const result = await graphql(`
         {
-            allSanityPerson(filter: { slug: { current: { ne: null } } }) {
+            allSanityPerson(
+                filter: {
+                    slug: { current: { ne: null } }
+                    personType: { ne: "formerStaff" }
+                }
+            ) {
                 edges {
                     node {
                         id

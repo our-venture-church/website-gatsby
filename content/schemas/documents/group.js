@@ -1,4 +1,4 @@
-import { People as icon } from 'react-icons/md';
+import { MdPeople as icon } from 'react-icons/md';
 
 export default {
     name: 'group',

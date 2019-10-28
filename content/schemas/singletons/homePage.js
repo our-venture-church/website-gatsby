@@ -1,4 +1,4 @@
-import { Document as icon } from 'react-icons/ti';
+import { TiDocument as icon } from 'react-icons/ti';
 
 export default {
     name: 'homePage',

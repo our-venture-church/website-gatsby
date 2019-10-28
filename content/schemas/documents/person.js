@@ -1,4 +1,4 @@
-import { Person as icon } from 'react-icons/md';
+import { MdPerson as icon } from 'react-icons/md';
 
 export default {
     name: 'person',
@@ -11,6 +11,7 @@ export default {
             title: 'Name',
             type: 'string',
             description: 'Please use "Firstname Lastname" format',
+            validation: Rule => Rule.required(),
         },
         {
             name: 'slug',
@@ -20,6 +21,18 @@ export default {
                 source: 'name',
                 maxLength: 100,
             },
+            validation: Rule => Rule.required(),
+        },
+        {
+            name: 'title',
+            title: 'Position',
+            type: 'string',
+            validation: Rule => Rule.required(),
+        },
+        {
+            name: 'email',
+            title: 'Email Address',
+            type: 'email',
         },
         {
             name: 'image',
@@ -42,18 +55,20 @@ export default {
                     { title: 'Lead Team Member', value: 'leadTeam' },
                     { title: 'Volunteer', value: 'volunteer' },
                     { title: 'Guest Speaker', value: 'guestSpeaker' },
+                    { title: 'Former Staff', value: 'formerStaff' },
                 ],
             },
         },
         {
-            name: 'title',
-            title: 'Title',
-            type: 'string',
+            name: 'bio',
+            title: 'Bio',
+            type: 'blockContent',
         },
         {
-            name: 'email',
-            title: 'Email Address',
-            type: 'email',
+            name: 'socialLinks',
+            title: 'Social Media Links',
+            type: 'array',
+            of: [{ type: 'socialMediaLink' }],
         },
     ],
     preview: {

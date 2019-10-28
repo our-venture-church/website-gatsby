@@ -14,6 +14,9 @@ import Footer from './footer';
 import SkipLink from './skipLink';
 import '../styles/reset.css';
 
+let currentPath;
+let newPath;
+
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`
         query SiteInfoQuery {
@@ -48,10 +51,24 @@ const Layout = ({ children }) => {
     } = data.sanitySiteSettings;
     const { navigation } = data.site.siteMetadata;
 
+    let pathChanged = false;
+
+    if (typeof window !== 'undefined') {
+        const newPath = window.location.pathname;
+        if (newPath !== currentPath) {
+            pathChanged = true;
+            currentPath = newPath;
+        }
+    }
+
     return (
         <>
             <SkipLink />
-            <Header siteTitle={siteName} navigation={navigation} />
+            <Header
+                siteTitle={siteName}
+                navigation={navigation}
+                pathChanged={pathChanged}
+            />
             <main role="main" id="main-content">
                 {children}
             </main>
