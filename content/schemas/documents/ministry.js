@@ -26,18 +26,9 @@ export default {
             description: 'Who leads this ministry?',
         },
         {
-            name: 'contactEmail',
-            title: 'Contact email address',
-            type: 'string',
-            description: 'Who can be contacted for more information?',
-        },
-        {
             name: 'overview',
             title: 'Overview',
             type: 'blockContent',
         },
     ],
-    preview: {
-        select: { title: 'title', media: 'artwork' || 'series.artwork', subtitle: 'series.title' },
-    },
 };

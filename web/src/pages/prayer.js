@@ -20,12 +20,11 @@ const Prayer = props => {
 
     console.log(data);
     const { _rawStations, intro } = data.sanityPrayerVenture;
-
+    console.log(_rawStations);
     return (
         <Layout>
             <SEO title="Prayer" description={intro.seoDescription} />
             <BasicPageIntro title={intro.title} />
-            {_rawStations}
         </Layout>
     );
 };
