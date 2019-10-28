@@ -36,6 +36,9 @@ import socialLink from './objects/socialLink';
 import socialMediaLink from './objects/socialMediaLink';
 import titleMessage from './objects/titleMessage';
 import youTube from './objects/youTube';
+import scripture from './objects/scripture';
+import prayerStations from './objects/prayerStations';
+import prayerVenture from './documents/prayerVenture';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -60,6 +63,7 @@ export default createSchema({
         imNewPage,
         locationsPage,
         givePage,
+        prayerVenture,
         watchListenPage,
         whatWeDoPage,
         whoWeArePage,
@@ -74,7 +78,9 @@ export default createSchema({
         internalLink,
         location,
         pageIntro,
+        prayerStations,
         richText,
+        scripture,
         seoDescription,
         socialLink,
         socialMediaLink,

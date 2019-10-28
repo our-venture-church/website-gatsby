@@ -10,7 +10,7 @@ const StyledIntro = styled.div`
         rgba(0, 0, 0, 0) 35%,
         rgba(0, 0, 0, 0) 100%
     );
-    margin-bottom: ${props => (noMargin ? '0' : '3rem')};
+    margin-bottom: ${props => (props.noMargin ? '0' : '3rem')};
     padding-bottom: 3rem;
     padding-top: 2rem;
     ${getLayoutTransitionFor('padding')}
