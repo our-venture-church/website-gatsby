@@ -46,12 +46,16 @@ const Campus = ({ title, serviceTimes, image, location }) => (
             {location && (
                 <p>
                     {location.address}
-                    <br />
-                    <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${location.location.lat},${location.location.lng}`}
-                    >
-                        Get Directions
-                    </a>
+                    {location.location && (
+                        <React.Fragment>
+                            <br />
+                            <a
+                                href={`https://www.google.com/maps/search/?api=1&query=${location.location.lat},${location.location.lng}`}
+                            >
+                                Get Directions
+                            </a>
+                        </React.Fragment>
+                    )}
                 </p>
             )}
             <p>
