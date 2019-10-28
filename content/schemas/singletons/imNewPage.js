@@ -12,6 +12,12 @@ export default {
             type: 'pageIntro',
             validation: Rule => Rule.required(),
         },
+        {
+            name: 'blocks',
+            title: 'Content Blocks',
+            type: 'array',
+            of: [{ type: 'imNewBlock' }],
+        },
     ],
     preview: {
         select: { title: 'pageIntro.title' },

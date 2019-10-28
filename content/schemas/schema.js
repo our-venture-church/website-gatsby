@@ -25,7 +25,9 @@ import whoWeArePage from './singletons/whoWeArePage';
 import basicPageIntro from './objects/basicPageIntro';
 import blockContent from './objects/blockContent';
 import heroBlock from './objects/heroBlock';
+import imNewBlock from './objects/imNewBlock';
 import internalLink from './objects/internalLink';
+import internalLinkWithText from './objects/internalLinkWithText';
 import location from './objects/location';
 import pageIntro from './objects/pageIntro';
 import richText from './objects/richText';
@@ -67,6 +69,8 @@ export default createSchema({
         basicPageIntro,
         blockContent,
         heroBlock,
+        imNewBlock,
+        internalLinkWithText,
         internalLink,
         location,
         pageIntro,
