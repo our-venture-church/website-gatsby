@@ -37,12 +37,15 @@ const StyledLink = styled(Link)`
 
 const ImNewBlock = ({ title, text, link, image, key }) => (
     <StyledBlock
-        backgroundImage={imageUrlFor(buildImageObj(image))
-            .width(1200)
-            .height(Math.floor((9 / 16) * 1200))
-            .fit('crop')
-            .auto('format')
-            .url()}
+        backgroundImage={
+            image &&
+            imageUrlFor(buildImageObj(image))
+                .width(1200)
+                .height(Math.floor((9 / 16) * 1200))
+                .fit('crop')
+                .auto('format')
+                .url()
+        }
         key={key}
     >
         <StyledContent>
