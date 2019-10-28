@@ -28,7 +28,7 @@ const ImNewPage = props => {
     return (
         <Layout>
             <SEO title={title} description={seoDescription} />
-            <PageIntro title={title} tag={tag} />
+            <PageIntro title={title} tag={tag} noMargin={true} />
             {blocks && blocks.map(block => <ImNewBlock {...block} />)}
         </Layout>
     );

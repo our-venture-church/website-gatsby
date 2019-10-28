@@ -10,7 +10,7 @@ const StyledIntro = styled.div`
         rgba(0, 0, 0, 0) 35%,
         rgba(0, 0, 0, 0) 100%
     );
-    margin-bottom: 3rem;
+    margin-bottom: ${props => (noMargin ? '0' : '3rem')};
     padding-bottom: 3rem;
     padding-top: 2rem;
     ${getLayoutTransitionFor('padding')}
@@ -65,8 +65,8 @@ const StyledTag = styled.p`
     }
 `;
 
-const PageIntro = ({ title, tag }) => (
-    <StyledIntro>
+const PageIntro = ({ title, tag, noMargin }) => (
+    <StyledIntro noMargin={noMargin}>
         <StyledTitle>{title}</StyledTitle>
         <StyledTag>{tag}</StyledTag>
     </StyledIntro>
@@ -75,6 +75,11 @@ const PageIntro = ({ title, tag }) => (
 PageIntro.propTypes = {
     title: PropTypes.string.isRequired,
     tag: PropTypes.string.isRequired,
+    noMargin: PropTypes.bool,
+};
+
+PageIntro.defaultProps = {
+    noMargin: false,
 };
 
 export default PageIntro;
