@@ -9,11 +9,6 @@ export default {
             type: 'string',
         },
         {
-            name: 'name',
-            title: 'Name',
-            type: 'string',
-        },
-        {
             name: 'slug',
             title: 'Slug',
             type: 'slug',
@@ -33,6 +28,17 @@ export default {
             name: 'overview',
             title: 'Overview',
             type: 'blockContent',
+        },
+        {
+            name: 'email',
+            title: 'Email Address',
+            type: 'email',
+        },
+        {
+            name: 'socialLinks',
+            title: 'Social Media Links',
+            type: 'array',
+            of: [{ type: 'socialMediaLink' }],
         },
     ],
 };
