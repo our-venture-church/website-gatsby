@@ -8,12 +8,18 @@ import { imageUrlFor } from '../lib/image-url';
 import colors from '../theme/tokens/colors';
 
 const StyledBlock = styled.div`
+    align-items: center;
     background: url('${props => props.backgroundImage}');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
     min-height: calc(100vh);
-    padding: 4rem;
+    padding: 1rem;
+
+    @media (min-width: 500px) {
+        padding: 4rem;
+    }
 `;
 
 const StyledContent = styled.div`
