@@ -16,7 +16,7 @@ const StyledIntro = styled.div`
     ${getLayoutTransitionFor('padding')}
 
     @media (min-width: 500px) {
-        margin-bottom: 4rem;
+        ${props => (props.noMargin ? '0' : '4rem')};
         padding-bottom: 4rem;
         padding-top: 3rem;
     }

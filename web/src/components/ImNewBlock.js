@@ -9,13 +9,17 @@ import colors from '../theme/tokens/colors';
 
 const StyledBlock = styled.div`
     background: url('${props => props.backgroundImage}');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: calc(100vh);
     padding: 4rem;
 `;
 
 const StyledContent = styled.div`
     background: rgb(52, 51, 51, 0.9);
     display: inline-block;
-    max-width: 600px;
+    max-width: 550px;
     padding: 40px;
     position: relative;
 `;
