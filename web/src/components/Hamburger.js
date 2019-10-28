@@ -5,33 +5,35 @@ import colors from '../theme/tokens/colors';
 const StyledHamburger = styled.button`
     background: none;
     border: 0;
-    font-size: 16px;
     font-size: 1rem;
     cursor: pointer;
     font-weight: normal;
     height: 46px;
+    text-decoration: none !important;
+    transition: 250ms width cubic-bezier(0.22, 0.61, 0.36, 1);
+    width: 46px;
+    z-index: 3;
+
+    margin-right: 6px;
     position: absolute;
     right: 0;
-    text-decoration: none !important;
-    top: 10px;
-    transition: 250ms width cubic-bezier(0.22, 0.61, 0.36, 1);
-    width: 36px;
-    z-index: 3;
+    top: 27px;
+
     @media (min-width: 1050px) {
         display: none;
     }
-    @media (min-width: 25rem) {
-        margin-right: 25px;
-        margin-right: 1.5625rem;
-        width: 46px;
+    @media (min-width: 500px) {
+        margin-right: 22px;
     }
     i {
         color: #fff;
         font-style: normal;
+        margin: 0 10px;
         position: relative;
         position: relative;
-        right: 12px;
+        right: 0;
         top: 22px;
+        width: calc(100% - 20px);
     }
     &:hover i {
         color: #fff;
@@ -42,17 +44,20 @@ const StyledHamburger = styled.button`
     i:after {
         background: #fff;
         content: '';
-        display: inline-block;
+        display: block;
         height: 2px;
         position: absolute;
         transition: all 250ms cubic-bezier(0.22, 0.61, 0.36, 1);
-        width: 20px;
     }
     i:before {
-        top: -5px;
+        right: 0;
+        top: -7px;
+        width: 100%;
     }
     i:after {
-        bottom: -5px;
+        bottom: -7px;
+        right: 0;
+        width: 100%;
     }
     &:hover i,
     &:hover i:before,
@@ -64,7 +69,7 @@ const StyledHamburger = styled.button`
         isOpen &&
         `
         i {
-            background: transparent;
+            background: rgba(255, 255, 255, 0) !important;
         }
         i:before {
             top: 0;
@@ -77,7 +82,7 @@ const StyledHamburger = styled.button`
     `}
 `;
 
-const SkipLink = ({ handleButtonClick, isOpen }) => (
+const Hamburger = ({ handleButtonClick, isOpen }) => (
     <StyledHamburger
         onClick={handleButtonClick}
         aria-label="Open navigation menu"
@@ -87,4 +92,4 @@ const SkipLink = ({ handleButtonClick, isOpen }) => (
     </StyledHamburger>
 );
 
-export default SkipLink;
+export default Hamburger;

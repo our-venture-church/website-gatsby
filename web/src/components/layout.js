@@ -15,7 +15,6 @@ import SkipLink from './skipLink';
 import '../styles/reset.css';
 
 let currentPath;
-let newPath;
 
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`

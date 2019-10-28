@@ -20,11 +20,11 @@ const NavList = styled.ul`
 const getBottomVal = isOpen => (isOpen ? '0%' : '100%');
 
 const StyledNav = styled.nav`
-    align-self: center;
-    bottom: ${props => (props.navDrawer ? getBottomVal(props.isOpen) : 'auto')};
+    align-self: ${props => (props.navDrawer ? 'start' : 'center')};
+    right: ${props => (props.navDrawer ? getBottomVal(props.isOpen) : 'auto')};
     display: block;
     position: relative;
-    transition: 0.15s ease-out bottom;
+    transition: 0.15s ease-out right;
     width: 100%;
     z-index: 100;
 `;
