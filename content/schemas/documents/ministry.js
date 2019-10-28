@@ -18,16 +18,16 @@ export default {
             },
         },
         {
+            name: 'overview',
+            title: 'Overview',
+            type: 'blockContent',
+        },
+        {
             name: 'leader',
             title: 'Leader',
             type: 'reference',
             to: [{ type: 'person' }],
             description: 'Who leads this ministry?',
-        },
-        {
-            name: 'overview',
-            title: 'Overview',
-            type: 'blockContent',
         },
         {
             name: 'email',
