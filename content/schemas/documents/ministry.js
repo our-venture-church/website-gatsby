@@ -1,6 +1,6 @@
 export default {
     name: 'ministry',
-    title: 'ministry',
+    title: 'Ministry',
     type: 'document',
     fields: [
         {
@@ -21,8 +21,7 @@ export default {
             name: 'leader',
             title: 'Leader',
             type: 'reference',
-            type: 'array',
-            of: [{ type: 'person' }],
+            to: [{ type: 'person' }],
             description: 'Who leads this ministry?',
         },
         {
