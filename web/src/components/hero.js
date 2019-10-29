@@ -26,6 +26,7 @@ const StyledHero = styled.div`
 `;
 
 const StyledHeroText = styled.h2`
+    margin: auto;
     padding: 0 1rem;
 
     @media (min-width: 500px) {

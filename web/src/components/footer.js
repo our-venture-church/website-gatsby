@@ -13,10 +13,29 @@ const FooterStyled = styled.footer`
     ${getDefaultPadding()}
 `;
 
+const StyledSocialList = styled.ul`
+    list-style: none;
+    margin: 0 0 0.5em;
+    text-align: center;
+`;
+
+const StyledSocialItem = styled.li`
+    display: inline-block;
+    margin: 0;
+`;
+
+const StyledSocialLink = styled.a`
+    border: 0;
+    font-size: 1.5rem;
+    padding: 0 0.5em;
+    text-align: none;
+`;
+
 const StyledCopyright = styled.p`
     color: ${colors.cloudGray};
     font-size: 0.75rem;
-    padding-top: 1rem;
+    margin: 0;
+    padding-bottom: 1.25em;
     text-align: center;
 `;
 
@@ -45,23 +64,24 @@ const getSocialLink = ({ title, url, text }) => {
         return icon;
     };
     return (
-        <li key={title}>
-            <a href={url} aria-label={text || title}>
+        <StyledSocialItem key={title}>
+            <StyledSocialLink href={url} aria-label={text || title}>
                 {getIcon(title)}
-            </a>
-        </li>
+            </StyledSocialLink>
+        </StyledSocialItem>
     );
 };
 
 const Footer = ({ phoneNumber, siteTitle, socialLinks }) => (
     <FooterStyled>
-        <h3>Connect with us:</h3>
-        <ul className="social-links">
+        <StyledSocialList>
             {socialLinks.map(item => getSocialLink(item))}
-        </ul>
+        </StyledSocialList>
         <StyledCopyright>
             © {new Date().getFullYear()} {siteTitle}. All rights reserved.{' '}
-            <StyledNoBreak>{phoneNumber}</StyledNoBreak>
+            <StyledNoBreak aria-label="Phone number">
+                {phoneNumber}
+            </StyledNoBreak>
         </StyledCopyright>
     </FooterStyled>
 );
