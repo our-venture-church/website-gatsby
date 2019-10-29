@@ -3,6 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { getDefaultPadding } from '../utils/styles';
 import colors from '../theme/tokens/colors';
+import Facebook from './icons/facebook';
+import Instagram from './icons/instagram';
+import YouTube from './icons/youtube';
 
 const FooterStyled = styled.footer`
     background: ${colors.charcoalBlack};
@@ -21,13 +24,34 @@ const StyledNoBreak = styled.span`
     white-space: nowrap;
 `;
 
-const getSocialLink = ({ title, url, text }) => (
-    <li key={title}>
-        <a href={url} aria-label={text || title}>
-            {title}
-        </a>
-    </li>
-);
+const getSocialLink = ({ title, url, text }) => {
+    const getIcon = title => {
+        let icon;
+        console.log(title);
+        switch (title) {
+            case 'Facebook':
+                icon = <Facebook />;
+                break;
+            case 'Instagram':
+                icon = <Instagram />;
+                break;
+            case 'YouTube':
+                icon = <YouTube />;
+                break;
+            default:
+                icon = <span>{title}</span>;
+                break;
+        }
+        return icon;
+    };
+    return (
+        <li key={title}>
+            <a href={url} aria-label={text || title}>
+                {getIcon(title)}
+            </a>
+        </li>
+    );
+};
 
 const Footer = ({ phoneNumber, siteTitle, socialLinks }) => (
     <FooterStyled>
