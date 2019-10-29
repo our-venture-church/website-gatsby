@@ -1,5 +1,5 @@
 const colors = {
-    ventureYellow: '#fde164',
+    ventureYellow: '#ffe534',
     charcoalBlack: '#343333',
     cinderGray: '#ababab',
     cloudGray: '#e3e3e3',

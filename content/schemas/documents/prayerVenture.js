@@ -1,4 +1,4 @@
-import { TiDocument as icon } from 'react-icons/ti';
+import { FaPray as icon } from 'react-icons/fa';
 
 export default {
     name: 'prayerVenture',
@@ -10,6 +10,11 @@ export default {
             name: 'intro',
             title: 'Intro',
             type: 'basicPageIntro',
+        },
+        {
+            name: 'blurb',
+            title: 'Intro Blurb',
+            type: 'richText',
         },
         {
             name: 'stations',

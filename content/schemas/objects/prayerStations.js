@@ -1,7 +1,10 @@
+import { GiFootsteps as icon } from 'react-icons/gi';
+
 export default {
     title: 'Prayer Stations',
     name: 'prayerStations',
     type: 'object',
+    icon,
     fields: [
         {
             name: 'title',

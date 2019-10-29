@@ -1,10 +1,24 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import { getDefaultPadding } from '../utils/styles';
+import colors from '../theme/tokens/colors';
 
 const FooterStyled = styled.footer`
-    background: #b7b7b4;
-    color: #423f3b;
+    background: ${colors.charcoalBlack};
+    color: ${colors.cloudGray};
+    ${getDefaultPadding()}
+`;
+
+const StyledCopyright = styled.p`
+    color: ${colors.cloudGray};
+    font-size: 0.75rem;
+    padding-top: 1rem;
+    text-align: center;
+`;
+
+const StyledNoBreak = styled.span`
+    white-space: nowrap;
 `;
 
 const getSocialLink = ({ title, url, text }) => (
@@ -21,9 +35,10 @@ const Footer = ({ phoneNumber, siteTitle, socialLinks }) => (
         <ul className="social-links">
             {socialLinks.map(item => getSocialLink(item))}
         </ul>
-        <div className="copyright">
-            {`© ${new Date().getFullYear()} ${siteTitle}. All rights reserved. ${phoneNumber}`}
-        </div>
+        <StyledCopyright>
+            © {new Date().getFullYear()} {siteTitle}. All rights reserved.{' '}
+            <StyledNoBreak>{phoneNumber}</StyledNoBreak>
+        </StyledCopyright>
     </FooterStyled>
 );
 

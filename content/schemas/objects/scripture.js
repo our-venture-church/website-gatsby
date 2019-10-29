@@ -7,12 +7,13 @@ export default {
             name: 'reference',
             type: 'string',
             title: 'Reference',
-            description: 'e.g. 1 Corinthians 3:17',
+            description: 'e.g. John 11:35',
         },
         {
             name: 'text',
             type: 'text',
             title: 'Text',
+            description: 'Jesus wept.',
         },
     ],
 };

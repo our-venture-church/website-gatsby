@@ -89,44 +89,56 @@ async function createPersonPages(graphql, actions, reporter) {
     });
 }
 
-// async function createProjectPages(graphql, actions, reporter) {
-//     const { createPage } = actions;
-//     const result = await graphql(`
-//         {
-//             allSanityProject(filter: { slug: { current: { ne: null } } }) {
-//                 edges {
-//                     node {
-//                         id
-//                         slug {
-//                             current
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     `);
+async function createPrayerStationPages(graphql, actions, reporter) {
+    const { createPage } = actions;
+    const result = await graphql(`
+        {
+            sanityPrayerVenture {
+                _rawStations
+            }
+        }
+    `);
 
-//     if (result.errors) throw result.errors;
+    if (result.errors) throw result.errors;
 
-//     const projectEdges = (result.data.allSanityProject || {}).edges || [];
+    const prayerStations = result.data.sanityPrayerVenture._rawStations || [];
 
-//     projectEdges.forEach(edge => {
-//         const id = edge.node.id;
-//         const slug = edge.node.slug.current;
-//         const path = `/project/${slug}/`;
+    prayerStations.forEach((station, index) => {
+        const slug = station.slug.current;
+        const path = `/prayer/station/${slug}/`;
+        let nextPage = null;
+        let prevPage = null;
 
-//         reporter.info(`Creating project page: ${path}`);
+        if (index < prayerStations.length - 1) {
+            nextPage = {
+                path: `/prayer/station/${prayerStations[index + 1].slug.current}`,
+                title: prayerStations[index + 1].title,
+            };
+        }
 
-//         createPage({
-//             path,
-//             component: require.resolve('./src/templates/project.js'),
-//             context: { id },
-//         });
-//     });
-// }
+        if (index > 0) {
+            prevPage = {
+                path: `/prayer/station/${prayerStations[index - 1].slug.current}`,
+                title: prayerStations[index - 1].title,
+            };
+        }
+
+        reporter.info(`Creating prayer station page: ${path}`);
+
+        createPage({
+            path,
+            component: require.resolve('./src/templates/prayerStation.js'),
+            context: {
+                ...station,
+                nextPage,
+                prevPage,
+            },
+        });
+    });
+}
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
     await createSermonSeriesPages(graphql, actions, reporter);
     await createPersonPages(graphql, actions, reporter);
-    // await createProjectPages(graphql, actions, reporter);
+    await createPrayerStationPages(graphql, actions, reporter);
 };
