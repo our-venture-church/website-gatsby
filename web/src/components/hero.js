@@ -12,7 +12,7 @@ const StyledHero = styled.div`
     background: url('${props => props.backgroundImage}');
     background-position: center;
     background-size: cover;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid ${colors.ventureYellow};
     display: flex;
     height: 70vh;
     margin-bottom: 2rem;
