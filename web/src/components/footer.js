@@ -46,7 +46,6 @@ const StyledNoBreak = styled.span`
 const getSocialLink = ({ title, url, text }) => {
     const getIcon = title => {
         let icon;
-        console.log(title);
         switch (title) {
             case 'Facebook':
                 icon = <Facebook />;

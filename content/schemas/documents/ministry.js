@@ -38,7 +38,7 @@ export default {
             name: 'phone',
             title: 'Phone number',
             type: 'phone',
-            description: 'Use as needed.',
+            description: 'e.g. (425) 485-3085',
         },
         {
             name: 'socialLinks',
