@@ -83,7 +83,7 @@ class Header extends Component {
         }
     }
 
-    componentWillUpdate(nextProps) {
+    UNSAFE_componentWillUpdate(nextProps) {
         if (nextProps.pathChange && nextProps.isOpen) {
             this.props.closeNav();
         }
