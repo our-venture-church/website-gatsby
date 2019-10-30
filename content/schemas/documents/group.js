@@ -128,7 +128,7 @@ export default {
             name: 'campus',
             title: 'Campus',
             type: 'reference',
-            togs: [{ type: 'campus' }],
+            to: [{ type: 'campus' }],
             description: 'Leave blank if this group is not campus specific.',
         },
         {

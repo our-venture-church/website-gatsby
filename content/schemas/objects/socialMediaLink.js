@@ -14,6 +14,7 @@ export default {
                 list: [
                     { title: 'Instagram', value: 'instagram' },
                     { title: 'Facebook', value: 'facebook' },
+                    { title: 'Email', value: 'email' },
                     { title: 'Other', value: 'other' },
                 ],
             },
@@ -21,7 +22,7 @@ export default {
         },
         {
             name: 'url',
-            title: 'URL',
+            title: 'URL or Email address',
             type: 'string',
             validation: Rule => Rule.required(),
         },
