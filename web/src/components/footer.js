@@ -11,6 +11,7 @@ const FooterStyled = styled.footer`
     background: ${colors.charcoalBlack};
     color: ${colors.cloudGray};
     ${getDefaultPadding()}
+    padding-top: 1.5rem;
 `;
 
 const StyledSocialList = styled.ul`
@@ -27,8 +28,7 @@ const StyledSocialItem = styled.li`
 const StyledSocialLink = styled.a`
     border: 0;
     font-size: 1.5rem;
-    padding: 0 0.5em;
-    text-align: none;
+    padding: 0 0.25em;
 `;
 
 const StyledCopyright = styled.p`

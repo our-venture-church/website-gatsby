@@ -12,6 +12,7 @@ import campus from './documents/campus';
 import event from './documents/event';
 import group from './documents/group';
 import page from './documents/page';
+import prayerVenture from './documents/prayerVenture';
 
 import homePage from './singletons/homePage';
 import siteSettings from './singletons/siteSettings';
@@ -38,7 +39,7 @@ import titleMessage from './objects/titleMessage';
 import youTube from './objects/youTube';
 import scripture from './objects/scripture';
 import prayerStations from './objects/prayerStations';
-import prayerVenture from './documents/prayerVenture';
+import phoneNumber from './objects/phoneNumber';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -78,6 +79,7 @@ export default createSchema({
         internalLink,
         location,
         pageIntro,
+        phoneNumber,
         prayerStations,
         richText,
         scripture,

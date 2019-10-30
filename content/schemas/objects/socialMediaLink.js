@@ -14,7 +14,6 @@ export default {
                 list: [
                     { title: 'Instagram', value: 'instagram' },
                     { title: 'Facebook', value: 'facebook' },
-                    { title: 'Email', value: 'email' },
                     { title: 'Other', value: 'other' },
                 ],
             },

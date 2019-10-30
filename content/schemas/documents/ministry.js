@@ -35,6 +35,12 @@ export default {
             type: 'email',
         },
         {
+            name: 'phone',
+            title: 'Phone number',
+            type: 'phone',
+            description: 'Use as needed.',
+        },
+        {
             name: 'socialLinks',
             title: 'Social Media Links',
             type: 'array',
