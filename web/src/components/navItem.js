@@ -38,7 +38,7 @@ const NavLink = styled(Link)`
     border-top: ${props => (props.stackedNav ? '1px solid #595959' : 'none')};
     display: block;
     padding: ${props =>
-        props.stackedNav ? `0.66em 0 0.66em 1em` : `.66em .33em`};
+        props.stackedNav ? `0.66em 3.75rem 0.66em 1rem` : `.66em .33em`};
     text-align: ${props => (props.stackedNav ? `left` : `center`)};
     text-decoration: none;
 
@@ -46,6 +46,10 @@ const NavLink = styled(Link)`
     &:focus {
         color: ${colors.ventureYellow};
         text-decoration: underline;
+    }
+
+    @media (min-width: 500px) {
+        ${props => props.stackedNav && 'padding-left: 2rem;'}
     }
 `;
 

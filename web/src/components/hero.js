@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { HERO_TYPES } from '../constants';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
+import colors from '../theme/tokens/colors';
 
 const StyledHero = styled.div`
     background: url('${props => props.backgroundImage}');
@@ -26,11 +27,19 @@ const StyledHero = styled.div`
 `;
 
 const StyledHeroText = styled.h2`
-    margin: auto;
-    padding: 0 1rem;
+    margin: auto 1rem;
 
     @media (min-width: 500px) {
         padding: 0 2rem;
+    }
+
+    span {
+        background: ${colors.ventureYellow};
+        color: ${colors.charcoalBlack};
+        box-decoration-break: clone;
+        box-shadow: 0.5rem 0 0 ${colors.ventureYellow},
+            -0.5rem 0 0 ${colors.ventureYellow};
+        line-height: 1.4;
     }
 `;
 
@@ -44,7 +53,9 @@ const Hero = ({ text, image, link }) => (
             .url()}
     >
         <Link to={link}>
-            <StyledHeroText>{text}</StyledHeroText>
+            <StyledHeroText>
+                <span>{text}</span>
+            </StyledHeroText>
         </Link>
     </StyledHero>
 );

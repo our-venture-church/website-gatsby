@@ -37,7 +37,11 @@ const StyledSubContentContainer = styled.div`
 
     display: grid;
     grid-gap: 4rem;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+`;
+
+const StyledImage = styled.img`
+    max-width: 100%;
 `;
 
 const IndexPage = () => {
@@ -104,7 +108,7 @@ const IndexPage = () => {
             <StyledSubContentContainer>
                 <div>
                     <h2>Current Sermon Series: {currentSeries.title}</h2>
-                    <img
+                    <StyledImage
                         src={imageUrlFor(buildImageObj(currentSeries.artwork))
                             .width(1200)
                             .height(Math.floor((9 / 16) * 1200))
