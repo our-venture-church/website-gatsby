@@ -11,42 +11,130 @@ export default {
             title: 'Title',
             type: 'string',
             description: "Mom's Night Out",
+            validation: Rule => Rule.required(),
         },
         {
-            name: 'location',
-            title: 'Location',
-            type: 'geopoint',
-            description: 'Where will the group meet?',
+            name: 'slug',
+            title: 'Slug',
+            type: 'slug',
+            options: {
+                source: 'title',
+                maxLength: 100,
+            },
+            validation: Rule => Rule.required(),
+        },
+        {
+            name: 'signupId',
+            title: 'Group #',
+            type: 'number',
+            validation: Rule => Rule.integer().required(),
+            description:
+                'Group # that will be used for tracking this group during signups.',
+        },
+        {
+            name: 'status',
+            title: 'Status',
+            type: 'string',
+            validation: Rule => Rule.required(),
+            description:
+                '"Open": Accepting new members. "Closed": Group is full. "Hidden": Hide from website.',
+            options: {
+                list: [
+                    { title: 'Open', value: 'open' },
+                    { title: 'Closed', value: 'closed' },
+                    { title: 'Hidden', value: 'hidden' },
+                ],
+                layout: 'radio',
+            },
+        },
+        {
+            name: 'leader',
+            title: 'Leader',
+            type: 'string',
+            validation: Rule => Rule.required(),
+        },
+        {
+            name: 'day',
+            title: 'Day of the week',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Sunday', value: 'sunday' },
+                    { title: 'Monday', value: 'monday' },
+                    { title: 'Tuesday', value: 'tuesday' },
+                    { title: 'Wednesday', value: 'wednesday' },
+                    { title: 'Thursday', value: 'thursday' },
+                    { title: 'Friday', value: 'friday' },
+                    { title: 'Saturday', value: 'saturday' },
+                ],
+            },
+            validation: Rule => Rule.required(),
+        },
+        {
+            name: 'time',
+            title: 'Time',
+            type: 'string',
+            description: 'e.g. 5:00 PM, 10:30 AM, etc.',
+        },
+        {
+            name: 'city',
+            title: 'City',
+            type: 'string',
+            description: 'Where they meet.',
+            validation: Rule => Rule.required(),
+        },
+        {
+            name: 'kids',
+            title: 'Kid Friendly?',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Adults only', value: 'adultsOnly' },
+                    { title: 'Kid friendly', value: 'kidFriendly' },
+                ],
+            },
+            validation: Rule => Rule.required(),
+        },
+        {
+            name: 'gender',
+            title: 'Gender',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Mixed', value: 'mixed' },
+                    { title: 'Women only', value: 'women' },
+                    { title: 'Men only', value: 'men' },
+                ],
+            },
+        },
+        {
+            name: 'age',
+            title: 'Age',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Mixed ages', value: 'mixed' },
+                    { title: 'Grades 7 - 8', value: 'women' },
+                    { title: 'Grades 8 - 12', value: 'men' },
+                    { title: 'Grades 9 - 12', value: 'men' },
+                    { title: 'Ages: 30-44', value: 'men' },
+                    { title: 'Ages: 40-54', value: 'men' },
+                    { title: 'Ages: 55+', value: 'men' },
+                    { title: 'Young Adutls', value: 'men' },
+                ],
+            },
+        },
+        {
+            name: 'campus',
+            title: 'Campus',
+            type: 'reference',
+            togs: [{ type: 'campus' }],
+            description: 'Leave blank if this group is not campus specific.',
         },
         {
             name: 'description',
             title: 'Description',
             type: 'blockContent',
-        },
-        {
-            name: 'image',
-            title: 'Image',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: 'day',
-            title: 'Day of the week',
-            type: 'array',
-            of: [{ type: 'string' }],
-            options: {
-                list: [
-                    { title: 'Sunday', value: 'sun' },
-                    { title: 'Monday', value: 'mon' },
-                    { title: 'Tuesday', value: 'tue' },
-                    { title: 'Wednesday', value: 'wed' },
-                    { title: 'Thursday', value: 'thur' },
-                    { title: 'Friday', value: 'fri' },
-                    { title: 'Saturday', value: 'sat' },
-                ],
-            },
         },
     ],
     preview: {
