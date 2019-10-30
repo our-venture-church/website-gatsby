@@ -21,9 +21,12 @@ const getBottomVal = isOpen => (isOpen ? '0%' : '100%');
 
 const StyledNav = styled.nav`
     align-self: ${props => (props.navDrawer ? 'start' : 'center')};
+    justify-self: ${props => (props.navDrawer ? 'unset' : 'end')};
     right: ${props => (props.navDrawer ? getBottomVal(props.isOpen) : 'auto')};
     display: block;
+    max-width: ${props => (props.navDrawer ? '100%' : '800px')};
     position: relative;
+    right: ${props => (props.navDrawer ? 'auto' : '1rem')};
     transition: 0.15s ease-out right;
     width: 100%;
     z-index: 100;
