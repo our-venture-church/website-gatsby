@@ -133,8 +133,14 @@ export default {
         },
         {
             name: 'description',
-            title: 'Description',
+            title: 'Full Description',
             type: 'blockContent',
+        },
+        {
+            name: 'blurb',
+            title: 'Blurb',
+            type: 'text',
+            description: 'A short summary of the group.',
         },
     ],
     preview: {
