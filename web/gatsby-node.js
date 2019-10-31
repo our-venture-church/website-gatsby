@@ -202,12 +202,12 @@ async function createGroupPages(graphql, actions, reporter) {
 
     if (result.errors) throw result.errors;
 
-    const eventEdges = (result.data.allSanityEvent || {}).edges || [];
+    const groupEdges = (result.data.allSanityGroup || {}).edges || [];
 
-    eventEdges.forEach(edge => {
+    groupEdges.forEach(edge => {
         const id = edge.node.id;
         const slug = edge.node.slug.current;
-        const path = `/group/join/${slug}/`;
+        const path = `/groups/join/${slug}/`;
 
         reporter.info(`Creating group details page: ${path}`);
 

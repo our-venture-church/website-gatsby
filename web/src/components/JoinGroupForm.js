@@ -35,29 +35,29 @@ class JoinGroupForm extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <p>
-                    <label>
-                        Your Name:{' '}
-                        <input
-                            type="text"
-                            name="name"
-                            value={name}
-                            onChange={this.handleChange}
-                        />
-                    </label>
+                    <label htmlFor="join-form-name">Your Name: </label>
+                    <input
+                        id="join-form-name"
+                        type="text"
+                        name="name"
+                        value={name}
+                        onChange={this.handleChange}
+                        required
+                    />
                 </p>
                 <p>
-                    <label>
-                        Your Email:{' '}
-                        <input
-                            type="email"
-                            name="email"
-                            value={email}
-                            onChange={this.handleChange}
-                        />
-                    </label>
+                    <label htmlFor="join-form-email">Your Email:</label>
+                    <input
+                        id="join-form-email"
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={this.handleChange}
+                        required
+                    />
                 </p>
                 <p>
-                    <button type="submit">Send</button>
+                    <button type="submit">Send Join Request</button>
                 </p>
             </form>
         );

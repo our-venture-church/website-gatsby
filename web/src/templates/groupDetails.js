@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 import BlockContent from '../components/block-content';
-// import JoinGroupForm from '../components/JoinGroupForm';
+import JoinGroupForm from '../components/JoinGroupForm';
 
 export const query = graphql`
     query GroupDetailsTemplateQuery($id: String!) {
@@ -25,6 +25,8 @@ const GroupDetailsTemplate = props => {
             {group._rawDescription && (
                 <BlockContent blocks={group._rawDescription} />
             )}
+
+            <JoinGroupForm />
         </Layout>
     );
 };
