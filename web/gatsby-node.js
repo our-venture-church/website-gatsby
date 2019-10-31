@@ -168,11 +168,52 @@ async function createEventPages(graphql, actions, reporter) {
         const slug = edge.node.slug.current;
         const path = `/event/${slug}/`;
 
-        reporter.info(`Creating staff details page: ${path}`);
+        reporter.info(`Creating event details page: ${path}`);
 
         createPage({
             path,
             component: require.resolve('./src/templates/eventDetails.js'),
+            context: { id },
+        });
+    });
+}
+
+async function createGroupPages(graphql, actions, reporter) {
+    const { createPage } = actions;
+    const result = await graphql(`
+        {
+            allSanityGroup(
+                filter: {
+                    slug: { current: { ne: null } }
+                    status: { ne: "hidden" }
+                }
+            ) {
+                edges {
+                    node {
+                        id
+                        slug {
+                            current
+                        }
+                    }
+                }
+            }
+        }
+    `);
+
+    if (result.errors) throw result.errors;
+
+    const eventEdges = (result.data.allSanityEvent || {}).edges || [];
+
+    eventEdges.forEach(edge => {
+        const id = edge.node.id;
+        const slug = edge.node.slug.current;
+        const path = `/group/join/${slug}/`;
+
+        reporter.info(`Creating group details page: ${path}`);
+
+        createPage({
+            path,
+            component: require.resolve('./src/templates/groupDetails.js'),
             context: { id },
         });
     });
@@ -183,4 +224,5 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     await createPersonPages(graphql, actions, reporter);
     await createPrayerStationPages(graphql, actions, reporter);
     await createEventPages(graphql, actions, reporter);
+    await createGroupPages(graphql, actions, reporter);
 };

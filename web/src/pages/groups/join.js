@@ -34,7 +34,12 @@ const StyledStationList = styled.ul`
 const Prayer = props => {
     const data = useStaticQuery(graphql`
         query GroupsQuery {
-            allSanityGroup(filter: { status: { ne: "hidden" } }) {
+            allSanityGroup(
+                filter: {
+                    status: { ne: "hidden" }
+                    slug: { current: { ne: null } }
+                }
+            ) {
                 nodes {
                     title
                     time
