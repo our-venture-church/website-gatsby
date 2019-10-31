@@ -32,12 +32,6 @@ export default {
                 'Set to published when this event should be visible on a the website',
         },
         {
-            name: 'location',
-            title: 'Location',
-            type: 'geopoint',
-            description: 'Where will the screening take place?',
-        },
-        {
             name: 'beginAt',
             title: 'Starts at',
             type: 'datetime',

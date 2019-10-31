@@ -72,9 +72,9 @@ async function createPersonPages(graphql, actions, reporter) {
 
     if (result.errors) throw result.errors;
 
-    const personEdges = (result.data.allSanityPerson || {}).edges || [];
+    const eventEdges = (result.data.allSanityPerson || {}).edges || [];
 
-    personEdges.forEach(edge => {
+    eventEdges.forEach(edge => {
         const id = edge.node.id;
         const slug = edge.node.slug.current;
         const path = `/who-we-are/staff/${slug}/`;
@@ -137,8 +137,50 @@ async function createPrayerStationPages(graphql, actions, reporter) {
     });
 }
 
+async function createEventPages(graphql, actions, reporter) {
+    const { createPage } = actions;
+    const result = await graphql(`
+        {
+            allSanityEvent(
+                filter: {
+                    slug: { current: { ne: null } }
+                    published: { ne: false }
+                }
+            ) {
+                edges {
+                    node {
+                        id
+                        slug {
+                            current
+                        }
+                    }
+                }
+            }
+        }
+    `);
+
+    if (result.errors) throw result.errors;
+
+    const eventEdges = (result.data.allSanityEvent || {}).edges || [];
+
+    eventEdges.forEach(edge => {
+        const id = edge.node.id;
+        const slug = edge.node.slug.current;
+        const path = `/event/${slug}/`;
+
+        reporter.info(`Creating staff details page: ${path}`);
+
+        createPage({
+            path,
+            component: require.resolve('./src/templates/eventDetails.js'),
+            context: { id },
+        });
+    });
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
     await createSermonSeriesPages(graphql, actions, reporter);
     await createPersonPages(graphql, actions, reporter);
     await createPrayerStationPages(graphql, actions, reporter);
+    await createEventPages(graphql, actions, reporter);
 };
