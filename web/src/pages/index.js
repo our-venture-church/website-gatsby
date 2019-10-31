@@ -12,11 +12,12 @@ import Hero from '../components/hero';
 import { getDefaultPadding } from '../utils/styles';
 import colors from '../theme/tokens/colors';
 
-const getEventItem = ({ title, beginAt: date, link, id, image, slug }) => {
-    const linkTo = link || `/event/${slug.current}`;
+const getEventItem = ({ title, beginAt, endAt, id, image, slug }) => {
+    const endDate = endAt && beginAt !== endAt ? ` - ${endAt}` : '';
+
     return (
         <li key={id}>
-            <Link to={linkTo} aria-label={`${title} event`}>
+            <Link to={`/event/${slug.current}`} aria-label={`${title} event`}>
                 <img
                     src={imageUrlFor(buildImageObj(image))
                         .width(1200)
@@ -28,7 +29,8 @@ const getEventItem = ({ title, beginAt: date, link, id, image, slug }) => {
                 />
                 <b>{title}</b>
                 <br />
-                {date}
+                {beginAt}
+                {endDate}
             </Link>
         </li>
     );
@@ -220,7 +222,6 @@ const IndexPage = () => {
             allSanityEvent(sort: { fields: beginAt }) {
                 nodes {
                     title
-                    link
                     beginAt(formatString: "MMM D")
                     endAt(formatString: "MMM D")
                     image {

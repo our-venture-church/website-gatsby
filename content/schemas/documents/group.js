@@ -71,6 +71,13 @@ export default {
             validation: Rule => Rule.required(),
         },
         {
+            name: 'meetingFrequency',
+            title: 'Meeting frequency',
+            type: 'string',
+            description:
+                "If the group doesn't meet weekly, how often does it meet? e.g. every other week, 1st and 3rd Sunday of the month, etc.",
+        },
+        {
             name: 'time',
             title: 'Time',
             type: 'string',
@@ -120,7 +127,7 @@ export default {
                     { title: 'Ages: 30-44', value: 'men' },
                     { title: 'Ages: 40-54', value: 'men' },
                     { title: 'Ages: 55+', value: 'men' },
-                    { title: 'Young Adutls', value: 'men' },
+                    { title: 'Young Adults', value: 'men' },
                 ],
             },
         },
