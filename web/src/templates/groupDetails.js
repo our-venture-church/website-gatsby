@@ -10,6 +10,10 @@ export const query = graphql`
         group: sanityGroup(id: { eq: $id }) {
             title
             _rawDescription
+            signupId
+            slug {
+                current
+            }
         }
     }
 `;
@@ -26,7 +30,11 @@ const GroupDetailsTemplate = props => {
                 <BlockContent blocks={group._rawDescription} />
             )}
 
-            <JoinGroupForm />
+            <JoinGroupForm
+                groupName={group.title}
+                groupNumber={group.signupId}
+                groupPageUrl={`/groups/join/${group.slug.current}`}
+            />
         </Layout>
     );
 };

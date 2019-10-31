@@ -39,9 +39,19 @@ class JoinGroupForm extends React.Component {
                 onSubmit={this.handleSubmit}
                 data-netlify="true"
             >
-                <input type="hidden" name="form-name" value="join-a-group" />
+                <input
+                    type="hidden"
+                    name="group-name"
+                    value={this.props.groupName}
+                />
+                <input
+                    type="hidden"
+                    name="group-number"
+                    value={this.props.groupNumber}
+                />
+                <input type="hidden" name="group-page" value={groupPageUrl} />
                 <p>
-                    <label htmlFor="join-form-name">Your Name: </label>
+                    <label htmlFor="join-form-name">Name</label>
                     <input
                         id="join-form-name"
                         type="text"
@@ -52,7 +62,7 @@ class JoinGroupForm extends React.Component {
                     />
                 </p>
                 <p>
-                    <label htmlFor="join-form-email">Your Email:</label>
+                    <label htmlFor="join-form-email">Email</label>
                     <input
                         id="join-form-email"
                         type="email"
