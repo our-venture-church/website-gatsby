@@ -11,7 +11,7 @@ const encode = data => {
 class JoinGroupForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { name: '', email: '' };
+        this.state = { isValidated: false };
     }
 
     /* Here’s the juicy bit for posting the form submission */
@@ -40,6 +40,12 @@ class JoinGroupForm extends React.Component {
                 data-netlify-honeypot="bot-field"
             >
                 <input type="hidden" name="form-name" value="join-a-group" />
+                <div hidden>
+                    <label>
+                        Don’t fill this out:{' '}
+                        <input name="bot-field" onChange={this.handleChange} />
+                    </label>
+                </div>
                 <p>
                     <label htmlFor="join-form-name">Your Name: </label>
                     <input
