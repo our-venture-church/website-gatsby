@@ -34,18 +34,12 @@ class JoinGroupForm extends React.Component {
         const { name, email } = this.state;
         return (
             <form
+                action="POST"
                 name="join-a-group"
                 onSubmit={this.handleSubmit}
                 data-netlify="true"
-                data-netlify-honeypot="bot-field"
             >
                 <input type="hidden" name="form-name" value="join-a-group" />
-                <div hidden>
-                    <label>
-                        Don’t fill this out:{' '}
-                        <input name="bot-field" onChange={this.handleChange} />
-                    </label>
-                </div>
                 <p>
                     <label htmlFor="join-form-name">Your Name: </label>
                     <input
@@ -68,6 +62,7 @@ class JoinGroupForm extends React.Component {
                         required
                     />
                 </p>
+                <div data-netlify-recaptcha="true"></div>
                 <p>
                     <button type="submit">Send Join Request</button>
                 </p>
