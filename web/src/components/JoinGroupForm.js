@@ -33,7 +33,13 @@ class JoinGroupForm extends React.Component {
     render() {
         const { name, email } = this.state;
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form
+                name="join-a-group"
+                onSubmit={this.handleSubmit}
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+            >
+                <input type="hidden" name="form-name" value="join-a-group" />
                 <p>
                     <label htmlFor="join-form-name">Your Name: </label>
                     <input
