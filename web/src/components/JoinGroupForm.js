@@ -11,7 +11,12 @@ const encode = data => {
 class JoinGroupForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isValidated: false };
+        const { groupName, groupNumber, groupPageUrl: groupPage } = this.props;
+        this.state = {
+            groupName,
+            groupNumber,
+            groupPage,
+        };
     }
 
     /* Here’s the juicy bit for posting the form submission */
@@ -31,7 +36,7 @@ class JoinGroupForm extends React.Component {
     handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
     render() {
-        const { name, email } = this.state;
+        const { name, email, groupName, groupNumber, groupPage } = this.state;
         return (
             <form
                 action="POST"
@@ -39,21 +44,9 @@ class JoinGroupForm extends React.Component {
                 onSubmit={this.handleSubmit}
                 data-netlify="true"
             >
-                <input
-                    type="hidden"
-                    name="group-name"
-                    value={this.props.groupName}
-                />
-                <input
-                    type="hidden"
-                    name="group-number"
-                    value={this.props.groupNumber}
-                />
-                <input
-                    type="hidden"
-                    name="group-page"
-                    value={this.props.groupPageUrl}
-                />
+                <input type="hidden" name="groupName" value={groupName} />
+                <input type="hidden" name="groupNumber" value={groupNumber} />
+                <input type="hidden" name="groupPage" value={groupPage} />
                 <p>
                     <label htmlFor="join-form-name">Name</label>
                     <input
