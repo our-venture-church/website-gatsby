@@ -49,7 +49,11 @@ class JoinGroupForm extends React.Component {
                     name="group-number"
                     value={this.props.groupNumber}
                 />
-                <input type="hidden" name="group-page" value={groupPageUrl} />
+                <input
+                    type="hidden"
+                    name="group-page"
+                    value={this.props.groupPageUrl}
+                />
                 <p>
                     <label htmlFor="join-form-name">Name</label>
                     <input
