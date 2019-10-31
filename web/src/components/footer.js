@@ -8,7 +8,6 @@ import Instagram from './icons/instagram';
 import YouTube from './icons/youtube';
 
 const FooterStyled = styled.footer`
-    background: ${colors.charcoalBlack};
     color: ${colors.cloudGray};
     ${getDefaultPadding()}
     padding-top: 1.5rem;

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { getLayoutTransitionFor } from '../utils/styles';
+import colors from '../theme/tokens/colors';
 
 const StyledIntro = styled.div`
     background-image: linear-gradient(
@@ -10,6 +11,7 @@ const StyledIntro = styled.div`
         rgba(0, 0, 0, 0) 35%,
         rgba(0, 0, 0, 0) 100%
     );
+    border-bottom: 1px solid ${colors.ventureYellow};
     margin-bottom: ${props => (props.noMargin ? '0' : '3rem')};
     padding-bottom: 3rem;
     padding-top: 2rem;

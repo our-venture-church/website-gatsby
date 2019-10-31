@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { getLayoutTransitionFor } from '../utils/styles';
+import colors from '../theme/tokens/colors';
 
 const StyledTitle = styled.h1`
     background-image: linear-gradient(
@@ -10,6 +11,7 @@ const StyledTitle = styled.h1`
         rgba(0, 0, 0, 0) 35%,
         rgba(0, 0, 0, 0) 100%
     );
+    border-bottom: 1px solid ${colors.ventureYellow};
     font-size: 14px;
     line-height: 1.3;
     text-transform: uppercase;

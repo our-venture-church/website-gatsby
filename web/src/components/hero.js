@@ -14,7 +14,7 @@ const StyledHero = styled.div`
     background-size: cover;
     border-bottom: 1px solid ${colors.ventureYellow};
     display: flex;
-    height: 70vh;
+    height: 65vh;
     margin-bottom: 2rem;
 
     > a {
@@ -28,6 +28,7 @@ const StyledHero = styled.div`
 
 const StyledHeroText = styled.h2`
     margin: auto 1rem;
+    max-width: 620px;
 
     @media (min-width: 500px) {
         padding: 0 2rem;
@@ -39,7 +40,9 @@ const StyledHeroText = styled.h2`
         box-decoration-break: clone;
         box-shadow: 0.5rem 0 0 ${colors.ventureYellow},
             -0.5rem 0 0 ${colors.ventureYellow};
-        line-height: 1.4;
+        line-height: 1.6;
+        padding-bottom: 4px;
+        padding-top: 4px;
     }
 `;
 
