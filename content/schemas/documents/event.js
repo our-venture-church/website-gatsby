@@ -1,5 +1,13 @@
 import { TiCalendar as icon } from 'react-icons/ti';
 
+const getSubtitle = date => {
+    return new Date(date).toLocaleString('default', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+    });
+};
+
 export default {
     name: 'event',
     title: 'Event',
@@ -85,7 +93,22 @@ export default {
     preview: {
         select: {
             title: 'title',
+            subtitle: 'beginAt',
             media: 'image',
         },
+        prepare(selection) {
+            return {
+                title: selection.title,
+                media: selection.media,
+                subtitle: getSubtitle(selection.subtitle),
+            };
+        },
     },
+    orderings: [
+        {
+            title: 'Date',
+            name: 'beginAtDesc',
+            by: [{ field: 'beginAt', direction: 'desc' }],
+        },
+    ],
 };

@@ -16,7 +16,7 @@ const getEventItem = ({ title, beginAt, endAt, id, image, slug }) => {
     const endDate = endAt && beginAt !== endAt ? ` - ${endAt}` : '';
 
     return (
-        <li key={id}>
+        <StyledEvent key={id}>
             <Link to={`/event/${slug.current}`} aria-label={`${title} event`}>
                 <img
                     src={imageUrlFor(buildImageObj(image))
@@ -32,14 +32,13 @@ const getEventItem = ({ title, beginAt, endAt, id, image, slug }) => {
                 {beginAt}
                 {endDate}
             </Link>
-        </li>
+        </StyledEvent>
     );
 };
 
 const StyledBelowFold = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    margin-bottom: 3rem;
     ${getDefaultPadding()};
 
     @media (min-width: 900px) {
@@ -178,6 +177,27 @@ const StyledSeriesImage = styled.img`
 
 const StyledEvents = styled.div`
     background: rgba(0, 0, 0, 0.1);
+    margin: 0 -1rem;
+    padding: 2rem 1rem;
+
+    > a {
+        display: block;
+    }
+
+    @media (min-width: 500px) {
+        margin: 0 -2rem;
+        padding: 3rem 2rem;
+        text-align: center;
+
+        > h2 {
+            margin-bottom: 3rem;
+        }
+
+        a {
+            display: inline-block;
+            margin: auto;
+        }
+    }
 
     @media (min-width: 900px) {
         grid-column: 1 / 3;
@@ -187,12 +207,25 @@ const StyledEvents = styled.div`
 
 const StyledEventsList = styled.ul`
     display: grid;
-    grid-gap: 3rem;
+    grid-gap: 2rem 3rem;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    margin: 0;
+    margin: 0 0 2rem;
+    text-align: left;
 
     li {
         list-style: none;
+    }
+`;
+
+const StyledEvent = styled.li`
+    > a {
+        border: none;
+        display: block;
+        text-decoration: none;
+    }
+
+    img {
+        margin-bottom: 0.25rem;
     }
 `;
 
