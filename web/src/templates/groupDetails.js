@@ -33,7 +33,7 @@ const GroupDetailsTemplate = props => {
             <JoinGroupForm
                 groupName={group.title}
                 groupNumber={group.signupId}
-                groupPageUrl={`/groups/join/${group.slug.current}`}
+                groupPageUrl={`https://ourventure.church/groups/join/${group.slug.current}`}
             />
         </Layout>
     );
