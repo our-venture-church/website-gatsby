@@ -61,7 +61,7 @@ const ImNewBlock = ({ title, text, link, image, key }) => (
         <StyledContent>
             <StyledTag>{title}</StyledTag>
             <BlockContent blocks={text} />
-            {link && <StyledLink to={link.linkUrl}>{link.linkText}</StyledLink>}
+            {/*link && <StyledLink to={link.linkUrl}>{link.linkText}</StyledLink>*/}
         </StyledContent>
     </StyledBlock>
 );
