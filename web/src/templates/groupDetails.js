@@ -23,7 +23,7 @@ export const query = graphql`
 `;
 
 const StyledGroupContainer = styled.div`
-    ${getDefaultPadding};
+    ${getDefaultPadding()};
 `;
 
 const StyledGroupHeader = styled.h1`

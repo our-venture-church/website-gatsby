@@ -8,6 +8,7 @@ import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 import colors from '../theme/tokens/colors';
+import { getDefaultPadding } from '../utils/styles';
 
 export const query = graphql`
     query EventDetailsTemplateQuery($id: String!) {
@@ -30,6 +31,10 @@ export const query = graphql`
 const StyledImage = styled.img`
     border-bottom: 1px solid ${colors.ventureYellow};
     margin-bottom: 0.5rem;
+`;
+
+const StyledWrapper = styled.div`
+    ${getDefaultPadding()};
 `;
 
 const StyledEventTitle = styled.h1`
@@ -73,17 +78,22 @@ const EventDetailsTemplate = props => {
                         .url()}
                     alt=""
                 />
-                <StyledEventTitle>{title}</StyledEventTitle>
-                <StyledDate>
-                    {getDateText({ allDay, beginAt, endAt })}
-                </StyledDate>
+                <StyledWrapper>
+                    <StyledEventTitle>{title}</StyledEventTitle>
+                    <StyledDate>
+                        {getDateText({ allDay, beginAt, endAt })}
+                    </StyledDate>
 
-                {_rawDescription && <BlockContent blocks={_rawDescription} />}
-                {link && (
-                    <p>
-                        For more information, visit <a href={link}>{link}</a>.
-                    </p>
-                )}
+                    {_rawDescription && (
+                        <BlockContent blocks={_rawDescription} />
+                    )}
+                    {link && (
+                        <p>
+                            For more information, visit{' '}
+                            <a href={link}>{link}</a>.
+                        </p>
+                    )}
+                </StyledWrapper>
             </NarrowPageWrapper>
         </Layout>
     );

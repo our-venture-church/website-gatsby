@@ -9,7 +9,7 @@ import { getDefaultPadding } from '../utils/styles';
 
 const PadMe = styled.div`
     padding-top: 2rem;
-    ${getDefaultPadding};
+    ${getDefaultPadding()};
 `;
 
 const StyledYear = styled.span`

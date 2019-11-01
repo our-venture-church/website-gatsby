@@ -13,7 +13,7 @@ import { getDefaultPadding } from '../../utils/styles';
 import colors from '../../theme/tokens/colors';
 
 const StyledLayout = styled.div`
-    ${getDefaultPadding};
+    ${getDefaultPadding()};
 `;
 
 const StyledStaffList = styled.ul`
