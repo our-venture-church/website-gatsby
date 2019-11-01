@@ -33,10 +33,6 @@ const Layout = ({ children }) => {
                     navigation {
                         text
                         href
-                        subLinks {
-                            text
-                            href
-                        }
                     }
                 }
             }
@@ -61,7 +57,7 @@ const Layout = ({ children }) => {
     }
 
     return (
-        <>
+        <React.Fragment>
             <SkipLink />
             <Header
                 siteTitle={siteName}
@@ -76,7 +72,7 @@ const Layout = ({ children }) => {
                 siteTitle={siteName}
                 socialLinks={social}
             />
-        </>
+        </React.Fragment>
     );
 };
 

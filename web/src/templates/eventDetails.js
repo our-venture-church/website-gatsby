@@ -1,10 +1,12 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import styled from 'styled-components';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 import BlockContent from '../components/block-content';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
+import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 
 export const query = graphql`
     query EventDetailsTemplateQuery($id: String!) {
@@ -12,8 +14,8 @@ export const query = graphql`
             title
             link
             allDay
-            beginAt(formatString: "MMM D")
-            endAt(formatString: "MMM D")
+            beginAt(formatString: "dddd, MMMM Do, YYYY")
+            endAt(formatString: "dddd, MMMM Do, YYYY")
             _rawDescription
             image {
                 asset {
@@ -24,32 +26,59 @@ export const query = graphql`
     }
 `;
 
+const StyledEventTitle = styled.h1`
+    margin-bottom: 0.25rem;
+`;
+
+const StyledDate = styled.div`
+    margin-bottom: 2rem;
+`;
+
+const getDateText = ({ allDay, beginAt, endAt }) => {
+    if (beginAt === endAt || !endAt) {
+        return beginAt;
+    } else {
+        return `${beginAt} - ${endAt}`;
+    }
+};
+
 const EventDetailsTemplate = props => {
     const { data } = props;
     const event = data && data.event;
+    const {
+        title,
+        image,
+        allDay,
+        beginAt,
+        endAt,
+        _rawDescription,
+        link,
+    } = event;
     return (
         <Layout>
-            <SEO title={event.title} description="" />
-            <img
-                src={imageUrlFor(buildImageObj(event.image))
-                    .width(800)
-                    .height(Math.floor((9 / 16) * 800))
-                    .fit('crop')
-                    .auto('format')
-                    .url()}
-                alt={event.image.alt}
-            />
-            <h1>{event.title}</h1>
-            <ul>
-                <li>All Day: {event.allDay}</li>
-                <li>Begins At: {event.beginAt}</li>
-                <li>Ends At: {event.endAt}</li>
-                <li>Link: {event.link}</li>
-            </ul>
+            <SEO title={title} description="" />
+            <NarrowPageWrapper>
+                <img
+                    src={imageUrlFor(buildImageObj(image))
+                        .width(800)
+                        .height(Math.floor((9 / 16) * 800))
+                        .fit('crop')
+                        .auto('format')
+                        .url()}
+                    alt={image.alt}
+                />
+                <StyledEventTitle>{title}</StyledEventTitle>
+                <StyledDate>
+                    {getDateText({ allDay, beginAt, endAt })}
+                </StyledDate>
 
-            {event._rawDescription && (
-                <BlockContent blocks={event._rawDescription} />
-            )}
+                {_rawDescription && <BlockContent blocks={_rawDescription} />}
+                {link && (
+                    <p>
+                        For more information, visit <a href={link}>{link}</a>.
+                    </p>
+                )}
+            </NarrowPageWrapper>
         </Layout>
     );
 };
