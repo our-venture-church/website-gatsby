@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 import BlockContent from '../components/block-content';
+import GroupInfo from '../components/GroupInfo';
 import JoinGroupForm from '../components/JoinGroupForm';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 import { getDefaultPadding } from '../utils/styles';
@@ -15,6 +16,16 @@ export const query = graphql`
             _rawDescription
             signupId
             status
+            day
+            meetingFrequency
+            time
+            city
+            age
+            gender
+            kids
+            campus {
+                title
+            }
             slug {
                 current
             }
@@ -49,9 +60,12 @@ const GroupDetailsTemplate = props => {
                     <StyledGroupHeader>{group.title}</StyledGroupHeader>
 
                     <StyledGroupDetails>
-                        {group._rawDescription && (
-                            <BlockContent blocks={group._rawDescription} />
-                        )}
+                        <div>
+                            {group._rawDescription && (
+                                <BlockContent blocks={group._rawDescription} />
+                            )}
+                            <GroupInfo {...group} />
+                        </div>
 
                         {group.status !== 'closed' ? (
                             <JoinGroupForm

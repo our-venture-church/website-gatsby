@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import colors from '../theme/tokens/colors';
 
 const StyledForm = styled.form`
-    margin: auto;
+    margin: 0 auto;
     max-width: 700px;
     width: 100%;
 `;

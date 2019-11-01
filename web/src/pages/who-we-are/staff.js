@@ -10,7 +10,6 @@ import Layout from '../../components/layout';
 import SEO from '../../components/seo';
 import BasicPageIntro from '../../components/BasicPageIntro';
 import { getDefaultPadding } from '../../utils/styles';
-import colors from '../../theme/tokens/colors';
 
 const StyledLayout = styled.div`
     ${getDefaultPadding()};

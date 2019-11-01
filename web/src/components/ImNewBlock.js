@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+// import { Link } from 'gatsby';
 import BlockContent from './block-content';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
@@ -41,9 +41,9 @@ const StyledTag = styled.h2`
     top: -34px;
 `;
 
-const StyledLink = styled(Link)`
-    text-transform: uppercase;
-`;
+// const StyledLink = styled(Link)`
+//     text-transform: uppercase;
+// `;
 
 const ImNewBlock = ({ title, text, link, image, key }) => (
     <StyledBlock

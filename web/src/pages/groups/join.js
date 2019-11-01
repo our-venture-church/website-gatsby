@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import Layout from '../../components/layout';
 import SEO from '../../components/seo';
 import BasicPageIntro from '../../components/BasicPageIntro';
-import BlockContent from '../../components/block-content';
-import LinkAsButton from '../../components/LinkAsButton';
+import GroupInfo from '../../components/GroupInfo';
 import { getDefaultPadding } from '../../utils/styles';
 import Grid from '../../layouts/Grid';
+import LinkAsButton from '../../components/LinkAsButton';
 
 const StyledContainer = styled.div`
     ${getDefaultPadding()}
@@ -43,6 +43,7 @@ const Prayer = props => {
                     id
                     gender
                     day
+                    meetingFrequency
                     city
                     age
                     campus {
@@ -78,12 +79,15 @@ const Prayer = props => {
                                             </Link>
                                         </h2>
                                         <p>{group.blurb}</p>
-                                        {group.status !== 'closed' && (
+                                        <GroupInfo {...group} />
+
+                                        {props.status !== 'closed' && (
                                             <LinkAsButton
                                                 to={groupUrl}
-                                                aria-label="Get details or join"
+                                                aria-label={`Join the ${group.title} group `}
+                                                fullSize
                                             >
-                                                Join
+                                                Join this Group
                                             </LinkAsButton>
                                         )}
                                     </li>

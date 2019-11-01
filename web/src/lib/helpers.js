@@ -21,3 +21,6 @@ export function buildImageObj(source) {
 
     return imageObj;
 }
+
+export const capitalizeFirstLetter = word =>
+    word[0].toUpperCase() + word.slice(1);
