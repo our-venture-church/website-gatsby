@@ -8,6 +8,7 @@ import BasicPageIntro from '../../components/BasicPageIntro';
 import BlockContent from '../../components/block-content';
 import LinkAsButton from '../../components/LinkAsButton';
 import { getDefaultPadding } from '../../utils/styles';
+import Grid from '../../layouts/Grid';
 
 const StyledContainer = styled.div`
     ${getDefaultPadding()}
@@ -17,17 +18,6 @@ const StyledContainer = styled.div`
 
     @media (min-width: 839px) {
         grid-gap: 4rem;
-    }
-`;
-
-const StyledStationList = styled.ul`
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    margin: 0;
-
-    li {
-        padding: 0 1rem 0 0;
     }
 `;
 
@@ -58,7 +48,7 @@ const Prayer = props => {
                     campus {
                         title
                     }
-                    _rawDescription
+                    blurb
                 }
             }
         }
@@ -77,9 +67,7 @@ const Prayer = props => {
             <StyledContainer>
                 {groups && (
                     <div>
-                        <div>Filter by Day of the week (Coming soon)</div>
-                        <p></p>
-                        <StyledStationList>
+                        <Grid>
                             {groups.map(group => {
                                 const groupUrl = `/groups/join/${group.slug.current}`;
                                 return (
@@ -89,19 +77,19 @@ const Prayer = props => {
                                                 {group.title}
                                             </Link>
                                         </h2>
-                                        <BlockContent
-                                            blocks={group._rawDescription}
-                                        />
-                                        <LinkAsButton
-                                            to={groupUrl}
-                                            aria-label="Get details or join"
-                                        >
-                                            Join
-                                        </LinkAsButton>
+                                        <p>{group.blurb}</p>
+                                        {group.status !== 'closed' && (
+                                            <LinkAsButton
+                                                to={groupUrl}
+                                                aria-label="Get details or join"
+                                            >
+                                                Join
+                                            </LinkAsButton>
+                                        )}
                                     </li>
                                 );
                             })}
-                        </StyledStationList>
+                        </Grid>
                     </div>
                 )}
             </StyledContainer>
