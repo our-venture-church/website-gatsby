@@ -12,7 +12,7 @@ import { getDefaultPadding } from '../utils/styles';
 const StyledContainer = styled.div`
     ${getDefaultPadding()}
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 1rem;
 
     @media (min-width: 839px) {
