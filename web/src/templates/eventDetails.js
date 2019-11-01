@@ -7,6 +7,7 @@ import BlockContent from '../components/block-content';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
+import colors from '../theme/tokens/colors';
 
 export const query = graphql`
     query EventDetailsTemplateQuery($id: String!) {
@@ -24,6 +25,11 @@ export const query = graphql`
             }
         }
     }
+`;
+
+const StyledImage = styled.img`
+    border-bottom: 1px solid ${colors.ventureYellow};
+    margin-bottom: 0.5rem;
 `;
 
 const StyledEventTitle = styled.h1`
@@ -58,14 +64,14 @@ const EventDetailsTemplate = props => {
         <Layout>
             <SEO title={title} description="" />
             <NarrowPageWrapper>
-                <img
+                <StyledImage
                     src={imageUrlFor(buildImageObj(image))
                         .width(800)
                         .height(Math.floor((9 / 16) * 800))
                         .fit('crop')
                         .auto('format')
                         .url()}
-                    alt={image.alt}
+                    alt=""
                 />
                 <StyledEventTitle>{title}</StyledEventTitle>
                 <StyledDate>
