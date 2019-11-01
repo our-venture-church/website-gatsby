@@ -111,6 +111,10 @@ module.exports = {
                 text: 'Watch & Listen',
                 href: '/sermons',
             },
+            {
+                text: 'Prayer Venture',
+                href: '/prayer',
+            },
             // {
             //     text: 'Give',
             //     href: '/give',
