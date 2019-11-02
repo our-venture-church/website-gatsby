@@ -4,9 +4,13 @@ import styled from 'styled-components';
 
 const StyledGrid = styled.ul`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-gap: 3rem;
     margin-left: 0;
+
+    @media (min-width: 500px) {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
 
     > li {
         list-style: none;

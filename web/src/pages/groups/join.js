@@ -54,7 +54,6 @@ const Prayer = props => {
     `);
 
     const { nodes: groups } = data.allSanityGroup;
-    console.log(groups);
 
     return (
         <Layout>
