@@ -252,7 +252,10 @@ const IndexPage = () => {
                     }
                 }
             }
-            allSanityEvent(sort: { fields: beginAt }) {
+            allSanityEvent(
+                sort: { fields: beginAt }
+                filter: { published: { eq: true } }
+            ) {
                 nodes {
                     title
                     beginAt(formatString: "MMM D")
