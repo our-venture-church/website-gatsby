@@ -32,6 +32,17 @@ const StyledStaffImage = styled.img`
     max-width: 100%;
 `;
 
+const StyledStaffImagePlaceholder = styled.div`
+    background: ${colors.cloudGray};
+    margin-bottom: 0.25rem;
+
+    &:after {
+        content: '';
+        display: block;
+        padding-bottom: 100%;
+    }
+`;
+
 const StyledStaffName = styled.h3`
     span {
         display: block;
@@ -41,12 +52,9 @@ const StyledStaffName = styled.h3`
 `;
 
 const getStaffMember = staffObj => {
-    if (!staffObj.image) {
-        return null;
-    }
     return (
         <StyledStaffItem key={staffObj.id}>
-            {staffObj.image && (
+            {staffObj.image ? (
                 <StyledStaffImage
                     src={imageUrlFor(buildImageObj(staffObj.image))
                         .width(600)
@@ -56,6 +64,8 @@ const getStaffMember = staffObj => {
                         .url()}
                     alt=""
                 />
+            ) : (
+                <StyledStaffImagePlaceholder></StyledStaffImagePlaceholder>
             )}
             <StyledStaffName>
                 {staffObj.name} <span>{staffObj.title}</span>

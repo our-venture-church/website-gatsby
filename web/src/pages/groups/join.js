@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import Layout from '../../components/layout';
 import SEO from '../../components/seo';
 import BasicPageIntro from '../../components/BasicPageIntro';
-import BlockContent from '../../components/block-content';
 import LinkAsButton from '../../components/LinkAsButton';
 import { getDefaultPadding } from '../../utils/styles';
 import Grid from '../../layouts/Grid';
