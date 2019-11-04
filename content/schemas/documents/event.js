@@ -83,6 +83,12 @@ export default {
             validation: Rule => Rule.required(),
         },
         {
+            name: 'email',
+            title: 'Contact Email',
+            type: 'email',
+            description: 'A contact email address to be included.',
+        },
+        {
             name: 'link',
             title: 'Link for more info',
             type: 'internalLink',

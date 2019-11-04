@@ -19,6 +19,7 @@ export const query = graphql`
             beginAt(formatString: "dddd, MMMM Do, YYYY")
             endAt(formatString: "dddd, MMMM Do, YYYY")
             _rawDescription
+            email
             image {
                 asset {
                     _id
@@ -64,6 +65,7 @@ const EventDetailsTemplate = props => {
         endAt,
         _rawDescription,
         link,
+        email,
     } = event;
     return (
         <Layout>
@@ -91,6 +93,12 @@ const EventDetailsTemplate = props => {
                         <p>
                             For more information, visit{' '}
                             <a href={link}>{link}</a>.
+                        </p>
+                    )}
+                    {email && (
+                        <p>
+                            Questions? Email us at{' '}
+                            <a href={`mailto:${email}`}>{emailg}</a>.
                         </p>
                     )}
                 </StyledWrapper>
