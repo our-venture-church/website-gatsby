@@ -3,6 +3,7 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+const path = require(`path`);
 
 async function createSermonSeriesPages(graphql, actions, reporter) {
     const { createPage } = actions;
@@ -219,10 +220,44 @@ async function createGroupPages(graphql, actions, reporter) {
     });
 }
 
+async function createMarkdownPages(graphql, actions, reporter) {
+    const { createPage } = actions;
+    const pageTemplate = path.resolve(`src/templates/siteMarkdown.js`);
+    const result = await graphql(`
+        {
+            allMarkdownRemark(
+                sort: { order: DESC, fields: [frontmatter___lastUpdate] }
+                limit: 1000
+            ) {
+                edges {
+                    node {
+                        frontmatter {
+                            path
+                        }
+                    }
+                }
+            }
+        }
+    `);
+    // Handle errors
+    if (result.errors) {
+        reporter.panicOnBuild(`Error while running GraphQL query.`);
+        return;
+    }
+    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+        createPage({
+            path: node.frontmatter.path,
+            component: pageTemplate,
+            context: {}, // additional data can be passed via context
+        });
+    });
+}
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
     await createSermonSeriesPages(graphql, actions, reporter);
     await createPersonPages(graphql, actions, reporter);
     await createPrayerStationPages(graphql, actions, reporter);
     await createEventPages(graphql, actions, reporter);
     await createGroupPages(graphql, actions, reporter);
+    await createMarkdownPages(graphql, actions, reporter);
 };
