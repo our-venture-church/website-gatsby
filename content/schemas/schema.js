@@ -19,6 +19,7 @@ import siteSettings from './singletons/siteSettings';
 import imNewPage from './singletons/imNewPage';
 import locationsPage from './singletons/locationsPage';
 import givePage from './singletons/givePage';
+import staffPage from './singletons/staffPage';
 import watchListenPage from './singletons/watchListenPage';
 import whatWeDoPage from './singletons/whatWeDoPage';
 import whoWeArePage from './singletons/whoWeArePage';
@@ -65,6 +66,7 @@ export default createSchema({
         locationsPage,
         givePage,
         prayerVenture,
+        staffPage,
         watchListenPage,
         whatWeDoPage,
         whoWeArePage,

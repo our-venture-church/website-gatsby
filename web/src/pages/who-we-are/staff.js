@@ -102,11 +102,37 @@ const getStaffList = ({ title, members }) => {
 const StaffPage = () => {
     const data = useStaticQuery(graphql`
         query StaffPageQuery {
-            allSanityPerson(
-                filter: { personType: { ne: "volunteer" } }
-                sort: { fields: name, order: ASC }
-            ) {
-                nodes {
+            sanityStaffPage {
+                title
+                leadTeam {
+                    id
+                    name
+                    personType
+                    title
+                    slug {
+                        current
+                    }
+                    image {
+                        asset {
+                            _id
+                        }
+                    }
+                }
+                campusPastors {
+                    id
+                    name
+                    personType
+                    title
+                    slug {
+                        current
+                    }
+                    image {
+                        asset {
+                            _id
+                        }
+                    }
+                }
+                staff {
                     id
                     name
                     personType
@@ -124,14 +150,7 @@ const StaffPage = () => {
         }
     `);
 
-    const { nodes: staffMembers } = data.allSanityPerson;
-
-    const leadTeam = staffMembers.filter(staffObj =>
-        staffObj.personType.includes('leadTeam')
-    );
-    const nonLeadTeam = staffMembers.filter(
-        staffObj => !staffObj.personType.includes('leadTeam')
-    );
+    const { title, leadTeam, campusPastors, staff } = data.sanityStaffPage;
 
     const staffLists = [
         {
@@ -139,15 +158,19 @@ const StaffPage = () => {
             members: leadTeam,
         },
         {
+            title: 'Campus Pastors',
+            members: campusPastors,
+        },
+        {
             title: 'Staff',
-            members: nonLeadTeam,
+            members: staff,
         },
     ];
 
     return (
         <Layout>
             <SEO title="Staff" desciption="Meet the staff at Venture Church." />
-            <BasicPageIntro title="Meet the staff" />
+            <BasicPageIntro title={title} />
             <StyledLayout>
                 {staffLists.map(list => getStaffList(list))}
             </StyledLayout>
