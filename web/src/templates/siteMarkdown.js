@@ -9,7 +9,7 @@ export default function Template({
     const { frontmatter, html } = markdownRemark;
     return (
         <Layout>
-            <NarrowPageWrapper>
+            <NarrowPageWrapper includeSidePadding includeTopPadding>
                 <h1>{frontmatter.title}</h1>
                 <p>Last updated on {frontmatter.lastUpdate}</p>
                 <div dangerouslySetInnerHTML={{ __html: html }} />
