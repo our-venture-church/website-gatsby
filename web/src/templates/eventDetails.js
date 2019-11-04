@@ -98,7 +98,7 @@ const EventDetailsTemplate = props => {
                     {email && (
                         <p>
                             Questions? Email us at{' '}
-                            <a href={`mailto:${email}`}>{emailg}</a>.
+                            <a href={`mailto:${email}`}>{email}</a>.
                         </p>
                     )}
                 </StyledWrapper>
