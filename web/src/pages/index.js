@@ -252,25 +252,6 @@ const IndexPage = () => {
                     }
                 }
             }
-            allSanityEvent(
-                sort: { fields: beginAt }
-                filter: { published: { eq: true } }
-            ) {
-                nodes {
-                    title
-                    beginAt(formatString: "MMM D")
-                    endAt(formatString: "MMM D")
-                    image {
-                        asset {
-                            _id
-                        }
-                    }
-                    id
-                    slug {
-                        current
-                    }
-                }
-            }
             sanityHomePage {
                 welcome {
                     title
@@ -285,12 +266,25 @@ const IndexPage = () => {
                     }
                     link
                 }
+                events {
+                    title
+                    beginAt(formatString: "MMM D")
+                    endAt(formatString: "MMM D")
+                    image {
+                        asset {
+                            _id
+                        }
+                    }
+                    id
+                    slug {
+                        current
+                    }
+                }
             }
         }
     `);
 
-    const { heroType, welcome, customHero } = data.sanityHomePage;
-    const { nodes: events } = data.allSanityEvent;
+    const { heroType, welcome, customHero, events } = data.sanityHomePage;
     const { nodes } = data.allSanitySeries;
     const currentSeries = nodes[0];
 

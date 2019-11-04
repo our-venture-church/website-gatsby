@@ -16,6 +16,17 @@ export default {
             type: 'titleMessage',
             title: 'Welcome',
         },
+        {
+            name: 'events',
+            type: 'array',
+            ttile: 'Events',
+            of: [
+                {
+                    type: 'reference',
+                    to: [{ type: 'event' }],
+                },
+            ],
+        },
     ],
     preview: {
         select: { title: 'welcome.title' },
