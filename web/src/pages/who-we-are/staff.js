@@ -33,8 +33,22 @@ const StyledStaffImage = styled.img`
 `;
 
 const StyledStaffImagePlaceholder = styled.div`
-    background: ${colors.cloudGray};
+    background: ${colors.cinderGray};
+    line-height: 1;
     margin-bottom: 0.25rem;
+    position: relative;
+
+    &:before {
+        color: ${colors.charcoalBlack};
+        content: 'Photo coming soon';
+        text-align: center;
+        display: block;
+        top: 50%;
+        position: absolute;
+        width: 100%;
+        margin-top: -0.5em;
+        line-height: 1;
+    }
 
     &:after {
         content: '';
