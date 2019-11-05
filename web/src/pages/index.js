@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 
-import LinkAsButton from '../components/LinkAsButton';
+// import LinkAsButton from '../components/LinkAsButton';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Hero from '../components/hero';
@@ -229,9 +229,9 @@ const StyledEvent = styled.li`
     }
 `;
 
-const StyledLinkAsButton = styled(LinkAsButton)`
-    margin: auto;
-`;
+// const StyledLinkAsButton = styled(LinkAsButton)`
+//     margin: auto;
+// `;
 
 const IndexPage = () => {
     const data = useStaticQuery(graphql`
@@ -318,9 +318,6 @@ const IndexPage = () => {
                     <StyledEventsList>
                         {events.map(event => getEventItem(event))}
                     </StyledEventsList>
-                    <StyledLinkAsButton to="/events">
-                        See all events
-                    </StyledLinkAsButton>
                 </StyledEvents>
             </StyledBelowFold>
         </Layout>

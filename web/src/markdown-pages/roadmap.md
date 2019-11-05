@@ -34,6 +34,7 @@ title: 'Venture Site Roadmap'
 -   Add sermons from the 8 most recent sermon series
 -   Ministry Detail Page
 -   "What we do" Landing page and schema
+-   See all events page
 -   "Who we are" sub-pages
 -   "Who we are" Landing page and schema
 -   Re-add links to the "I'm new" page
