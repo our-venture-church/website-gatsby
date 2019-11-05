@@ -1,4 +1,4 @@
-import { TiDocument as icon } from 'react-icons/ti';
+import { FaDonate as icon } from 'react-icons/fa';
 
 export default {
     name: 'givePage',
@@ -7,34 +7,41 @@ export default {
     icon,
     fields: [
         {
-            name: 'heroType',
-            title: 'What type of hero image should be displayed',
+            name: 'title',
             type: 'string',
-            options: {
-                list: [
-                    {
-                        title: 'Current Sermon Series',
-                        value: 'currentSeries',
-                        default: true,
-                    },
-                    { title: 'Service Times', value: 'serviceTimes' },
-                    { title: 'Custom (Use fields below)', value: 'custom' },
-                ],
-                layout: 'radio',
-            },
+            title: 'Page TItle',
+            validation: Rule => Rule.required(),
         },
         {
-            name: 'customHero',
-            type: 'heroBlock',
-            title: 'Custom Hero Image',
+            name: 'bannerImage',
+            type: 'bannerImage',
+            title: 'Banner Image',
         },
         {
-            name: 'welcome',
-            type: 'titleMessage',
-            title: 'Welcome',
+            name: 'intro',
+            type: 'text',
+            title: 'Intro',
+            validation: Rule => Rule.required(),
+        },
+        {
+            name: 'contentBlock',
+            type: 'array',
+            title: 'Content',
+            of: [{ type: 'giveBlock' }],
+        },
+        {
+            name: 'giveLink',
+            type: 'string',
+            title: 'Link to the Giving portal',
+            validation: Rule => Rule.required(),
+        },
+        {
+            name: 'seoDescription',
+            type: 'seoDescription',
+            title: 'SEO Description',
         },
     ],
     preview: {
-        select: { title: 'welcome.title' },
+        select: { title: 'title' },
     },
 };

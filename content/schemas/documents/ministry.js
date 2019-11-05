@@ -1,7 +1,10 @@
+import { FaPrayingHands as icon } from 'react-icons/fa';
+
 export default {
     name: 'ministry',
     title: 'Ministry',
     type: 'document',
+    icon,
     fields: [
         {
             name: 'name',

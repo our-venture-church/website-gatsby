@@ -112,13 +112,9 @@ module.exports = {
                 href: '/sermons',
             },
             {
-                text: 'Prayer Venture',
-                href: '/prayer',
+                text: 'Give',
+                href: '/give',
             },
-            // {
-            //     text: 'Give',
-            //     href: '/give',
-            // },
         ],
     },
     plugins: [

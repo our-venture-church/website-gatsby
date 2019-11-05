@@ -1,4 +1,4 @@
-import { FaMapO as icon } from 'react-icons/fa';
+import { FaMapSigns as icon } from 'react-icons/fa';
 
 export default {
     name: 'locationsPage',

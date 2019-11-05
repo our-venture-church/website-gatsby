@@ -24,8 +24,10 @@ import watchListenPage from './singletons/watchListenPage';
 import whatWeDoPage from './singletons/whatWeDoPage';
 import whoWeArePage from './singletons/whoWeArePage';
 
+import bannerImage from './objects/bannerImage';
 import basicPageIntro from './objects/basicPageIntro';
 import blockContent from './objects/blockContent';
+import giveBlock from './objects/giveBlock';
 import heroBlock from './objects/heroBlock';
 import imNewBlock from './objects/imNewBlock';
 import internalLink from './objects/internalLink';
@@ -73,8 +75,10 @@ export default createSchema({
 
         // When added to this list, object types can be used as
         // { type: 'typename' } in other document schemas
+        bannerImage,
         basicPageIntro,
         blockContent,
+        giveBlock,
         heroBlock,
         imNewBlock,
         internalLinkWithText,

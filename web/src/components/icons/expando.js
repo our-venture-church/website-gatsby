@@ -15,7 +15,7 @@ const Expando = ({ direction }) => (
         viewBox="0 0 10 10"
         fill="none"
         stroke="currentColor"
-        stroke-width="1px"
+        strokeWidth="1px"
     >
         <title>Expandable</title>
         <polyline

@@ -1,4 +1,4 @@
-import { IosBook as icon } from 'react-icons/io';
+import { MdPlayCircleFilled as icon } from 'react-icons/md';
 
 export default {
     name: 'sermon',
@@ -60,8 +60,15 @@ export default {
     preview: {
         select: {
             title: 'title',
-            media: 'artwork' || 'series.artwork',
+            media: 'series.artwork',
             subtitle: 'series.title',
         },
     },
+    orderings: [
+        {
+            title: 'Date',
+            name: 'startDateDesc',
+            by: [{ field: 'date', direction: 'desc' }],
+        },
+    ],
 };
