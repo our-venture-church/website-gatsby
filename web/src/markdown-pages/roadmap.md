@@ -6,15 +6,18 @@ title: 'Venture Site Roadmap'
 
 ## Goal for the week of November 4th:
 
--   Add the rest of the Group info to the page.
+-   Give Page and schema
 -   Add contact form
--   Filter groups by day of the week
 -   Improve the Sermon Series details page
 -   Add sermons from the 8 most recent sermon series
+-   Add the rest of the Group info to the page.
+-   Filter groups by day of the week
+-   Figure out photos on the detail pages
+-   Support embedded images and youtube videos
 -   Ministry Detail Page
 -   "What we do" Landing page and schema
 
-## PRE-launch checklist:
+## ~~PRE-launch checklist~~ Completed:
 
 -   ~~Prayer Page~~
 -   ~~Style Staff page~~
@@ -27,18 +30,20 @@ title: 'Venture Site Roadmap'
 -   ~~Missing staff photos (add a placeholder for staff photos that we don't have)~~
 -   ~~Fix Group search page width.~~
 -   ~~Better success handler for join-a-group form~~
--   Add the rest of the Group info to the page.
+-   Give Page and schema
 -   Add contact form
--   Filter groups by day of the week
 -   Improve the Sermon Series details page
 -   Add sermons from the 8 most recent sermon series
+-   Add the rest of the Group info to the page.
+-   Filter groups by day of the week
+-   Figure out photos on the detail pages
+-   Support embedded images and youtube videos
 -   Ministry Detail Page
 -   "What we do" Landing page and schema
--   See all events page
+-   See all events page (and link on the homepage)
 -   "Who we are" sub-pages
 -   "Who we are" Landing page and schema
 -   Re-add links to the "I'm new" page
--   Give Page and schema
 -   Add "Announcement" (or "news") schema and pages (similar to events, but not tied to a specific date).
 -   Improve styling on the staff page
 -   Add staff details for Lead team members
