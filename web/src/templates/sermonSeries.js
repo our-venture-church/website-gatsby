@@ -8,6 +8,8 @@ import { imageUrlFor } from '../lib/image-url';
 import { pluralizeString } from '../utils/strings';
 import Layout from '../components/layout';
 import DetailPage from '../layouts/DetailPage';
+import Grid from '../layouts/Grid';
+import { VideoContainer } from '../theme/components';
 
 export const query = graphql`
     query SermonSeriesTemplateQuery($id: String!) {
@@ -76,14 +78,23 @@ const SermonSeriesTemplate = props => {
                     <BlockContent blocks={series._rawDescription} />
                 )}
                 {sermons && (
-                    <ul>
-                        {sermons.map(sermon => (
-                            <li key={sermon.id}>
-                                {sermon.title}
-                                <ReactPlayer url={sermon.video.url} />
-                            </li>
-                        ))}
-                    </ul>
+                    <React.Fragment>
+                        <h2>Messages in this series:</h2>
+                        <Grid>
+                            {sermons.map(sermon => (
+                                <li key={sermon.id}>
+                                    <h3>{sermon.title}</h3>
+                                    <VideoContainer>
+                                        <ReactPlayer
+                                            url={sermon.video.url}
+                                            height="100%"
+                                            width="100%"
+                                        />
+                                    </VideoContainer>
+                                </li>
+                            ))}
+                        </Grid>
+                    </React.Fragment>
                 )}
             </DetailPage>
         </Layout>

@@ -41,3 +41,19 @@ export const FormField = styled.div`
         }
     }
 `;
+
+// 16:9 Aspect Ratio
+export const VideoContainer = styled.div`
+    height: 0;
+    overflow: hidden;
+    padding-top: 56.25%;
+    position: relative;
+
+    > div {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+`;

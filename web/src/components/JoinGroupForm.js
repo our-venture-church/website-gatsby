@@ -1,20 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Form, FormField } from '../theme/components';
+import { encode } from '../lib/helpers';
 
 const StyledFormWrapper = styled.div`
     margin: auto;
     max-width: 700px;
     width: 100%;
 `;
-
-const encode = data => {
-    return Object.keys(data)
-        .map(
-            key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
-        )
-        .join('&');
-};
 
 class JoinGroupForm extends React.Component {
     constructor(props) {

@@ -3,17 +3,9 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import BasicPageIntro from '../components/BasicPageIntro';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 import { Form, FormField } from '../theme/components';
-
-const encode = data => {
-    return Object.keys(data)
-        .map(
-            key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
-        )
-        .join('&');
-};
+import { encode } from '../lib/helpers';
 
 export const query = graphql`
     query ContactPageQuery {
@@ -86,7 +78,7 @@ class ContactPage extends React.Component {
                             <p>Fill out this form to get a hold of us.</p>
                             <Form
                                 action="POST"
-                                name="join-a-group"
+                                name="contact"
                                 onSubmit={this.handleSubmit}
                                 data-netlify="true"
                             >
