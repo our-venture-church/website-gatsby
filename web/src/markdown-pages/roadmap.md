@@ -1,13 +1,13 @@
 ---
 path: '/site/roadmap'
-lastUpdate: '2019-11-04'
+lastUpdate: '2019-11-07'
 title: 'Venture Site Roadmap'
 ---
 
 ## Goal for the week of November 4th:
 
 -   ~~Give Page and schema~~
--   Add contact form
+-   ~~Add contact form~~
 -   Improve the Sermon Series details page
 -   Add sermons from the 8 most recent sermon series
 -   Add the rest of the Group info to the page.
@@ -30,7 +30,7 @@ title: 'Venture Site Roadmap'
 -   ~~Fix Group search page width.~~
 -   ~~Better success handler for join-a-group form~~
 -   ~~Give Page and schema~~
--   Add contact form
+-   ~~Add contact form~~
 -   Improve the Sermon Series details page
 -   Add sermons from the 8 most recent sermon series
 -   Add the rest of the Group info to the page.

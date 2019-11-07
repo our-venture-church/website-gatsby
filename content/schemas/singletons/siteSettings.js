@@ -23,6 +23,11 @@ export default {
             type: 'string',
         },
         {
+            name: 'address',
+            title: 'Mailing Address',
+            type: 'text',
+        },
+        {
             name: 'socialLinks',
             title: 'Social Media Links',
             type: 'array',

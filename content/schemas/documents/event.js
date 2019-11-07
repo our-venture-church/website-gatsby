@@ -1,4 +1,5 @@
 import { TiCalendar as icon } from 'react-icons/ti';
+import TimePicker from 'react-time-picker';
 
 const getSubtitle = date => {
     return new Date(date).toLocaleString('default', {
@@ -57,6 +58,22 @@ export default {
             description:
                 'Check this when the event does not have a start time.',
         },
+        // {
+        //     name: 'beginTime',
+        //     title: 'What time does the event start?',
+        //     type: 'string',
+        //     inputComponent: TimePicker,
+        // },
+        // {
+        //     name: 'endTime',
+        //     title: 'What time does the event end?',
+        //     type: 'richDate',
+        //     options: {
+        //         timeFormat: 'h:mm A',
+        //         timeStep: 30,
+        //         inputDate: false,
+        //     },
+        // },
         {
             name: 'endAt',
             title: 'Ends at',

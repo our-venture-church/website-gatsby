@@ -29,11 +29,13 @@
     "@sanity/default-login": "^0.144.0",
     "@sanity/desk-tool": "^0.144.0",
     "@sanity/google-maps-input": "^0.144.0",
+    "@sanity/rich-date-input": "^0.144.0",
     "get-youtube-id": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-icons": "^3.7.0",
+    "react-time-picker": "^3.7.2",
     "react-youtube": "^7.9.0"
   },
   "devDependencies": {}
