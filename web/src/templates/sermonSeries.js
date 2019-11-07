@@ -7,6 +7,7 @@ import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 import { pluralizeString } from '../utils/strings';
 import Layout from '../components/layout';
+import DetailPage from '../layouts/DetailPage';
 
 export const query = graphql`
     query SermonSeriesTemplateQuery($id: String!) {
@@ -57,29 +58,34 @@ const SermonSeriesTemplate = props => {
     return (
         <Layout>
             <SEO title={`${series.title}`} description={seoDescription} />
-            <h1>{series.title}</h1>
-            <img
-                src={imageUrlFor(buildImageObj(series.artwork))
-                    .width(800)
-                    .height(Math.floor((9 / 16) * 800))
-                    .fit('crop')
-                    .auto('format')
-                    .url()}
-                alt={series.artwork.alt}
-            />
-            {series._rawDescription && (
-                <BlockContent blocks={series._rawDescription} />
-            )}
-            {sermons && (
-                <ul>
-                    {sermons.map(sermon => (
-                        <li key={sermon.id}>
-                            {sermon.title}
-                            <ReactPlayer url={sermon.video.url} />
-                        </li>
-                    ))}
-                </ul>
-            )}
+            <DetailPage
+                image={
+                    <img
+                        src={imageUrlFor(buildImageObj(series.artwork))
+                            .width(800)
+                            .height(Math.floor((9 / 16) * 800))
+                            .fit('crop')
+                            .auto('format')
+                            .url()}
+                        alt={series.artwork.alt}
+                    />
+                }
+            >
+                <h1>{series.title}</h1>
+                {series._rawDescription && (
+                    <BlockContent blocks={series._rawDescription} />
+                )}
+                {sermons && (
+                    <ul>
+                        {sermons.map(sermon => (
+                            <li key={sermon.id}>
+                                {sermon.title}
+                                <ReactPlayer url={sermon.video.url} />
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </DetailPage>
         </Layout>
     );
 };

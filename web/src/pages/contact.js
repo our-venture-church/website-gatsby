@@ -59,17 +59,28 @@ class ContactPage extends React.Component {
         const { name, email, message, sendSuccess, sendError } = this.state;
         const showMessage = sendSuccess || sendError;
         const statusMessage =
-            showMessage && sendSuccess
-                ? "Your message was sent. We'll contact you if your message necessitate one."
-                : `There was a problem sending your message. Please email us directly as ${contactEmail}.`;
-
+            showMessage && sendSuccess ? (
+                <p>
+                    Your message was sent. We'll contact you if your message
+                    necessitates a reply.
+                </p>
+            ) : (
+                <p>
+                    There was a problem sending your message. Please email us
+                    directly as{' '}
+                    <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+                </p>
+            );
         return (
             <Layout>
                 <SEO title="Contact" description="Contact us" />
-                <BasicPageIntro title="Contact Us" />
-                <NarrowPageWrapper>
+                <NarrowPageWrapper
+                    includeSidePadding={true}
+                    includeTopPadding={true}
+                >
+                    <h1>Contact Us</h1>
                     {showMessage ? (
-                        <p>{statusMessage}</p>
+                        { statusMessage }
                     ) : (
                         <React.Fragment>
                             <p>Fill out this form to get a hold of us.</p>
