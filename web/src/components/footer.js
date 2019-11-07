@@ -6,6 +6,7 @@ import colors from '../theme/tokens/colors';
 import Facebook from './icons/facebook';
 import Instagram from './icons/instagram';
 import YouTube from './icons/youtube';
+import Email from './icons/email';
 
 const FooterStyled = styled.footer`
     color: ${colors.cloudGray};
@@ -54,6 +55,9 @@ const getSocialLink = ({ title, url, text }) => {
                 break;
             case 'YouTube':
                 icon = <YouTube />;
+                break;
+            case 'Email':
+                icon = <Email />;
                 break;
             default:
                 icon = <span>{title}</span>;
