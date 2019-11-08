@@ -8,7 +8,7 @@ title: 'Venture Site Roadmap'
 
 -   ~~Give Page and schema~~
 -   ~~Add contact form~~
--   Improve the Sermon Series details page
+-   ~~Improve the Sermon Series details page~~
 -   Add sermons from the 8 most recent sermon series
 -   Add the rest of the Group info to the page.
 -   Filter groups by day of the week
@@ -31,7 +31,7 @@ title: 'Venture Site Roadmap'
 -   ~~Better success handler for join-a-group form~~
 -   ~~Give Page and schema~~
 -   ~~Add contact form~~
--   Improve the Sermon Series details page
+-   ~~Improve the Sermon Series details page~~
 -   Add sermons from the 8 most recent sermon series
 -   Add the rest of the Group info to the page.
 -   Filter groups by day of the week

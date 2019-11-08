@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import ReactPlayer from 'react-player';
+import styled from 'styled-components';
 import SEO from '../components/seo';
 import BlockContent from '../components/block-content';
 import { buildImageObj } from '../lib/helpers';
@@ -10,6 +11,21 @@ import Layout from '../components/layout';
 import DetailPage from '../layouts/DetailPage';
 import Grid from '../layouts/Grid';
 import { VideoContainer } from '../theme/components';
+
+const StyledSeriesSubTitle = styled.h2`
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+`;
+
+const StyledSermonTitle = styled.h3`
+    font-size: 1.25rem;
+    margin-bottom: 0.25em;
+`;
+
+const StyledSermonSpeaker = styled.div`
+    font-size: 0.875rem;
+    margin-bottom: 0.25em;
+`;
 
 export const query = graphql`
     query SermonSeriesTemplateQuery($id: String!) {
@@ -26,7 +42,10 @@ export const query = graphql`
             }
             seoDescription
         }
-        allSanitySermon(filter: { series: { id: { eq: $id } } }) {
+        allSanitySermon(
+            filter: { series: { id: { eq: $id } } }
+            sort: { fields: date, order: DESC }
+        ) {
             totalCount
             nodes {
                 id
@@ -34,6 +53,10 @@ export const query = graphql`
                 video {
                     url
                 }
+                speaker {
+                    name
+                }
+                date(formatString: "M/D/YYYY")
             }
         }
     }
@@ -79,16 +102,28 @@ const SermonSeriesTemplate = props => {
                 )}
                 {sermons && (
                     <React.Fragment>
-                        <h2>Messages in this series:</h2>
+                        <StyledSeriesSubTitle>
+                            Messages in this series
+                        </StyledSeriesSubTitle>
                         <Grid>
                             {sermons.map(sermon => (
                                 <li key={sermon.id}>
-                                    <h3>{sermon.title}</h3>
+                                    <StyledSermonTitle>
+                                        {sermon.title}
+                                    </StyledSermonTitle>
+                                    <StyledSermonSpeaker>
+                                        {sermon.speaker.name} on {sermon.date}
+                                    </StyledSermonSpeaker>
                                     <VideoContainer>
                                         <ReactPlayer
                                             url={sermon.video.url}
                                             height="100%"
                                             width="100%"
+                                            config={{
+                                                youtube: {
+                                                    playerVars: { showinfo: 0 },
+                                                },
+                                            }}
                                         />
                                     </VideoContainer>
                                 </li>
