@@ -292,6 +292,12 @@ async function createMarkdownPages(graphql, actions, reporter) {
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
+    const { createRedirect } = actions;
+    createRedirect({
+        fromPath: '/locations/everett',
+        toPath: '/locations',
+        isPermananet: true,
+    });
     await createSermonPages(graphql, actions, reporter);
     await createSermonSeriesPages(graphql, actions, reporter);
     await createPersonPages(graphql, actions, reporter);
