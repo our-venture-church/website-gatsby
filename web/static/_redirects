@@ -1,3 +1,2 @@
-/locations/everett          /locations              301
-/locations/mill-creek       /locations              301
+/locations/*                /locations              301
 /watch-live                 /sermons                301
