@@ -296,7 +296,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     createRedirect({
         fromPath: '/locations/everett',
         toPath: '/locations',
-        isPermananet: true,
+        isPermanent: true,
+    });
+    createRedirect({
+        fromPath: '/watch-live',
+        toPath: '/sermons',
+        isPermanent: true,
     });
     await createSermonPages(graphql, actions, reporter);
     await createSermonSeriesPages(graphql, actions, reporter);
