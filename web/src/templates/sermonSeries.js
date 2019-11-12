@@ -117,18 +117,22 @@ const SermonSeriesTemplate = props => {
                                         {sermon.speaker && sermon.speaker.name}{' '}
                                         on {sermon.date}
                                     </StyledSermonSpeaker>
-                                    <VideoContainer>
-                                        <ReactPlayer
-                                            url={sermon.video.url}
-                                            height="100%"
-                                            width="100%"
-                                            config={{
-                                                youtube: {
-                                                    playerVars: { showinfo: 0 },
-                                                },
-                                            }}
-                                        />
-                                    </VideoContainer>
+                                    {sermon.video && (
+                                        <VideoContainer>
+                                            <ReactPlayer
+                                                url={sermon.video.url}
+                                                height="100%"
+                                                width="100%"
+                                                config={{
+                                                    youtube: {
+                                                        playerVars: {
+                                                            showinfo: 0,
+                                                        },
+                                                    },
+                                                }}
+                                            />
+                                        </VideoContainer>
+                                    )}
                                 </li>
                             ))}
                         </Grid>
