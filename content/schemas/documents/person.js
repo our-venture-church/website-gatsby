@@ -24,6 +24,12 @@ export default {
             validation: Rule => Rule.required(),
         },
         {
+            name: 'honorific',
+            title: 'Name Prefix',
+            type: 'string',
+            description: 'Displayed with the person\'s name. e.g. Pastor, Dr., Knight, etc.'
+        },
+        {
             name: 'title',
             title: 'Position',
             type: 'string',

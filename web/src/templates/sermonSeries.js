@@ -85,22 +85,24 @@ const SermonSeriesTemplate = props => {
             <SEO title={`${series.title}`} description={seoDescription} />
             <DetailPage
                 image={
-                    <img
-                        src={imageUrlFor(buildImageObj(series.artwork))
-                            .width(800)
-                            .height(Math.floor((9 / 16) * 800))
-                            .fit('crop')
-                            .auto('format')
-                            .url()}
-                        alt={series.artwork.alt}
-                    />
+                    series.artwork ? (
+                        <img
+                            src={imageUrlFor(buildImageObj(series.artwork))
+                                .width(800)
+                                .height(Math.floor((9 / 16) * 800))
+                                .fit('crop')
+                                .auto('format')
+                                .url()}
+                            alt={series.artwork.alt}
+                        />
+                    ) : null
                 }
             >
                 <h1>{series.title}</h1>
                 {series._rawDescription && (
                     <BlockContent blocks={series._rawDescription} />
                 )}
-                {sermons && (
+                {sermons.length > 0 && (
                     <React.Fragment>
                         <StyledSeriesSubTitle>
                             Messages in this series
@@ -112,7 +114,8 @@ const SermonSeriesTemplate = props => {
                                         {sermon.title}
                                     </StyledSermonTitle>
                                     <StyledSermonSpeaker>
-                                        {sermon.speaker.name} on {sermon.date}
+                                        {sermon.speaker && sermon.speaker.name}{' '}
+                                        on {sermon.date}
                                     </StyledSermonSpeaker>
                                     <VideoContainer>
                                         <ReactPlayer

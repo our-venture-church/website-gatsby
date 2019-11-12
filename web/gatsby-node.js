@@ -56,7 +56,9 @@ async function createPersonPages(graphql, actions, reporter) {
             allSanityPerson(
                 filter: {
                     slug: { current: { ne: null } }
-                    personType: { ne: "formerStaff" }
+                    personType: {
+                        nin: ["guestSpeaker", "formerStaff", "volunteer"]
+                    }
                 }
             ) {
                 edges {
@@ -85,6 +87,42 @@ async function createPersonPages(graphql, actions, reporter) {
         createPage({
             path,
             component: require.resolve('./src/templates/staffDetails.js'),
+            context: { id },
+        });
+    });
+}
+
+async function createSermonPages(graphql, actions, reporter) {
+    const { createPage } = actions;
+    const result = await graphql(`
+        {
+            allSanitySermon(filter: { slug: { current: { ne: null } } }) {
+                edges {
+                    node {
+                        id
+                        slug {
+                            current
+                        }
+                    }
+                }
+            }
+        }
+    `);
+
+    if (result.errors) throw result.errors;
+
+    const eventEdges = (result.data.allSanitySermon || {}).edges || [];
+
+    eventEdges.forEach(edge => {
+        const id = edge.node.id;
+        const slug = edge.node.slug.current;
+        const path = `/sermon/${slug}/`;
+
+        reporter.info(`Creating sermon page: ${path}`);
+
+        createPage({
+            path,
+            component: require.resolve('./src/templates/sermon.js'),
             context: { id },
         });
     });
@@ -254,6 +292,7 @@ async function createMarkdownPages(graphql, actions, reporter) {
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
+    await createSermonPages(graphql, actions, reporter);
     await createSermonSeriesPages(graphql, actions, reporter);
     await createPersonPages(graphql, actions, reporter);
     await createPrayerStationPages(graphql, actions, reporter);
