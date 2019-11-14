@@ -152,7 +152,7 @@ async function createMinistryPages(graphql, actions, reporter) {
     eventEdges.forEach(edge => {
         const id = edge.node.id;
         const slug = edge.node.slug.current;
-        const path = `/what-we-do/${slug}/`;
+        const path = `/${slug}/`;
 
         reporter.info(`Creating ministry page: ${path}`);
 
