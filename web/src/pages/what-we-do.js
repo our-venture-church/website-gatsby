@@ -65,7 +65,7 @@ const WhatWeDoPage = props => {
                         <li key={highlightedMinistry.ministry._id}>
                             <h2>
                                 <Link
-                                    to={`/what-we-do/${highlightedMinistry.ministry.slug.current}`}
+                                    to={`/${highlightedMinistry.ministry.slug.current}`}
                                 >
                                     {highlightedMinistry.ministry.name}
                                 </Link>
@@ -96,9 +96,7 @@ const WhatWeDoPage = props => {
                         )
                         .map(ministry => (
                             <li key={ministry._key}>
-                                <Link
-                                    to={`/what-we-do/${ministry.slug.current}`}
-                                >
+                                <Link to={`/${ministry.slug.current}`}>
                                     {ministry.name}
                                 </Link>
                             </li>
