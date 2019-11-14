@@ -1,4 +1,4 @@
-import { TiDocument as icon } from 'react-icons/ti';
+import { MdFavoriteBorder as icon } from 'react-icons/md';
 
 export default {
     name: 'whatWeDoPage',
@@ -7,34 +7,28 @@ export default {
     icon,
     fields: [
         {
-            name: 'heroType',
-            title: 'What type of hero image should be displayed',
+            name: 'title',
+            title: 'Page title',
             type: 'string',
-            options: {
-                list: [
-                    {
-                        title: 'Current Sermon Series',
-                        value: 'currentSeries',
-                        default: true,
-                    },
-                    { title: 'Service Times', value: 'serviceTimes' },
-                    { title: 'Custom (Use fields below)', value: 'custom' },
-                ],
-                layout: 'radio',
-            },
         },
         {
-            name: 'customHero',
-            type: 'heroBlock',
-            title: 'Custom Hero Image',
+            name: 'blurb',
+            title: 'Blurb',
+            type: 'text',
         },
         {
-            name: 'welcome',
-            type: 'titleMessage',
-            title: 'Welcome',
+            name: 'highlightedMinistries',
+            title: 'Highlighted Ministries',
+            type: 'array',
+            of: [{ type: 'highlightedMinistry' }],
+        },
+        {
+            name: 'seoDescription',
+            title: 'SEO Description',
+            type: 'seoDescription',
         },
     ],
     preview: {
-        select: { title: 'welcome.title' },
+        select: { title: 'title' },
     },
 };

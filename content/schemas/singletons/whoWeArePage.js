@@ -1,4 +1,4 @@
-import { TiDocument as icon } from 'react-icons/ti';
+import { FaRegHandshake as icon } from 'react-icons/fa';
 
 export default {
     name: 'whoWeArePage',
@@ -7,34 +7,12 @@ export default {
     icon,
     fields: [
         {
-            name: 'heroType',
-            title: 'What type of hero image should be displayed',
+            name: 'title',
+            title: 'Page title',
             type: 'string',
-            options: {
-                list: [
-                    {
-                        title: 'Current Sermon Series',
-                        value: 'currentSeries',
-                        default: true,
-                    },
-                    { title: 'Service Times', value: 'serviceTimes' },
-                    { title: 'Custom (Use fields below)', value: 'custom' },
-                ],
-                layout: 'radio',
-            },
-        },
-        {
-            name: 'customHero',
-            type: 'heroBlock',
-            title: 'Custom Hero Image',
-        },
-        {
-            name: 'welcome',
-            type: 'titleMessage',
-            title: 'Welcome',
         },
     ],
     preview: {
-        select: { title: 'welcome.title' },
+        select: { title: 'title' },
     },
 };

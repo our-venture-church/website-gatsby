@@ -30,6 +30,7 @@ import basicPageIntro from './objects/basicPageIntro';
 import blockContent from './objects/blockContent';
 import giveBlock from './objects/giveBlock';
 import heroBlock from './objects/heroBlock';
+import highlightedMinistry from './objects/highlightedMinistry';
 import imNewBlock from './objects/imNewBlock';
 import internalLink from './objects/internalLink';
 import internalLinkWithText from './objects/internalLinkWithText';
@@ -81,6 +82,7 @@ export default createSchema({
         blockContent,
         giveBlock,
         heroBlock,
+        highlightedMinistry,
         imNewBlock,
         internalLinkWithText,
         internalLink,

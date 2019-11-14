@@ -128,6 +128,42 @@ async function createSermonPages(graphql, actions, reporter) {
     });
 }
 
+async function createMinistryPages(graphql, actions, reporter) {
+    const { createPage } = actions;
+    const result = await graphql(`
+        {
+            allSanityMinistry(filter: { slug: { current: { ne: null } } }) {
+                edges {
+                    node {
+                        id
+                        slug {
+                            current
+                        }
+                    }
+                }
+            }
+        }
+    `);
+
+    if (result.errors) throw result.errors;
+
+    const eventEdges = (result.data.allSanityMinistry || {}).edges || [];
+
+    eventEdges.forEach(edge => {
+        const id = edge.node.id;
+        const slug = edge.node.slug.current;
+        const path = `/what-we-do/${slug}/`;
+
+        reporter.info(`Creating ministry page: ${path}`);
+
+        createPage({
+            path,
+            component: require.resolve('./src/templates/ministryDetails.js'),
+            context: { id },
+        });
+    });
+}
+
 async function createPrayerStationPages(graphql, actions, reporter) {
     const { createPage } = actions;
     const result = await graphql(`
@@ -293,6 +329,7 @@ async function createMarkdownPages(graphql, actions, reporter) {
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
     await createSermonPages(graphql, actions, reporter);
+    await createMinistryPages(graphql, actions, reporter);
     await createSermonSeriesPages(graphql, actions, reporter);
     await createPersonPages(graphql, actions, reporter);
     await createPrayerStationPages(graphql, actions, reporter);
