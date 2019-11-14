@@ -7,13 +7,13 @@ import SEO from '../components/seo';
 const WhoWeArePage = props => {
     const data = useStaticQuery(graphql`
         query WhoWeArePageQuery {
-            sanityWhatWeDoPage {
+            sanityWhoWeArePage {
                 title
             }
         }
     `);
 
-    const { title } = data.sanityWhoWeArePageVenture;
+    const { title } = data.sanityWhoWeArePage;
 
     return (
         <Layout>

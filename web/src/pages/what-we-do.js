@@ -3,6 +3,8 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import { buildImageObj } from '../lib/helpers';
+import { imageUrlFor } from '../lib/image-url';
 
 const WhatWeDoPage = props => {
     const data = useStaticQuery(graphql`
@@ -69,7 +71,17 @@ const WhatWeDoPage = props => {
                                 </Link>
                             </h2>
                             <p>{highlightedMinistry.blurb}</p>
-                            {highlightedMinistry.image.asset._id}
+                            <img
+                                src={imageUrlFor(
+                                    buildImageObj(highlightedMinistry.image)
+                                )
+                                    .width(800)
+                                    .height(800)
+                                    .fit('crop')
+                                    .auto('format')
+                                    .url()}
+                                alt=""
+                            />
                         </li>
                     ))}
                 </ul>

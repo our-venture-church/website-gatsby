@@ -1,6 +1,6 @@
 ---
 path: '/site/roadmap'
-lastUpdate: '2019-11-12'
+lastUpdate: '2019-11-14'
 title: 'Venture Site Roadmap'
 ---
 
@@ -31,7 +31,7 @@ title: 'Venture Site Roadmap'
 -   ~~Give Page and schema~~
 -   ~~Add contact form~~
 -   ~~Improve the Sermon Series details page~~
--   Add sermons from the 8 most recent sermon series
+-   ~~Add sermons from the 8 most recent sermon series~~
 -   Add the rest of the Group info to the page.
 -   Filter groups by day of the week
 -   Figure out photos on the detail pages
