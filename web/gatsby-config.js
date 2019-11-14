@@ -19,7 +19,7 @@ module.exports = {
             },
             {
                 text: 'Who we are',
-                href: '/who-we-are/staff',
+                href: '/staff',
                 // subLinks: [
                 //     {
                 //         text: 'Staff',
