@@ -33,9 +33,7 @@ class ContactPage extends React.Component {
             body: encode({ 'form-name': 'contact', ...this.state }),
         })
             .then(this.setState({ sendSuccess: true }))
-            .catch(error =>
-                this.setState({ sendError: true, errorMessage: error })
-            );
+            .catch(error => this.setState({ sendError: true, errorMessage: error }));
 
         e.preventDefault();
     };
@@ -43,39 +41,30 @@ class ContactPage extends React.Component {
     handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
     render() {
-        const {
-            phoneNumber,
-            email: contactEmail,
-            address,
-        } = this.props.data.sanitySiteSettings;
+        const { phoneNumber, email: contactEmail, address } = this.props.data.sanitySiteSettings;
         const { name, email, message, sendSuccess, sendError } = this.state;
         const showMessage = sendSuccess || sendError;
         const statusMessage =
             showMessage && sendSuccess ? (
                 <p>
-                    Your message was sent. We'll contact you if your message
-                    necessitates a reply.
+                    Your message was sent. We'll contact you if your message necessitates a reply.
                 </p>
             ) : (
                 <p>
-                    There was a problem sending your message. Please email us
-                    directly as{' '}
+                    There was a problem sending your message. Please email us directly as{' '}
                     <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
                 </p>
             );
         return (
             <Layout>
                 <SEO title="Contact" description="Contact us" />
-                <NarrowPageWrapper
-                    includeSidePadding={true}
-                    includeTopPadding={true}
-                >
+                <NarrowPageWrapper includeSidePadding={true} includeTopPadding={true}>
                     <h1>Contact Us</h1>
                     {showMessage ? (
                         { statusMessage }
                     ) : (
                         <React.Fragment>
-                            <p>Fill out this form to get a hold of us.</p>
+                            <p>Fill out this form to get ahold of us.</p>
                             <Form
                                 action="POST"
                                 name="contact"
@@ -83,9 +72,7 @@ class ContactPage extends React.Component {
                                 data-netlify="true"
                             >
                                 <FormField>
-                                    <label htmlFor="contact-form-name">
-                                        Name
-                                    </label>
+                                    <label htmlFor="contact-form-name">Name</label>
                                     <input
                                         id="contact-form-name"
                                         type="text"
@@ -96,9 +83,7 @@ class ContactPage extends React.Component {
                                     />
                                 </FormField>
                                 <FormField>
-                                    <label htmlFor="contact-form-email">
-                                        Email
-                                    </label>
+                                    <label htmlFor="contact-form-email">Email</label>
                                     <input
                                         id="contact-form-email"
                                         type="email"
@@ -109,9 +94,7 @@ class ContactPage extends React.Component {
                                     />
                                 </FormField>
                                 <FormField>
-                                    <label htmlFor="contact-form-message">
-                                        Message
-                                    </label>
+                                    <label htmlFor="contact-form-message">Message</label>
                                     <textarea
                                         id="contact-form-message"
                                         name="message"
