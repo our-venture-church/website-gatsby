@@ -10,9 +10,9 @@ title: 'Venture Site Roadmap'
 -   Add the rest of the Group info to the page.
 -   Filter groups by day of the week
 -   Figure out photos on the detail pages
--   ~Ministry Detail Page~
--   ~"What we do" Landing page and schema~
--   See all events page (and link on the homepage)
+-   ~~Ministry Detail Page~~
+-   ~~"What we do" Landing page and schema~~
+-   ~~See all events page (and link on the homepage)~~
 -   "Who we are" sub-pages
 
 ## ~~PRE-launch checklist~~ Completed:
@@ -35,9 +35,9 @@ title: 'Venture Site Roadmap'
 -   Add the rest of the Group info to the page.
 -   Filter groups by day of the week
 -   Figure out photos on the detail pages
--   Ministry Detail Page
--   "What we do" Landing page and schema
--   See all events page (and link on the homepage)
+-   ~~Ministry Detail Page~~
+-   ~~"What we do" Landing page and schema~~
+-   ~~See all events page (and link on the homepage)~~
 -   "Who we are" sub-pages
 -   "Who we are" Landing page and schema
 -   Re-add links to the "I'm new" page
@@ -52,9 +52,9 @@ title: 'Venture Site Roadmap'
     -   Decrease the header height on mobile devices
     -   Fix exit animation of the navigation
 -   Photo gallery experience (for things like Easter and Trunk or Treat)
--   Port over all sermons
--   Add former staff (who use to preach for the sermon archives)
--   How do we play Ustream videos
+-   ~~Port over all sermons~~
+-   ~~Add former staff (who use to preach for the sermon archives)~~
+-   ~~How do we play Ustream videos~~ We can't Ustream deleted them all.
 -   Where are we hosting audio (.mp3 files)
 
 ## vNext (TBD)
