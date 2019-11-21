@@ -21,7 +21,8 @@ const StyledNavItem = styled.li`
 
     ul a {
         border: none;
-        padding-left: 2em;
+        font-size: 0.875rem;
+        padding-left: 2.5rem;
     }
 `;
 const ExpandoButton = styled.button`
@@ -37,8 +38,7 @@ const NavLink = styled(Link)`
     border-bottom: 0;
     border-top: ${props => (props.stackedNav ? '1px solid #595959' : 'none')};
     display: block;
-    padding: ${props =>
-        props.stackedNav ? `0.66em 3.75rem 0.66em 1rem` : `.5em 0.25em`};
+    padding: ${props => (props.stackedNav ? `0.66em 3.75rem 0.66em 1rem` : `.5em 0.25em`)};
     text-align: ${props => (props.stackedNav ? `left` : `center`)};
     text-decoration: none;
 
@@ -70,15 +70,7 @@ const buildSubNav = ({ text, href }, stackedNav) => (
     </StyledNavItem>
 );
 
-const NavItem = ({
-    handleArrowClick,
-    handleKeyUp,
-    href,
-    isOpen,
-    stackedNav,
-    subLinks,
-    text,
-}) => {
+const NavItem = ({ handleArrowClick, handleKeyUp, href, isOpen, stackedNav, subLinks, text }) => {
     return (
         <StyledNavItem
             open={isOpen}
@@ -103,9 +95,7 @@ const NavItem = ({
                     )}
                     {isOpen && (
                         <NavList isOpen={isOpen}>
-                            {subLinks.map(item =>
-                                buildSubNav(item, stackedNav)
-                            )}
+                            {subLinks.map(item => buildSubNav(item, stackedNav))}
                         </NavList>
                     )}
                 </React.Fragment>

@@ -7,6 +7,8 @@ import Facebook from './icons/facebook';
 import Instagram from './icons/instagram';
 import YouTube from './icons/youtube';
 import Email from './icons/email';
+import SocialLink from './SocialLink';
+import { SocialLinkList } from '../theme/components';
 
 const FooterStyled = styled.footer`
     color: ${colors.cloudGray};
@@ -14,21 +16,15 @@ const FooterStyled = styled.footer`
     padding-top: 1.5rem;
 `;
 
-const StyledSocialList = styled.ul`
-    list-style: none;
-    margin: 0 0 0.5em;
+const StyledSocialLinkList = styled(SocialLinkList)`
+    font-size: 1.5rem;
+    margin-bottom: 0.5em;
     text-align: center;
 `;
 
 const StyledSocialItem = styled.li`
     display: inline-block;
     margin: 0;
-`;
-
-const StyledSocialLink = styled.a`
-    border: 0;
-    font-size: 1.5rem;
-    padding: 0 0.25em;
 `;
 
 const StyledCopyright = styled.p`
@@ -43,47 +39,18 @@ const StyledNoBreak = styled.span`
     white-space: nowrap;
 `;
 
-const getSocialLink = ({ title, url, text }) => {
-    const getIcon = title => {
-        let icon;
-        switch (title) {
-            case 'Facebook':
-                icon = <Facebook />;
-                break;
-            case 'Instagram':
-                icon = <Instagram />;
-                break;
-            case 'YouTube':
-                icon = <YouTube />;
-                break;
-            case 'Email':
-                icon = <Email />;
-                break;
-            default:
-                icon = <span>{title}</span>;
-                break;
-        }
-        return icon;
-    };
-    return (
-        <StyledSocialItem key={title}>
-            <StyledSocialLink href={url} aria-label={text || title}>
-                {getIcon(title)}
-            </StyledSocialLink>
-        </StyledSocialItem>
-    );
-};
-
 const Footer = ({ phoneNumber, siteTitle, socialLinks }) => (
     <FooterStyled>
-        <StyledSocialList>
-            {socialLinks.map(item => getSocialLink(item))}
-        </StyledSocialList>
+        <StyledSocialLinkList>
+            {socialLinks.map(item => (
+                <StyledSocialItem key={item.title}>
+                    <SocialLink url={item.url} text={item.text} title={item.title} />
+                </StyledSocialItem>
+            ))}
+        </StyledSocialLinkList>
         <StyledCopyright>
             © {new Date().getFullYear()} {siteTitle}. All rights reserved.{' '}
-            <StyledNoBreak aria-label="Phone number">
-                {phoneNumber}
-            </StyledNoBreak>
+            <StyledNoBreak aria-label="Phone number">{phoneNumber}</StyledNoBreak>
         </StyledCopyright>
     </FooterStyled>
 );

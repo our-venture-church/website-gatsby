@@ -8,6 +8,7 @@ export const query = graphql`
             id
             name
             title
+            honorific
             image {
                 asset {
                     _id
@@ -19,13 +20,17 @@ export const query = graphql`
 
 const PersonDetailsTemplate = props => {
     const { data } = props;
-    const person = data && data.person;
+    const { honorific, name, title } = data && data.person;
+    const displayName = honorific ? `${honorific} ${name}` : name;
     return (
         <div>
-            <SEO title={`${person.name} - ${person.title}`} description="" />
+            <SEO
+                title={`${displayName} - ${title}`}
+                description={`${displayName} serves as ${title} for Venture Church.`}
+            />
 
-            <h1>{person.name}</h1>
-            <h2>{person.title}</h2>
+            <h1>{displayName}</h1>
+            <h2>{title}</h2>
         </div>
     );
 };

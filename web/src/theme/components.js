@@ -57,3 +57,28 @@ export const VideoContainer = styled.div`
         width: 100%;
     }
 `;
+
+export const TagMe = styled.div`
+    background: ${props => (props.secondary ? colors.mintBlue : colors.ventureYellow)};
+    color: ${colors.charcoalBlack};
+    display: inline-block;
+    padding: 0.5em 0.75em;
+`;
+
+export const SocialLinkList = styled.ul`
+    font-size: 1.5rem;
+    list-style: none;
+    margin-bottom: 0;
+    margin-left: 0;
+    white-space: nowrap;
+
+    a {
+        padding: 0 0.5em 0 0;
+    }
+
+    li:last-child {
+        a {
+            padding-right: 0;
+        }
+    }
+`;

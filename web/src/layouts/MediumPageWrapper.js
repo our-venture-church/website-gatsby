@@ -5,48 +5,44 @@ import { getDefaultPadding } from '../utils/styles';
 
 const StyledLayout = styled.div`
     margin: auto;
-    max-width: 800px;
+    max-width: 1200px;
 
     ${props =>
         (props.includeTopPadding || props.includePadding) &&
         `
             padding-top: 2rem;
         `}
-    ${props => (props.includeSidePadding || props.includePadding) && getDefaultPadding()}
+    ${props =>
+        (props.includeSidePadding || props.includePadding) &&
+        getDefaultPadding()}
 `;
 
-const NarrowPageWrapper = ({
+const MediumPageWrapper = ({
     children,
+    includePadding,
     includeTopPadding,
     includeSidePadding,
-    includePadding,
-    className,
 }) => {
     return (
         <StyledLayout
-            className={className}
+            includePadding={includePadding}
             includeTopPadding={includeTopPadding}
             includeSidePadding={includeSidePadding}
-            includePadding={includePadding}
         >
             {children}
         </StyledLayout>
     );
 };
 
-NarrowPageWrapper.propTypes = {
+MediumPageWrapper.propTypes = {
     children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    includePadding: PropTypes.bool,
     includeSidePadding: PropTypes.bool,
     includeTopPadding: PropTypes.bool,
 };
 
-NarrowPageWrapper.defaultProps = {
-    className: '',
-    includePadding: false,
+MediumPageWrapper.defaultProps = {
     includeSidePadding: false,
     includeTopPadding: false,
 };
 
-export default NarrowPageWrapper;
+export default MediumPageWrapper;

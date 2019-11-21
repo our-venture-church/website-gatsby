@@ -1,17 +1,17 @@
 ---
 path: '/site/roadmap'
-lastUpdate: '2019-11-14'
+lastUpdate: '2019-11-20'
 title: 'Venture Site Roadmap'
 ---
 
-## Goal for the week of November 11th:
+## Goal for the week of November 18th:
 
 -   ~~Add sermons from the 8 most recent sermon series~~
 -   Add the rest of the Group info to the page.
 -   Filter groups by day of the week
 -   Figure out photos on the detail pages
--   Ministry Detail Page
--   "What we do" Landing page and schema
+-   ~Ministry Detail Page~
+-   ~"What we do" Landing page and schema~
 -   See all events page (and link on the homepage)
 -   "Who we are" sub-pages
 

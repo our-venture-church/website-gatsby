@@ -40,72 +40,8 @@ module.exports = {
                 // ],
             },
             {
-                text: 'Groups',
-                href: '/groups/join',
-                // text: 'What we do',
-                // href: '/what-we-do',
-                // subLinks: [
-                //     {
-                //         text: 'Adult Ministry',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Celebrate Recovery',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Counseling',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Groups',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Her Choice to Heal',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Kids',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Marriage Ministry',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Men’s Ministry',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'MOPS',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'School of Ministry & Leadership',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Seattle Singles',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Women’s Ministry',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Worship Ministry',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Young Adults',
-                //         href: '/what-we-do/something',
-                //     },
-                //     {
-                //         text: 'Youth',
-                //         href: '/what-we-do/something',
-                //     },
-                // ],
+                text: 'What we do',
+                href: '/what-we-do',
             },
             {
                 text: 'Watch & Listen',

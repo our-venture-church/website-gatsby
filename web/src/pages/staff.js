@@ -62,10 +62,15 @@ const StyledStaffName = styled.h3`
         display: block;
         font-size: 0.75em;
         font-weight: normal;
+        margin-top: 0.25em;
     }
 `;
 
 const getStaffMember = staffObj => {
+    const displayName = staffObj.honorific
+        ? `${staffObj.honorific} ${staffObj.name}`
+        : staffObj.name;
+
     return (
         <StyledStaffItem key={staffObj.id}>
             {staffObj.image ? (
@@ -82,7 +87,7 @@ const getStaffMember = staffObj => {
                 <StyledStaffImagePlaceholder></StyledStaffImagePlaceholder>
             )}
             <StyledStaffName>
-                {staffObj.name} <span>{staffObj.title}</span>
+                {displayName} <span>{staffObj.title}</span>
             </StyledStaffName>
         </StyledStaffItem>
     );
@@ -108,6 +113,7 @@ const StaffPage = () => {
                     id
                     name
                     personType
+                    honorific
                     title
                     slug {
                         current
@@ -123,6 +129,7 @@ const StaffPage = () => {
                     name
                     personType
                     title
+                    honorific
                     slug {
                         current
                     }
@@ -137,6 +144,7 @@ const StaffPage = () => {
                     name
                     personType
                     title
+                    honorific
                     slug {
                         current
                     }

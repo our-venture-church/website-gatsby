@@ -36,15 +36,38 @@ const Layout = ({ children }) => {
                     }
                 }
             }
+            allSanityMinistry {
+                nodes {
+                    name
+                    slug {
+                        current
+                    }
+                }
+            }
         }
     `);
 
-    const {
-        name: siteName,
-        phoneNumber: phone,
-        socialLinks: social,
-    } = data.sanitySiteSettings;
+    const { name: siteName, phoneNumber: phone, socialLinks: social } = data.sanitySiteSettings;
     const { navigation } = data.site.siteMetadata;
+    const { nodes: ministries } = data.allSanityMinistry;
+
+    const whatWeDoIndex = navigation.findIndex(({ href }) => href === '/what-we-do');
+    navigation[whatWeDoIndex].subLinks = ministries
+        .map(({ name, slug }) => ({
+            text: name,
+            href: `/${slug.current}`,
+        }))
+        .sort((a, b) => {
+            const nameA = a.text.toUpperCase();
+            const nameB = b.text.toUpperCase();
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+            return 0;
+        });
 
     let pathChanged = false;
 
@@ -59,19 +82,11 @@ const Layout = ({ children }) => {
     return (
         <React.Fragment>
             <SkipLink />
-            <Header
-                siteTitle={siteName}
-                navigation={navigation}
-                pathChanged={pathChanged}
-            />
+            <Header siteTitle={siteName} navigation={navigation} pathChanged={pathChanged} />
             <main role="main" id="main-content">
                 {children}
             </main>
-            <Footer
-                phoneNumber={phone}
-                siteTitle={siteName}
-                socialLinks={social}
-            />
+            <Footer phoneNumber={phone} siteTitle={siteName} socialLinks={social} />
         </React.Fragment>
     );
 };

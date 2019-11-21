@@ -8,7 +8,7 @@ const StyledLink = styled(GatsbyLink)`
     background: ${colors.charcoalBlack};
     border: 1px solid currentColor;
     border-radius: 3px;
-    color: ${colors.ventureYellow};
+    color: ${props => (props.secondary ? colors.mintBlue : colors.ventureYellow)};
     display: ${props => (props.fullSize ? 'block' : 'inline-block')};
     padding: 0.5em 0.75em;
     text-align: center;
@@ -16,26 +16,30 @@ const StyledLink = styled(GatsbyLink)`
 
     &:hover,
     &:focus {
-        background-color: ${colors.ventureYellow};
-        border-color: ${colors.ventureYellow};
+        background-color: ${props => (props.secondary ? colors.mintBlue : colors.ventureYellow)};
+        border-color: ${props => (props.secondary ? colors.mintBlue : colors.ventureYellow)};
         color: ${colors.charcoalBlack};
     }
 `;
 
-const LinkAsButton = ({ to, children, fullSize }) => (
-    <StyledLink to={to} fullSize={fullSize}>
+const LinkAsButton = ({ to, children, fullSize, secondary, className }) => (
+    <StyledLink to={to} fullSize={fullSize} secondary={secondary} className={className}>
         {children}
     </StyledLink>
 );
 
 LinkAsButton.propTypes = {
     children: PropTypes.any.isRequired,
+    className: PropTypes.string,
     to: PropTypes.string.isRequired,
     fullSize: PropTypes.bool,
+    secondary: PropTypes.bool,
 };
 
 LinkAsButton.defaultProps = {
+    className: '',
     fullSize: false,
+    secondary: false,
 };
 
 export default LinkAsButton;

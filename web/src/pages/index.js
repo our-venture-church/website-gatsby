@@ -120,8 +120,8 @@ const StyledSeriesTitle = styled.p`
 `;
 
 const StyledSeriesLink = styled(Link)`
-    background: ${colors.ventureYellow};
-    border: 1px solid ${colors.ventureYellow};
+    background: ${colors.mintBlue};
+    border: 1px solid ${colors.mintBlue};
     color: ${colors.charcoalBlack};
     display: inline-block;
     font-size: 1rem;
@@ -158,7 +158,7 @@ const StyledSeriesLink = styled(Link)`
     &:hover,
     &:focus {
         background: ${colors.charcoalBlack};
-        color: ${colors.ventureYellow};
+        color: ${colors.mintBlue};
     }
 `;
 
@@ -239,6 +239,7 @@ const IndexPage = () => {
             allSanitySeries(
                 limit: 1
                 sort: { fields: startDate, order: DESC }
+                filter: { hide: { ne: true } }
             ) {
                 nodes {
                     title
