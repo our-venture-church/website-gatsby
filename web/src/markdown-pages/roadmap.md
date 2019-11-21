@@ -1,6 +1,6 @@
 ---
 path: '/site/roadmap'
-lastUpdate: '2019-11-20'
+lastUpdate: '2019-11-21'
 title: 'Venture Site Roadmap'
 ---
 
@@ -56,6 +56,7 @@ title: 'Venture Site Roadmap'
 -   ~~Add former staff (who use to preach for the sermon archives)~~
 -   ~~How do we play Ustream videos~~ We can't Ustream deleted them all.
 -   Where are we hosting audio (.mp3 files)
+-   Allow the text on the contact page to be modified in the CMS.
 
 ## vNext (TBD)
 
