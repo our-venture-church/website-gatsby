@@ -3,10 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { getDefaultPadding } from '../utils/styles';
 import colors from '../theme/tokens/colors';
-import Facebook from './icons/facebook';
-import Instagram from './icons/instagram';
-import YouTube from './icons/youtube';
-import Email from './icons/email';
 import SocialLink from './SocialLink';
 import { SocialLinkList } from '../theme/components';
 

@@ -20,15 +20,10 @@ const StyledContainer = styled.div`
     }
 `;
 
-const Prayer = props => {
+const Join = props => {
     const data = useStaticQuery(graphql`
         query GroupsQuery {
-            allSanityGroup(
-                filter: {
-                    status: { ne: "hidden" }
-                    slug: { current: { ne: null } }
-                }
-            ) {
+            allSanityGroup(filter: { status: { ne: "hidden" }, slug: { current: { ne: null } } }) {
                 nodes {
                     title
                     time
@@ -71,9 +66,7 @@ const Prayer = props => {
                                 return (
                                     <li key={group.id}>
                                         <h2>
-                                            <Link to={groupUrl}>
-                                                {group.title}
-                                            </Link>
+                                            <Link to={groupUrl}>{group.title}</Link>
                                         </h2>
                                         <p>{group.blurb}</p>
                                         {group.status !== 'closed' && (
@@ -95,6 +88,6 @@ const Prayer = props => {
     );
 };
 
-Prayer.propTypes = {};
+Join.propTypes = {};
 
-export default Prayer;
+export default Join;

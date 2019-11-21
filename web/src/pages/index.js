@@ -5,36 +5,13 @@ import styled from 'styled-components';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 
-// import LinkAsButton from '../components/LinkAsButton';
+import LinkAsButton from '../components/LinkAsButton';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import Hero from '../components/hero';
 import { getDefaultPadding } from '../utils/styles';
 import colors from '../theme/tokens/colors';
-
-const getEventItem = ({ title, beginAt, endAt, id, image, slug }) => {
-    const endDate = endAt && beginAt !== endAt ? ` - ${endAt}` : '';
-
-    return (
-        <StyledEvent key={id}>
-            <Link to={`/event/${slug.current}`} aria-label={`${title} event`}>
-                <img
-                    src={imageUrlFor(buildImageObj(image))
-                        .width(1200)
-                        .height(Math.floor((9 / 16) * 1200))
-                        .fit('crop')
-                        .auto('format')
-                        .url()}
-                    alt=""
-                />
-                <b>{title}</b>
-                <br />
-                {beginAt}
-                {endDate}
-            </Link>
-        </StyledEvent>
-    );
-};
+import EventItem from '../components/EventItem';
 
 const StyledBelowFold = styled.div`
     display: grid;
@@ -217,21 +194,9 @@ const StyledEventsList = styled.ul`
     }
 `;
 
-const StyledEvent = styled.li`
-    > a {
-        border: none;
-        display: block;
-        text-decoration: none;
-    }
-
-    img {
-        margin-bottom: 0.25rem;
-    }
+const StyledLinkAsButton = styled(LinkAsButton)`
+    margin: auto;
 `;
-
-// const StyledLinkAsButton = styled(LinkAsButton)`
-//     margin: auto;
-// `;
 
 const IndexPage = () => {
     const data = useStaticQuery(graphql`
@@ -308,17 +273,20 @@ const IndexPage = () => {
                             .url()}
                         alt={currentSeries.title}
                     />
-                    <StyledSeriesLink
-                        to={`/sermon/series/${currentSeries.slug.current}`}
-                    >
+                    <StyledSeriesLink to={`/sermon/series/${currentSeries.slug.current}`}>
                         Watch now
                     </StyledSeriesLink>
                 </StyledCurrentSeries>
                 <StyledEvents>
                     <h2>Upcoming Events</h2>
                     <StyledEventsList>
-                        {events.map(event => getEventItem(event))}
+                        {events.map(event => (
+                            <li key={event.id}>
+                                <EventItem {...event} />
+                            </li>
+                        ))}
                     </StyledEventsList>
+                    <StyledLinkAsButton to="/events">See all events</StyledLinkAsButton>
                 </StyledEvents>
             </StyledBelowFold>
         </Layout>
