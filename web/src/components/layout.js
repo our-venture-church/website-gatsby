@@ -27,13 +27,9 @@ const Layout = ({ children }) => {
                     title
                     text
                 }
-            }
-            site {
-                siteMetadata {
-                    navigation {
-                        text
-                        href
-                    }
+                mainNav {
+                    text
+                    href
                 }
             }
             allSanityMinistry {
@@ -47,8 +43,12 @@ const Layout = ({ children }) => {
         }
     `);
 
-    const { name: siteName, phoneNumber: phone, socialLinks: social } = data.sanitySiteSettings;
-    const { navigation } = data.site.siteMetadata;
+    const {
+        name: siteName,
+        phoneNumber: phone,
+        socialLinks: social,
+        mainNav: navigation,
+    } = data.sanitySiteSettings;
     const { nodes: ministries } = data.allSanityMinistry;
 
     const whatWeDoIndex = navigation.findIndex(({ href }) => href === '/what-we-do');

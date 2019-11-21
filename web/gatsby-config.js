@@ -7,52 +7,7 @@ const projectId = '3deuluc8';
 const dataset = 'prod';
 
 module.exports = {
-    siteMetadata: {
-        navigation: [
-            {
-                text: "I'm New",
-                href: '/im-new',
-            },
-            {
-                text: 'Locations',
-                href: '/locations',
-            },
-            {
-                text: 'Who we are',
-                href: '/staff',
-                // subLinks: [
-                //     {
-                //         text: 'Staff',
-                //         href: '/who-we-are/staff',
-                //     },
-                //     {
-                //         text: 'REACH Initiative',
-                //         href: '/who-we-are/reach',
-                //     },
-                //     {
-                //         text: 'History',
-                //         href: '/who-we-are/history',
-                //     },
-                //     {
-                //         text: 'Beliefs',
-                //         href: '/who-we-are/beliefs',
-                //     },
-                // ],
-            },
-            {
-                text: 'What we do',
-                href: '/what-we-do',
-            },
-            {
-                text: 'Watch & Listen',
-                href: '/sermons',
-            },
-            {
-                text: 'Give',
-                href: '/give',
-            },
-        ],
-    },
+    siteMetadata: {},
     plugins: [
         `gatsby-plugin-react-helmet`,
         {

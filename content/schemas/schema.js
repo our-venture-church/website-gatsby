@@ -45,6 +45,7 @@ import youTube from './objects/youTube';
 import scripture from './objects/scripture';
 import prayerStations from './objects/prayerStations';
 import phoneNumber from './objects/phoneNumber';
+import navItem from './objects/navItem';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -97,7 +98,7 @@ export default createSchema({
         socialMediaLink,
         titleMessage,
         youTube,
-
+        navItem,
         richDate,
     ]),
 });
