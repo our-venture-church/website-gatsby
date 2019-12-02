@@ -20,17 +20,32 @@ const StyledContainer = styled.div`
     }
 `;
 
+const removeOldEvents = ({ endAt, beginAt }) => {
+    const currentDate = new Date();
+    const beginDate = beginAt ? new Date(beginAt) : null;
+    const endDate = endAt ? new Date(endAt) : null;
+    if (endDate && endDate > currentDate) {
+        return true;
+    }
+
+    if (beginDate && beginDate > currentDate) {
+        return true;
+    }
+
+    return false;
+};
+
 const Events = props => {
     const data = useStaticQuery(graphql`
         query EventsQuery {
             allSanityEvent(
                 filter: { published: { eq: true } }
-                sort: { fields: beginAt, order: DESC }
+                sort: { fields: beginAt, order: ASC }
             ) {
                 nodes {
                     title
-                    beginAt(formatString: "MMM D")
-                    endAt(formatString: "MMM D")
+                    beginAt(formatString: "YYYY-MM-DD")
+                    endAt(formatString: "YYYY-MM-DD")
                     image {
                         asset {
                             _id
@@ -58,7 +73,7 @@ const Events = props => {
                 {events && (
                     <div>
                         <Grid>
-                            {events.map(event => {
+                            {events.filter(removeOldEvents).map(event => {
                                 return (
                                     <li key={event.id}>
                                         <EventItem {...event} />

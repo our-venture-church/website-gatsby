@@ -1,18 +1,14 @@
 ---
 path: '/site/roadmap'
-lastUpdate: '2019-11-21'
+lastUpdate: '2019-12-02'
 title: 'Venture Site Roadmap'
 ---
 
-## Goal for the week of November 18th:
+## Goal for the week of December 2nd:
 
--   ~~Add sermons from the 8 most recent sermon series~~
 -   Add the rest of the Group info to the page.
 -   Filter groups by day of the week
 -   Figure out photos on the detail pages
--   ~~Ministry Detail Page~~
--   ~~"What we do" Landing page and schema~~
--   ~~See all events page (and link on the homepage)~~
 -   "Who we are" sub-pages
 
 ## ~~PRE-launch checklist~~ Completed:
@@ -32,22 +28,22 @@ title: 'Venture Site Roadmap'
 -   ~~Add contact form~~
 -   ~~Improve the Sermon Series details page~~
 -   ~~Add sermons from the 8 most recent sermon series~~
--   Add the rest of the Group info to the page.
--   Filter groups by day of the week
--   Figure out photos on the detail pages
 -   ~~Ministry Detail Page~~
 -   ~~"What we do" Landing page and schema~~
 -   ~~See all events page (and link on the homepage)~~
+
+## v2 (end of December)
+
 -   "Who we are" sub-pages
 -   "Who we are" Landing page and schema
+-   Add the rest of the Group info to the page.
+-   Filter groups by day of the week
+-   Figure out photos on the detail pages
 -   Re-add links to the "I'm new" page
 -   Add "Announcement" (or "news") schema and pages (similar to events, but not tied to a specific date).
 -   Support embedded images and youtube videos
 -   Improve styling on the staff page
 -   Add staff details for Lead team members
-
-## v2 (end of December)
-
 -   Design tweaks
     -   Decrease the header height on mobile devices
     -   Fix exit animation of the navigation

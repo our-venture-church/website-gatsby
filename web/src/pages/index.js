@@ -234,8 +234,8 @@ const IndexPage = () => {
                 }
                 events {
                     title
-                    beginAt(formatString: "MMM D")
-                    endAt(formatString: "MMM D")
+                    beginAt(formatString: "YYYY-MM-DD")
+                    endAt(formatString: "YYYY-MM-DD")
                     image {
                         asset {
                             _id
@@ -273,7 +273,9 @@ const IndexPage = () => {
                             .url()}
                         alt={currentSeries.title}
                     />
-                    <StyledSeriesLink to={`/sermon/series/${currentSeries.slug.current}`}>
+                    <StyledSeriesLink
+                        to={`/sermon/series/${currentSeries.slug.current}`}
+                    >
                         Watch now
                     </StyledSeriesLink>
                 </StyledCurrentSeries>
@@ -286,7 +288,9 @@ const IndexPage = () => {
                             </li>
                         ))}
                     </StyledEventsList>
-                    <StyledLinkAsButton to="/events">See all events</StyledLinkAsButton>
+                    <StyledLinkAsButton to="/events">
+                        See all events
+                    </StyledLinkAsButton>
                 </StyledEvents>
             </StyledBelowFold>
         </Layout>

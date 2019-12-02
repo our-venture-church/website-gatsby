@@ -113,6 +113,9 @@ export default {
                 'Use if the link should go somewhere outside the ordinary.',
         },
     ],
+    initialValue: {
+        published: true,
+    },
     preview: {
         select: {
             title: 'title',
