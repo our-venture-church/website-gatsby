@@ -6,7 +6,8 @@ title: 'Venture Site Roadmap'
 
 ## Goal for the week of December 2nd:
 
--   Add the rest of the Group info to the page.
+-   ~~Make "CLOSED" groups more obvious~~
+-   Add the rest of the Group info to the page
 -   Filter groups by day of the week
 -   Figure out photos on the detail pages
 -   "Who we are" sub-pages

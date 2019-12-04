@@ -8,6 +8,7 @@ import BasicPageIntro from '../../components/BasicPageIntro';
 import LinkAsButton from '../../components/LinkAsButton';
 import { getDefaultPadding } from '../../utils/styles';
 import Grid from '../../layouts/Grid';
+import colors from '../../theme/tokens/colors';
 
 const StyledContainer = styled.div`
     ${getDefaultPadding()}
@@ -20,10 +21,20 @@ const StyledContainer = styled.div`
     }
 `;
 
+const StyledClosed = styled.b`
+    color: ${colors.mintBlue};
+    text-transform: uppercase;
+`;
+
 const Join = props => {
     const data = useStaticQuery(graphql`
         query GroupsQuery {
-            allSanityGroup(filter: { status: { ne: "hidden" }, slug: { current: { ne: null } } }) {
+            allSanityGroup(
+                filter: {
+                    status: { ne: "hidden" }
+                    slug: { current: { ne: null } }
+                }
+            ) {
                 nodes {
                     title
                     time
@@ -66,10 +77,21 @@ const Join = props => {
                                 return (
                                     <li key={group.id}>
                                         <h2>
-                                            <Link to={groupUrl}>{group.title}</Link>
+                                            <Link to={groupUrl}>
+                                                {group.title}
+                                            </Link>
                                         </h2>
                                         <p>{group.blurb}</p>
-                                        {group.status !== 'closed' && (
+                                        {group.status === 'closed' ? (
+                                            <p>
+                                                This group is{' '}
+                                                <StyledClosed>
+                                                    closed
+                                                </StyledClosed>{' '}
+                                                and not accepting new
+                                                registrations.
+                                            </p>
+                                        ) : (
                                             <LinkAsButton
                                                 to={groupUrl}
                                                 aria-label="Get details or join"

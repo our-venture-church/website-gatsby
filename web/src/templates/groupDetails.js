@@ -7,6 +7,7 @@ import BlockContent from '../components/block-content';
 import JoinGroupForm from '../components/JoinGroupForm';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 import { getDefaultPadding } from '../utils/styles';
+import colors from '../theme/tokens/colors';
 
 export const query = graphql`
     query GroupDetailsTemplateQuery($id: String!) {
@@ -38,6 +39,11 @@ const StyledGroupDetails = styled.div`
     }
 `;
 
+const StyledClosed = styled.b`
+    color: ${colors.mintBlue};
+    text-transform: uppercase;
+`;
+
 const GroupDetailsTemplate = props => {
     const { data } = props;
     const group = data && data.group;
@@ -53,17 +59,18 @@ const GroupDetailsTemplate = props => {
                             <BlockContent blocks={group._rawDescription} />
                         )}
 
-                        {group.status !== 'closed' ? (
+                        {group.status === 'closed' ? (
+                            <p>
+                                This group is{' '}
+                                <StyledClosed>closed</StyledClosed> and not
+                                accepting new registrations.
+                            </p>
+                        ) : (
                             <JoinGroupForm
                                 groupName={group.title}
                                 groupNumber={group.signupId}
                                 groupPageUrl={`https://ourventure.church/groups/join/${group.slug.current}`}
                             />
-                        ) : (
-                            <p>
-                                This group is closed and not accepting new
-                                registrations.
-                            </p>
                         )}
                     </StyledGroupDetails>
                 </StyledGroupContainer>
