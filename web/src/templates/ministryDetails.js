@@ -8,6 +8,8 @@ import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 import SocialLink from '../components/SocialLink';
 import { SocialLinkList } from '../theme/components';
 import LinkAsButton from '../components/LinkAsButton';
+import EmailLink from '../components/EmailLink';
+import PhoneNumber from '../components/PhoneNumber';
 
 const StyledNarrowPageWrapper = styled(NarrowPageWrapper)`
     position: relative;
@@ -60,29 +62,38 @@ export const query = graphql`
     }
 `;
 
-const getEmailLink = emailAddress => {
-    return <a href={`mailto:${emailAddress}`}>{emailAddress}</a>;
-};
-
-// TODO make phone numbers not wrap
-// TODO make email addresses links
 const getContactText = (phone, email) => {
-    let contactText = 'For more information, contact us at';
     if (phone && email) {
-        contactText += ` ${email} or ${phone}.`;
+        return (
+            <p>
+                For more information, contact us at{' '}
+                <EmailLink emailAddress={email} /> or{' '}
+                <PhoneNumber>{phone}</PhoneNumber>.
+            </p>
+        );
     } else if (phone && !email) {
-        contactText += ` ${phone}.`;
+        return (
+            <p>
+                For more information, contact us at{' '}
+                <PhoneNumber>{phone}</PhoneNumber>.
+            </p>
+        );
     } else if (email && !phone) {
-        contactText += ` ${email}.`;
+        return (
+            <p>
+                For more information, contact us at{' '}
+                <EmailLink emailAddress={email} />.
+            </p>
+        );
     } else {
-        return '';
+        return null;
     }
-    return <p>{contactText}</p>;
 };
 
 const MinistryDetailsTemplate = props => {
     const { data } = props;
-    const { name, email, _rawOverview, phone, socialLinks, leader } = data && data.sanityMinistry;
+    const { name, email, _rawOverview, phone, socialLinks, leader } =
+        data && data.sanityMinistry;
     console.log(leader);
     return (
         <Layout>
@@ -90,18 +101,25 @@ const MinistryDetailsTemplate = props => {
             <StyledNarrowPageWrapper includePadding={true}>
                 <h1>{name}</h1>
                 {name === 'Groups' && (
-                    <StyledLinkAsButton to="/groups/join">Join a Group</StyledLinkAsButton>
+                    <StyledLinkAsButton to="/groups/join">
+                        Join a Group
+                    </StyledLinkAsButton>
                 )}
                 <BlockContent blocks={_rawOverview} />
                 <h2>Contact Us</h2>
                 {(phone || email) && getContactText(phone, email)}
                 {socialLinks.length > 0 && (
                     <React.Fragment>
-                        <StyledSocialLinksHeading>Social Media:</StyledSocialLinksHeading>
+                        <StyledSocialLinksHeading>
+                            Social Media:
+                        </StyledSocialLinksHeading>
                         <StyledSocialLinkList>
                             {socialLinks.map(link => (
                                 <li key={link.type}>
-                                    <SocialLink url={link.url} title={link.type} />
+                                    <SocialLink
+                                        url={link.url}
+                                        title={link.type}
+                                    />
                                 </li>
                             ))}
                         </StyledSocialLinkList>
