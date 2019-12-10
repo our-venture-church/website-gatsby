@@ -46,6 +46,13 @@ import scripture from './objects/scripture';
 import prayerStations from './objects/prayerStations';
 import phoneNumber from './objects/phoneNumber';
 import navItem from './objects/navItem';
+import blockLink from './objects/blockLink';
+import whoWeAreBlock from './objects/whoWeAreBlock';
+import beliefsPage from './singletons/beliefsPage';
+import historyPage from './singletons/historyPage';
+import definitionItem from './objects/definitionItem';
+import lingoPage from './singletons/lingoPage';
+import reachPage from './singletons/reachPage';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -75,12 +82,15 @@ export default createSchema({
         watchListenPage,
         whatWeDoPage,
         whoWeArePage,
+        beliefsPage,
+        historyPage,
+        lingoPage,
+        reachPage,
 
-        // When added to this list, object types can be used as
-        // { type: 'typename' } in other document schemas
         bannerImage,
         basicPageIntro,
         blockContent,
+        definitionItem,
         giveBlock,
         heroBlock,
         highlightedMinistry,
@@ -100,5 +110,7 @@ export default createSchema({
         youTube,
         navItem,
         richDate,
+        blockLink,
+        whoWeAreBlock,
     ]),
 });

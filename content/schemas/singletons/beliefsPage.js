@@ -1,8 +1,8 @@
 import { FaRegHandshake as icon } from 'react-icons/fa';
 
 export default {
-    name: 'whoWeArePage',
-    title: 'Who We Are Page',
+    title: 'Beliefs Page',
+    name: 'beliefsPage',
     type: 'document',
     icon,
     fields: [
@@ -13,16 +13,9 @@ export default {
             validation: Rule => Rule.required(),
         },
         {
-            title: 'Blurb',
-            name: 'blurb',
-            type: 'richText',
-            validation: Rule => Rule.required(),
-        },
-        {
             title: 'Content',
-            name: 'contentBlock',
-            type: 'array',
-            of: [{ type: 'whoWeAreBlock' }],
+            name: 'content',
+            type: 'richText',
         },
         {
             title: 'SEO Description',
