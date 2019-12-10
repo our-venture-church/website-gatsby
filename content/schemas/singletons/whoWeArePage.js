@@ -7,27 +7,9 @@ export default {
     icon,
     fields: [
         {
-            title: 'Page title',
             name: 'title',
+            title: 'Page title',
             type: 'string',
-            validation: Rule => Rule.required(),
-        },
-        {
-            title: 'Blurb',
-            name: 'blurb',
-            type: 'richText',
-            validation: Rule => Rule.required(),
-        },
-        {
-            title: 'Content',
-            name: 'contentBlock',
-            type: 'array',
-            of: [{ type: 'whoWeAreBlock' }],
-        },
-        {
-            title: 'SEO Description',
-            name: 'seoDescription',
-            type: 'seoDescription',
         },
     ],
     preview: {
