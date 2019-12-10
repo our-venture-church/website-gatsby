@@ -9,6 +9,7 @@ import { imageUrlFor } from '../lib/image-url';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 import colors from '../theme/tokens/colors';
 import { getDefaultPadding } from '../utils/styles';
+import EmailLink from '../components/EmailLink';
 
 export const query = graphql`
     query EventDetailsTemplateQuery($id: String!) {
@@ -98,7 +99,7 @@ const EventDetailsTemplate = props => {
                     {email && (
                         <p>
                             Questions? Email us at{' '}
-                            <a href={`mailto:${email}`}>{email}</a>.
+                            <EmailLink emailAddress={email} />.
                         </p>
                     )}
                 </StyledWrapper>
