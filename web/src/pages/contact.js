@@ -6,6 +6,7 @@ import SEO from '../components/seo';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 import { Form, FormField } from '../theme/components';
 import { encode } from '../lib/helpers';
+import EmailLink from '../components/EmailLink';
 
 export const query = graphql`
     query ContactPageQuery {
@@ -59,8 +60,7 @@ class ContactPage extends React.Component {
             ) : (
                 <p>
                     There was a problem sending your message. Please email us
-                    directly as{' '}
-                    <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+                    directly as <EmailLink emailAddress={contactEmail} />.
                 </p>
             );
         return (
@@ -132,10 +132,7 @@ class ContactPage extends React.Component {
                     <ul>
                         <li>Phone: {phoneNumber}</li>
                         <li>
-                            Email:{' '}
-                            <a href={`mailto:${contactEmail}`}>
-                                {contactEmail}
-                            </a>
+                            Email: <EmailLink emailAddress={contactEmail} />
                         </li>
                         <li>Mailing address: {address}</li>
                     </ul>
