@@ -1,33 +1,27 @@
-import { FaRegHandshake as icon } from 'react-icons/fa';
+import { FaDonate as icon } from 'react-icons/fa';
 
 export default {
-    name: 'whoWeArePage',
-    title: 'Who We Are Page',
+    title: 'REACH Page',
+    name: 'reachPage',
     type: 'document',
     icon,
     fields: [
         {
-            title: 'Page title',
+            title: 'Page TItle',
             name: 'title',
             type: 'string',
             validation: Rule => Rule.required(),
         },
         {
-            title: 'Blurb',
-            name: 'blurb',
+            title: 'Content',
+            name: 'content',
             type: 'richText',
             validation: Rule => Rule.required(),
         },
         {
-            title: 'Content',
-            name: 'contentBlock',
-            type: 'array',
-            of: [{ type: 'whoWeAreBlock' }],
-        },
-        {
-            title: 'SEO Description',
             name: 'seoDescription',
             type: 'seoDescription',
+            title: 'SEO Description',
         },
     ],
     preview: {

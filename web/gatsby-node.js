@@ -9,7 +9,9 @@ async function createSermonSeriesPages(graphql, actions, reporter) {
     const { createPage } = actions;
     const result = await graphql(`
         {
-            allSanitySeries(filter: { slug: { current: { ne: null } } }) {
+            allSanitySeries(
+                filter: { title: { ne: null }, slug: { current: { ne: null } } }
+            ) {
                 edges {
                     node {
                         id
