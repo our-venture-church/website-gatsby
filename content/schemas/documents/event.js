@@ -42,12 +42,11 @@ export default {
         },
         {
             name: 'beginAt',
-            title: 'Starts at',
-            type: 'datetime',
-            description: 'When does the event start?',
+            title: 'Start date',
+            type: 'date',
+            description: 'What day does the event start?',
             options: {
                 dateFormat: 'dddd, MMMM Do, YYYY',
-                timeFormat: 'h:mm A',
             },
             validation: Rule => Rule.required(),
         },
@@ -76,12 +75,12 @@ export default {
         // },
         {
             name: 'endAt',
-            title: 'Ends at',
-            type: 'datetime',
-            description: 'When does the event end?',
+            title: 'End date',
+            type: 'date',
+            description:
+                'Optional. Use when the event last multiple days. When day does the event end?',
             options: {
                 dateFormat: 'dddd, MMMM Do, YYYY',
-                timeFormat: 'h:mm A',
             },
         },
         {
