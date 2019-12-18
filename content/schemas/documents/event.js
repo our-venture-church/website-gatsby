@@ -50,13 +50,6 @@ export default {
             },
             validation: Rule => Rule.required(),
         },
-        {
-            name: 'allDay',
-            title: 'All day event?',
-            type: 'boolean',
-            description:
-                'Check this when the event does not have a start time.',
-        },
         // {
         //     name: 'beginTime',
         //     title: 'What time does the event start?',
@@ -82,6 +75,13 @@ export default {
             options: {
                 dateFormat: 'dddd, MMMM Do, YYYY',
             },
+        },
+        {
+            name: 'allDay',
+            title: 'All day event?',
+            type: 'boolean',
+            description:
+                'Check this when the event does not have a start time.',
         },
         {
             name: 'image',

@@ -22,8 +22,8 @@ const StyledContainer = styled.div`
 
 const removeOldEvents = ({ endAt, beginAt }) => {
     const currentDate = new Date();
-    const beginDate = beginAt ? new Date(beginAt) : null;
-    const endDate = endAt ? new Date(endAt) : null;
+    const beginDate = beginAt ? new Date(beginAt.split('--')[1]) : null;
+    const endDate = endAt ? new Date(endAt.split('--')[1]) : null;
     if (endDate && endDate > currentDate) {
         return true;
     }
@@ -44,8 +44,8 @@ const Events = props => {
             ) {
                 nodes {
                     title
-                    beginAt(formatString: "YYYY-MM-DD")
-                    endAt(formatString: "YYYY-MM-DD")
+                    beginAt(formatString: "MMM D--YYYY-MM-DD")
+                    endAt(formatString: "MMM D--YYYY-MM-DD")
                     image {
                         asset {
                             _id
@@ -74,6 +74,14 @@ const Events = props => {
                     <div>
                         <Grid>
                             {events.filter(removeOldEvents).map(event => {
+                                if (event.beginAt) {
+                                    event.beginAt = event.beginAt.split(
+                                        '--'
+                                    )[0];
+                                }
+                                if (event.endAt) {
+                                    event.endAt = event.endAt.split('--')[0];
+                                }
                                 return (
                                     <li key={event.id}>
                                         <EventItem {...event} />

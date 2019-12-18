@@ -19,17 +19,8 @@ const StyledEvent = styled.div`
 `;
 
 const EventItem = ({ title, beginAt, endAt, image, slug }) => {
-    const dateOptions = { month: 'short', day: 'numeric' };
-    const formattedBeginAt = new Date(beginAt).toLocaleDateString(
-        undefined,
-        dateOptions
-    );
-    const formattedEndAt =
-        endAt && new Date(endAt).toLocaleDateString(undefined, dateOptions);
-    const endDate =
-        formattedEndAt && formattedBeginAt !== formattedEndAt
-            ? ` - ${formattedEndAt}`
-            : '';
+    const endDate = endAt && beginAt !== endAt ? ` - ${endAt}` : '';
+    debugger;
 
     return (
         <StyledEvent>
@@ -45,7 +36,7 @@ const EventItem = ({ title, beginAt, endAt, image, slug }) => {
                 />
                 <b>{title}</b>
                 <br />
-                {formattedBeginAt}
+                {beginAt}
                 {endDate}
             </Link>
         </StyledEvent>
