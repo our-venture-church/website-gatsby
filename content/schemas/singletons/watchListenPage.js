@@ -12,6 +12,16 @@ export default {
             type: 'basicPageIntro',
             validation: Rule => Rule.required(),
         },
+        {
+            name: 'appleMusicLink',
+            tiyle: 'Apple Music Link',
+            type: 'string',
+        },
+        {
+            name: 'spotifyLink',
+            tiyle: 'Spotify Link',
+            type: 'string',
+        },
     ],
     preview: {
         select: { title: 'pageIntro.title' },
