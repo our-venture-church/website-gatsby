@@ -24,13 +24,13 @@ title: 'Venture Site Roadmap'
 
     -   I would treat this like a virtual "Guest Stop" just for 2nd-time guests.
 
-    ```
-    "Welcome back and thank you for joining us at Venture Church. We have lots of ways to learn more about the church and get connect."
-    ```
+    > Welcome back and thank you for joining us at Venture Church. We have lots of ways to learn more about the church and get connect.
 
     Then give a form: Get there Name, Email, Phone, and allow them to check up to 3 boxes: Discover 101 (Dinner with our Lead Pastors), Coffee with a staff member, information to start serving (We may even omit this. Don't we get this info when we meet with them in-person? Does Discover 101 talk about the importance of serving at the church?)
 
-    For groups, I would do a big thing below the form that "Check out our Growth Groups". But I would only have that when we want them signing up. Now would not be a great time nor would the month of December. When it's not a good time, I'd say something like "Growth Groups will be relaunching [Soon/On Date/next month], keep an eye out for more updates at our Sunday service" -- or something like that.
+    For groups, I would do a big thing below the form that `Check out our Growth Groups`. But I would only have that when we want them signing up. Now would not be a great time nor would the month of December. When it's not a good time, I'd say something along the lines of this:
+
+    > Growth Groups will be relaunching [Soon/On Date/next month], keep an eye out for more updates at our Sunday services.
 
 -   Groups Page Dream/wish list -- These items seem like a lower priority
 -   Prayer page -- We can do whatever you want. Does Gabe have a vision for this? We can add a photo to each station. We can add a photo to the landing page, I would just need some direction.
