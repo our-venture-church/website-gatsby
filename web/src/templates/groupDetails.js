@@ -66,10 +66,12 @@ const GroupDetailsTemplate = props => {
                     <StyledGroupHeader>{group.title}</StyledGroupHeader>
 
                     <StyledGroupDetails>
-                        {group._rawDescription && (
-                            <BlockContent blocks={group._rawDescription} />
-                        )}
-                        <GroupMeta {...group} />
+                        <div>
+                            {group._rawDescription && (
+                                <BlockContent blocks={group._rawDescription} />
+                            )}
+                            <GroupMeta {...group} />
+                        </div>
 
                         {group.status === 'closed' ? (
                             <p>
