@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 
@@ -9,6 +9,7 @@ import LinkAsButton from '../../components/LinkAsButton';
 import { getDefaultPadding } from '../../utils/styles';
 import Grid from '../../layouts/Grid';
 import colors from '../../theme/tokens/colors';
+import GroupMeta from '../../components/GroupMeta';
 
 const StyledContainer = styled.div`
     ${getDefaultPadding()}
@@ -54,6 +55,7 @@ const Join = props => {
                         title
                     }
                     blurb
+                    meetingFrequency
                 }
             }
         }
@@ -92,12 +94,15 @@ const Join = props => {
                                                 registrations.
                                             </p>
                                         ) : (
-                                            <LinkAsButton
-                                                to={groupUrl}
-                                                aria-label="Get details or join"
-                                            >
-                                                Join
-                                            </LinkAsButton>
+                                            <Fragment>
+                                                <GroupMeta {...group} />
+                                                <LinkAsButton
+                                                    to={groupUrl}
+                                                    aria-label="Get details or join"
+                                                >
+                                                    Join
+                                                </LinkAsButton>
+                                            </Fragment>
                                         )}
                                     </li>
                                 );

@@ -49,12 +49,14 @@ export default {
             name: 'video',
             title: 'Video',
             type: 'youtube',
+            description: 'Link to the YouTube video',
         },
         {
             name: 'audio',
-            title: 'Audio',
+            title: 'Podcast URL',
             type: 'string',
-            description: 'The name of the sermon audio file uploaded.',
+            description:
+                'Link to the podcast URL (e.g. https://spreaker.com/blahblahblah',
         },
     ],
     preview: {
