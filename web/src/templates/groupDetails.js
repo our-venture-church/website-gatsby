@@ -8,6 +8,7 @@ import JoinGroupForm from '../components/JoinGroupForm';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 import { getDefaultPadding } from '../utils/styles';
 import colors from '../theme/tokens/colors';
+import GroupMeta from '../components/GroupMeta';
 
 export const query = graphql`
     query GroupDetailsTemplateQuery($id: String!) {
@@ -19,6 +20,16 @@ export const query = graphql`
             slug {
                 current
             }
+            gender
+            kids
+            day
+            time
+            city
+            age
+            campus {
+                title
+            }
+            meetingFrequency
         }
     }
 `;
@@ -58,6 +69,7 @@ const GroupDetailsTemplate = props => {
                         {group._rawDescription && (
                             <BlockContent blocks={group._rawDescription} />
                         )}
+                        <GroupMeta {...group} />
 
                         {group.status === 'closed' ? (
                             <p>

@@ -59,7 +59,7 @@ const GroupMeta = ({
             </StyledP>
             <StyledList>
                 {metaData.map(item =>
-                    value ? (
+                    item ? (
                         <StyledListItem key={item}>{item}</StyledListItem>
                     ) : null
                 )}
