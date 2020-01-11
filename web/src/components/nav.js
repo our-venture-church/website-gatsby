@@ -84,7 +84,10 @@ class Nav extends Component {
             <StyledNav isOpen={isOpen} navDrawer={navDrawer}>
                 <NavList isOpen={isOpen} navDrawer={navDrawer}>
                     {isOpen && (
-                        <NavItem {...HOME_PAGE_NAV_ITEM} handleKeyUp={this.handleNavItemKeyUp} />
+                        <NavItem
+                            {...HOME_PAGE_NAV_ITEM}
+                            handleKeyUp={this.handleNavItemKeyUp}
+                        />
                     )}
                     {items.map(item => (
                         <NavItem
