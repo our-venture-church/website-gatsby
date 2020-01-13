@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import { Modal } from 'react-a11y-modal';
 
 import SEO from './seo';
-import Layout from '../components/layout';
+import Layout from './layout';
+import Modal from './Modal';
 import BasicPageIntro from './BasicPageIntro';
 import LinkAsButton from './LinkAsButton';
 import { getDefaultPadding } from '../utils/styles';
@@ -33,6 +33,17 @@ const StyledClosed = styled.b`
     color: ${colors.mintBlue};
     text-transform: uppercase;
 `;
+
+// const StyledModalContainer = styled(Modal.Container)`
+//     && {
+//         background: ${colors.charcoalBlack};
+//         color: ${colors.white};
+//         max-height: 100%;
+//         overflow: scroll;
+//         width: 100%;
+//         z-index: 10;
+//     }
+// `;
 
 /**
  * Parse a query oaram string that represents group filtering
@@ -191,6 +202,7 @@ class JoinGroupPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            showFilters: false,
             filters:
                 window && window.location
                     ? parseQueryParamString(window.location.hash)
@@ -205,6 +217,13 @@ class JoinGroupPage extends Component {
             });
         };
     }
+
+    onFilterButtonClick = () => {
+        console.log(this);
+        this.setState({
+            showFilters: true,
+        });
+    };
 
     render() {
         const { data } = this.props;
@@ -257,6 +276,8 @@ class JoinGroupPage extends Component {
             });
         });
 
+        console.log('render:showFilters --', this.state.showFilters);
+
         return (
             <Layout>
                 <SEO
@@ -264,53 +285,55 @@ class JoinGroupPage extends Component {
                     description="Find a group to live life with. We have groups all over the area."
                 />
                 <BasicPageIntro title="Join a Group" />
-                <button>Filter</button>
-                <Modal.Container isOpen={true}>
-                    {({ actions }) => (
-                        <Fragment>
-                            <h2>Filter Groups</h2>
-                            {filters.map(fieldset => {
-                                return (
-                                    <fieldset>
-                                        <legend>{fieldset.title}</legend>
-                                        {fieldset.options.map(
-                                            (option, index) => (
-                                                <div>
-                                                    <input
-                                                        type={fieldset.type}
-                                                        name={fieldset.nameAttr}
-                                                        id={`filter-${fieldset.nameAttr}-${index}`}
-                                                        value={option.value}
-                                                        onChange={
-                                                            filterChangeHandler
-                                                        }
-                                                        checked={
-                                                            !isFiltered(
-                                                                fieldset.nameAttr,
-                                                                option.value,
-                                                                this.state
-                                                                    .filters
-                                                            )
-                                                        }
-                                                    />
-                                                    <label
-                                                        htmlFor={`filter-${fieldset.nameAttr}-${index}`}
-                                                    >
-                                                        {option.title}
-                                                    </label>
-                                                </div>
-                                            )
-                                        )}
-                                    </fieldset>
-                                );
-                            })}
-                        </Fragment>
-                    )}
-                </Modal.Container>
+                <button onClick={this.onFilterButtonClick}>
+                    Filter Results
+                </button>
+                <Modal
+                    closeModal={() => this.setState({ showFilters: false })}
+                    isOpen={this.state.showFilters}
+                    title="Filter Groups"
+                    label="Filters the groups search result"
+                >
+                    <Fragment>
+                        {filters.map(fieldset => {
+                            return (
+                                <fieldset>
+                                    <legend>{fieldset.title}</legend>
+                                    {fieldset.options.map((option, index) => (
+                                        <div>
+                                            <input
+                                                type={fieldset.type}
+                                                name={fieldset.nameAttr}
+                                                id={`filter-${fieldset.nameAttr}-${index}`}
+                                                value={option.value}
+                                                onChange={filterChangeHandler}
+                                                checked={
+                                                    !isFiltered(
+                                                        fieldset.nameAttr,
+                                                        option.value,
+                                                        this.state.filters
+                                                    )
+                                                }
+                                            />
+                                            <label
+                                                htmlFor={`filter-${fieldset.nameAttr}-${index}`}
+                                            >
+                                                {option.title}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </fieldset>
+                            );
+                        })}
+                    </Fragment>
+                </Modal>
                 <StyledContainer>
                     {filteredGroups && filteredGroups.length > 0 ? (
                         <div>
-                            {filteredGroups.length}
+                            <p>
+                                {filteredGroups.length} group
+                                {filteredGroups.length !== 1 && 's'} found.
+                            </p>
                             <Grid>
                                 {filteredGroups.map(group => {
                                     const groupUrl = `/groups/join/${group.slug.current}`;
