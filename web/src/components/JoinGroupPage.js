@@ -10,6 +10,7 @@ import LinkAsButton from './LinkAsButton';
 import { getDefaultPadding } from '../utils/styles';
 import Grid from '../layouts/Grid';
 import colors from '../theme/tokens/colors';
+import { Fieldset, InlineCheckbox, Button } from '../theme/components';
 import GroupMeta from './GroupMeta';
 import {
     GROUPS_DAY,
@@ -218,10 +219,15 @@ class JoinGroupPage extends Component {
         };
     }
 
-    onFilterButtonClick = () => {
-        console.log(this);
+    openFilterDialog = () => {
         this.setState({
             showFilters: true,
+        });
+    };
+
+    closeFilterDialog = () => {
+        this.setState({
+            showFilters: false,
         });
     };
 
@@ -285,22 +291,20 @@ class JoinGroupPage extends Component {
                     description="Find a group to live life with. We have groups all over the area."
                 />
                 <BasicPageIntro title="Join a Group" />
-                <button onClick={this.onFilterButtonClick}>
-                    Filter Results
-                </button>
+                <Button onClick={this.openFilterDialog}>Filter Results</Button>
                 <Modal
-                    closeModal={() => this.setState({ showFilters: false })}
+                    closeModal={this.closeFilterDialog}
                     isOpen={this.state.showFilters}
                     title="Filter Groups"
                     label="Filters the groups search result"
                 >
-                    <Fragment>
+                    <form onSubmit={this.closeFilterDialog}>
                         {filters.map(fieldset => {
                             return (
-                                <fieldset>
+                                <Fieldset>
                                     <legend>{fieldset.title}</legend>
                                     {fieldset.options.map((option, index) => (
-                                        <div>
+                                        <InlineCheckbox>
                                             <input
                                                 type={fieldset.type}
                                                 name={fieldset.nameAttr}
@@ -320,12 +324,15 @@ class JoinGroupPage extends Component {
                                             >
                                                 {option.title}
                                             </label>
-                                        </div>
+                                        </InlineCheckbox>
                                     ))}
-                                </fieldset>
+                                </Fieldset>
                             );
                         })}
-                    </Fragment>
+                        <Button onClick={this.closeFilterDialog} fullSize>
+                            See matching groups
+                        </Button>
+                    </form>
                 </Modal>
                 <StyledContainer>
                     {filteredGroups && filteredGroups.length > 0 ? (

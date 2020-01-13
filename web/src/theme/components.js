@@ -3,6 +3,25 @@ import colors from './tokens/colors';
 
 export const Form = styled.form``;
 
+export const Button = styled.button`
+    background: ${colors.ventureYellow};
+    border: 1px solid ${colors.ventureYellow};
+    border-radius: 3px;
+    color: ${colors.charcoalBlack};
+    cursor: pointer;
+    display: ${props => (props.fullSize ? 'block' : 'inline-block')};
+    padding: 0.5em 0.75em;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        background-color: ${colors.ventureYellow};
+        border-color: ${colors.ventureYellow};
+        color: ${colors.charcoalBlack};
+    }
+`;
+
 export const FormField = styled.div`
     margin-bottom: 2rem;
 
@@ -42,6 +61,22 @@ export const FormField = styled.div`
     }
 `;
 
+export const Fieldset = styled.fieldset`
+    border: none;
+
+    legend {
+        font-weight: bold;
+    }
+`;
+
+export const InlineCheckbox = styled.div`
+    margin-bottom: 5px;
+
+    input {
+        margin-right: 0.5em;
+    }
+`;
+
 // 16:9 Aspect Ratio
 export const VideoContainer = styled.div`
     height: 0;
@@ -59,7 +94,8 @@ export const VideoContainer = styled.div`
 `;
 
 export const TagMe = styled.div`
-    background: ${props => (props.secondary ? colors.mintBlue : colors.ventureYellow)};
+    background: ${props =>
+        props.secondary ? colors.mintBlue : colors.ventureYellow};
     color: ${colors.charcoalBlack};
     display: inline-block;
     padding: 0.5em 0.75em;
