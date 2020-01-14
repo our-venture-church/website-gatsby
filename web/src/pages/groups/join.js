@@ -1,20 +1,12 @@
 import React from 'react';
-import {
-    createHistory,
-    LocationProvider,
-    Router,
-    globalHistory,
-} from '@reach/router';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import JoinGroupPage from '../../components/JoinGroupPage';
 
-let history = createHistory(window);
-
 const Join = props => {
     const data = useStaticQuery(graphql`
         query GroupsQuery {
-            allSanityCampus {
+            allSanityCampus(sort: { order: ASC, fields: _createdAt }) {
                 nodes {
                     title
                     id
@@ -52,11 +44,7 @@ const Join = props => {
         }
     `);
 
-    return (
-        <Router>
-            <JoinGroupPage default data={data} />
-        </Router>
-    );
+    return <JoinGroupPage data={data} />;
 };
 
 Join.propTypes = {};

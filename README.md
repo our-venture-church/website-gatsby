@@ -1,4 +1,4 @@
-# THe Venture Church website is built with [Gatsby](https://www.gatsbyjs.org/) & [Sanity.io](https://www.sanity.io)
+# The Venture Church website is built with [Gatsby](https://www.gatsbyjs.org/) & [Sanity.io](https://www.sanity.io)
 
 -   [Installation](#installation)
 -   [Enable Gatsby watch mode for drafts](#enable-gatsby-watch-mode-for-drafts)

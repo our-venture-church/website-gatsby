@@ -66,6 +66,7 @@ export const Fieldset = styled.fieldset`
 
     legend {
         font-weight: bold;
+        margin-bottom: 0.5rem;
     }
 `;
 

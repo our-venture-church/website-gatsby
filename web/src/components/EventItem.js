@@ -20,7 +20,6 @@ const StyledEvent = styled.div`
 
 const EventItem = ({ title, beginAt, endAt, image, slug }) => {
     const endDate = endAt && beginAt !== endAt ? ` - ${endAt}` : '';
-    debugger;
 
     return (
         <StyledEvent>

@@ -13,6 +13,13 @@ import Header from './header';
 import Footer from './footer';
 import SkipLink from './skipLink';
 import '../styles/reset.css';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+    .ReactModal__Body--open {
+        overflow: hidden;
+    }
+`;
 
 let currentPath;
 
@@ -51,7 +58,9 @@ const Layout = ({ children }) => {
     } = data.sanitySiteSettings;
     const { nodes: ministries } = data.allSanityMinistry;
 
-    const whatWeDoIndex = navigation.findIndex(({ href }) => href === '/what-we-do');
+    const whatWeDoIndex = navigation.findIndex(
+        ({ href }) => href === '/what-we-do'
+    );
     navigation[whatWeDoIndex].subLinks = ministries
         .map(({ name, slug }) => ({
             text: name,
@@ -82,11 +91,20 @@ const Layout = ({ children }) => {
     return (
         <React.Fragment>
             <SkipLink />
-            <Header siteTitle={siteName} navigation={navigation} pathChanged={pathChanged} />
+            <Header
+                siteTitle={siteName}
+                navigation={navigation}
+                pathChanged={pathChanged}
+            />
             <main role="main" id="main-content">
                 {children}
             </main>
-            <Footer phoneNumber={phone} siteTitle={siteName} socialLinks={social} />
+            <Footer
+                phoneNumber={phone}
+                siteTitle={siteName}
+                socialLinks={social}
+            />
+            <GlobalStyle />
         </React.Fragment>
     );
 };

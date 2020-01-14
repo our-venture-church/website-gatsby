@@ -4,13 +4,14 @@ import styled from 'styled-components';
 
 import SEO from './seo';
 import Layout from './layout';
-import Modal from './Modal';
 import BasicPageIntro from './BasicPageIntro';
 import LinkAsButton from './LinkAsButton';
+import FilterGroupsModal from './FilterGroupsModal';
+import { parseQueryParamString } from '../lib/groups';
 import { getDefaultPadding } from '../utils/styles';
 import Grid from '../layouts/Grid';
 import colors from '../theme/tokens/colors';
-import { Fieldset, InlineCheckbox, Button } from '../theme/components';
+import { Button } from '../theme/components';
 import GroupMeta from './GroupMeta';
 import {
     GROUPS_DAY,
@@ -35,169 +36,13 @@ const StyledClosed = styled.b`
     text-transform: uppercase;
 `;
 
-// const StyledModalContainer = styled(Modal.Container)`
-//     && {
-//         background: ${colors.charcoalBlack};
-//         color: ${colors.white};
-//         max-height: 100%;
-//         overflow: scroll;
-//         width: 100%;
-//         z-index: 10;
-//     }
-// `;
+const StyledButton = styled(Button)`
+    margin-bottom: 2rem;
+`;
 
-/**
- * Parse a query oaram string that represents group filtering
- * @param {String} queryParamString
- * @return {Array} Contains an entry for each param
- */
-const parseQueryParamString = queryParamString => {
-    if (queryParamString.length <= 1) {
-        return [];
-    }
-
-    const rawQueryParamsArray = queryParamString.substring(1).split('&');
-
-    if (
-        rawQueryParamsArray.length === 0 ||
-        rawQueryParamsArray.every(item => item.indexOf('=') === -1)
-    ) {
-        return [];
-    }
-
-    const parsedQueryParamString = [];
-    rawQueryParamsArray.forEach(filterString => {
-        const filterObj = {};
-        const splitFilterString = filterString.split('=');
-        filterObj.key = splitFilterString[0];
-        filterObj.value = splitFilterString[1].split(',');
-        parsedQueryParamString.push(filterObj);
-    });
-
-    return parsedQueryParamString;
-};
-
-/**
- * Returns the index of the filter state that matches the passed in name.
- * @param {Array} filterStateArray
- * @param {String} name
- * @return {Integer}
- */
-const getExistingIndexByName = (filterStateArray, name) => {
-    return filterStateArray.findIndex(item => item.key === name);
-};
-
-/**
- * Removes the passed in `change` object from the `currentFilterState`.
- * @param {Array} currentFilterState
- * @param {Obj} change
- * @return {Array} the updated filterState
- */
-const removeFilterFromQuery = (currentFilterState, change) => {
-    const existingEntryIndex = getExistingIndexByName(
-        currentFilterState,
-        change.name
-    );
-
-    if (existingEntryIndex === -1) {
-        return [...currentFilterState];
-    }
-
-    const filterToUpdate = currentFilterState[existingEntryIndex];
-
-    if (filterToUpdate.value.length === 1) {
-        // If the filter only has one value, remove the entire filter
-        currentFilterState.splice(existingEntryIndex, 1);
-        return currentFilterState;
-    } else {
-        // If the filter has multiple values, remove just the one.
-        const updatedFilterValues = filterToUpdate.value.filter(
-            filterValue => filterValue !== change.value
-        );
-        currentFilterState[existingEntryIndex].value = updatedFilterValues;
-        return currentFilterState;
-    }
-};
-
-/**
- * Adds the passed in `change` object to the `currentFilterState`.
- * @param {Array} currentFilterState
- * @param {Obj} change
- * @return {Array} the updated filterState
- */
-const addFilterToQuery = (currentFilterState, change) => {
-    const existingEntryIndex = getExistingIndexByName(
-        currentFilterState,
-        change.name
-    );
-
-    let updatedFilterState = [...currentFilterState];
-    if (existingEntryIndex > -1) {
-        // If this filter items already exists, we want to add to it
-        updatedFilterState[existingEntryIndex].value.push(change.value);
-    } else {
-        // If it doesn't exist, we want to create an entry
-        updatedFilterState.push({ key: change.name, value: [change.value] });
-    }
-
-    return updatedFilterState;
-};
-
-/**
- * Converts the filterState Array of objects into a string to be used as the URL's queryParam.
- * @param {Array} filterState
- * @return {String}
- */
-const stringifyFilterState = filterState => {
-    if (filterState.length === 0) {
-        return '';
-    }
-
-    const stringifiedFiltersArray = filterState.map(
-        ({ key, value }) => `${key}=${value.join(',')}`
-    );
-
-    return `#${stringifiedFiltersArray.join('&')}`;
-};
-
-/**
- * Gets an update query param based on the existing state, and whether the change is being added or
- * removed from said state.
- * @param {String} currentState as represented by the URL's query param
- * @param {Obj} change An object representing the change to the filterState
- * @return {String}
- */
-const buildQueryParam = (currentState, change) => {
-    const currentFilterState = parseQueryParamString(currentState);
-    let updatedFilterState;
-    if (change.checked) {
-        // Remove from query
-        updatedFilterState = removeFilterFromQuery(currentFilterState, change);
-    } else {
-        // add to query
-        updatedFilterState = addFilterToQuery(currentFilterState, change);
-    }
-    return stringifyFilterState(updatedFilterState);
-};
-
-const filterChangeHandler = e => {
-    const { name, value, checked } = e.target;
-    const updatedQueryParam = buildQueryParam(window.location.hash, {
-        name,
-        value,
-        checked,
-    });
-
-    window.location.hash = updatedQueryParam;
-
-    return;
-};
-
-const isFiltered = (key, value, filterState) => {
-    return filterState.some(filter => {
-        return filter.key === key && filter.value.includes(value);
-    });
-};
+const StyledFilteredEntries = styled.span`
+    margin-left: 1rem;
+`;
 
 class JoinGroupPage extends Component {
     constructor(props) {
@@ -277,12 +122,13 @@ class JoinGroupPage extends Component {
         const filteredGroups = groups.filter(group => {
             return !exclusionFilters.some(filter => {
                 return filter.value.some(val => {
+                    if (filter.key === 'campus' && group[filter.key]) {
+                        return val === group[filter.key].id;
+                    }
                     return val === group[filter.key];
                 });
             });
         });
-
-        console.log('render:showFilters --', this.state.showFilters);
 
         return (
             <Layout>
@@ -291,56 +137,16 @@ class JoinGroupPage extends Component {
                     description="Find a group to live life with. We have groups all over the area."
                 />
                 <BasicPageIntro title="Join a Group" />
-                <Button onClick={this.openFilterDialog}>Filter Results</Button>
-                <Modal
-                    closeModal={this.closeFilterDialog}
-                    isOpen={this.state.showFilters}
-                    title="Filter Groups"
-                    label="Filters the groups search result"
-                >
-                    <form onSubmit={this.closeFilterDialog}>
-                        {filters.map(fieldset => {
-                            return (
-                                <Fieldset>
-                                    <legend>{fieldset.title}</legend>
-                                    {fieldset.options.map((option, index) => (
-                                        <InlineCheckbox>
-                                            <input
-                                                type={fieldset.type}
-                                                name={fieldset.nameAttr}
-                                                id={`filter-${fieldset.nameAttr}-${index}`}
-                                                value={option.value}
-                                                onChange={filterChangeHandler}
-                                                checked={
-                                                    !isFiltered(
-                                                        fieldset.nameAttr,
-                                                        option.value,
-                                                        this.state.filters
-                                                    )
-                                                }
-                                            />
-                                            <label
-                                                htmlFor={`filter-${fieldset.nameAttr}-${index}`}
-                                            >
-                                                {option.title}
-                                            </label>
-                                        </InlineCheckbox>
-                                    ))}
-                                </Fieldset>
-                            );
-                        })}
-                        <Button onClick={this.closeFilterDialog} fullSize>
-                            See matching groups
-                        </Button>
-                    </form>
-                </Modal>
                 <StyledContainer>
                     {filteredGroups && filteredGroups.length > 0 ? (
                         <div>
-                            <p>
+                            <StyledButton onClick={this.openFilterDialog}>
+                                Filter Results
+                            </StyledButton>
+                            <StyledFilteredEntries>
                                 {filteredGroups.length} group
-                                {filteredGroups.length !== 1 && 's'} found.
-                            </p>
+                                {filteredGroups.length !== 1 && 's'} found
+                            </StyledFilteredEntries>
                             <Grid>
                                 {filteredGroups.map(group => {
                                     const groupUrl = `/groups/join/${group.slug.current}`;
@@ -378,9 +184,24 @@ class JoinGroupPage extends Component {
                             </Grid>
                         </div>
                     ) : (
-                        <p>There are no groups that match your filters.</p>
+                        <Fragment>
+                            <p>There are no groups that match your filters.</p>
+                            <Button
+                                onClick={() => {
+                                    window.location.hash = '';
+                                }}
+                            >
+                                Reset Filters
+                            </Button>
+                        </Fragment>
                     )}
                 </StyledContainer>
+                <FilterGroupsModal
+                    isOpen={this.state.showFilters}
+                    closeModal={this.closeFilterDialog}
+                    allFilters={filters}
+                    setFilters={this.state.filters}
+                />
             </Layout>
         );
     }
