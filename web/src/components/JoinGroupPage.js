@@ -50,7 +50,7 @@ class JoinGroupPage extends Component {
         this.state = {
             showFilters: false,
             filters:
-                window && window.location
+                typeof window !== 'undefined' && window.location
                     ? parseQueryParamString(window.location.hash)
                     : [],
         };
