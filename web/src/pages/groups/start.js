@@ -128,7 +128,7 @@ class StartGroup extends React.Component {
                                         id="start-group-form-email"
                                         name="email"
                                         value={email}
-                                        onChange={this.handleChange}
+                                        changeHandler={this.handleChange}
                                     />
                                 </FormField>
                                 <FormField>
