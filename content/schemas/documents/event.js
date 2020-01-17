@@ -42,21 +42,13 @@ export default {
         },
         {
             name: 'beginAt',
-            title: 'Starts at',
-            type: 'datetime',
-            description: 'When does the event start?',
+            title: 'Start date',
+            type: 'date',
+            description: 'What day does the event start?',
             options: {
                 dateFormat: 'dddd, MMMM Do, YYYY',
-                timeFormat: 'h:mm A',
             },
             validation: Rule => Rule.required(),
-        },
-        {
-            name: 'allDay',
-            title: 'All day event?',
-            type: 'boolean',
-            description:
-                'Check this when the event does not have a start time.',
         },
         // {
         //     name: 'beginTime',
@@ -76,13 +68,20 @@ export default {
         // },
         {
             name: 'endAt',
-            title: 'Ends at',
-            type: 'datetime',
-            description: 'When does the event end?',
+            title: 'End date',
+            type: 'date',
+            description:
+                'Optional. Use when the event last multiple days. When day does the event end?',
             options: {
                 dateFormat: 'dddd, MMMM Do, YYYY',
-                timeFormat: 'h:mm A',
             },
+        },
+        {
+            name: 'allDay',
+            title: 'All day event?',
+            type: 'boolean',
+            description:
+                'Check this when the event does not have a start time.',
         },
         {
             name: 'image',

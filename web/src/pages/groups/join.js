@@ -1,34 +1,17 @@
 import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
-import styled from 'styled-components';
+import { useStaticQuery, graphql } from 'gatsby';
 
-import Layout from '../../components/layout';
-import SEO from '../../components/seo';
-import BasicPageIntro from '../../components/BasicPageIntro';
-import LinkAsButton from '../../components/LinkAsButton';
-import { getDefaultPadding } from '../../utils/styles';
-import Grid from '../../layouts/Grid';
-import colors from '../../theme/tokens/colors';
-
-const StyledContainer = styled.div`
-    ${getDefaultPadding()}
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    grid-gap: 1rem;
-
-    @media (min-width: 839px) {
-        grid-gap: 4rem;
-    }
-`;
-
-const StyledClosed = styled.b`
-    color: ${colors.mintBlue};
-    text-transform: uppercase;
-`;
+import JoinGroupPage from '../../components/JoinGroupPage';
 
 const Join = props => {
     const data = useStaticQuery(graphql`
         query GroupsQuery {
+            allSanityCampus(sort: { order: ASC, fields: _createdAt }) {
+                nodes {
+                    title
+                    id
+                }
+            }
             allSanityGroup(
                 filter: {
                     status: { ne: "hidden" }
@@ -52,62 +35,16 @@ const Join = props => {
                     age
                     campus {
                         title
+                        id
                     }
                     blurb
+                    meetingFrequency
                 }
             }
         }
     `);
 
-    const { nodes: groups } = data.allSanityGroup;
-
-    return (
-        <Layout>
-            <SEO
-                title="Join a Group"
-                description="Find a group to live life with. We have groups all over the area."
-            />
-            <BasicPageIntro title="Join a Group" />
-            <StyledContainer>
-                {groups && (
-                    <div>
-                        <Grid>
-                            {groups.map(group => {
-                                const groupUrl = `/groups/join/${group.slug.current}`;
-                                return (
-                                    <li key={group.id}>
-                                        <h2>
-                                            <Link to={groupUrl}>
-                                                {group.title}
-                                            </Link>
-                                        </h2>
-                                        <p>{group.blurb}</p>
-                                        {group.status === 'closed' ? (
-                                            <p>
-                                                This group is{' '}
-                                                <StyledClosed>
-                                                    closed
-                                                </StyledClosed>{' '}
-                                                and not accepting new
-                                                registrations.
-                                            </p>
-                                        ) : (
-                                            <LinkAsButton
-                                                to={groupUrl}
-                                                aria-label="Get details or join"
-                                            >
-                                                Join
-                                            </LinkAsButton>
-                                        )}
-                                    </li>
-                                );
-                            })}
-                        </Grid>
-                    </div>
-                )}
-            </StyledContainer>
-        </Layout>
-    );
+    return <JoinGroupPage data={data} />;
 };
 
 Join.propTypes = {};

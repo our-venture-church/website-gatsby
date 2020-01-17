@@ -1,63 +1,50 @@
 ---
 path: '/site/roadmap'
-lastUpdate: '2019-12-02'
+lastUpdate: '2020-01-14'
 title: 'Venture Site Roadmap'
 ---
 
-## Goal for the week of December 2nd:
+## Next Up
 
--   ~~Make "CLOSED" groups more obvious~~
--   Add the rest of the Group info to the page
--   Filter groups by day of the week
--   Figure out photos on the detail pages
--   "Who we are" sub-pages
+-   Groups Page missing info: Shipped
+-   Groups Page Filtering: Shipped
+-   Groups Page Start-a-group: Shipped
+-   Who We Are Page: Jan 17
+-   Staff Page: Jan 24
+-   What We Do: Jan 24
+-   Add links to the "I'm new" page: Jan 24
+-   Ministry Pages: Jan 31
 
-## ~~PRE-launch checklist~~ Completed:
+## Need more info
 
--   ~~Prayer Page~~
--   ~~Style Staff page~~
--   ~~Style Groups page~~
--   ~~Style Group detail page~~
+-   Connect Page: I have a couple thoughts here:
 
-## What still needs to be done for v1 (Target end of month):
+    -   I like the idea of this page, but it feels similar to the "I'm New" page. Do you want to re-work the "I'm New" page to account for some of this stuff?
+    -   It seems like the page could be trying to do too much. Sign up for discover, go join a group, sign-up for coffee with a pastor, sign-up to serve. That's a lot of requests we're making of the user.
 
--   ~~Ensure that publishing re-builds the site.~~
--   ~~Missing staff photos (add a placeholder for staff photos that we don't have)~~
--   ~~Fix Group search page width.~~
--   ~~Better success handler for join-a-group form~~
--   ~~Give Page and schema~~
--   ~~Add contact form~~
--   ~~Improve the Sermon Series details page~~
--   ~~Add sermons from the 8 most recent sermon series~~
--   ~~Ministry Detail Page~~
--   ~~"What we do" Landing page and schema~~
--   ~~See all events page (and link on the homepage)~~
+    -   I would treat this like a virtual "Guest Stop" just for 2nd-time guests.
 
-## v2 (end of December)
+    > Welcome back and thank you for joining us at Venture Church. We have lots of ways to learn more about the church and get connect.
 
--   "Who we are" sub-pages
--   "Who we are" Landing page and schema
--   Add the rest of the Group info to the page.
--   Filter groups by day of the week
--   Figure out photos on the detail pages
--   Re-add links to the "I'm new" page
+    Then give a form: Get there Name, Email, Phone, and allow them to check up to 3 boxes: Discover 101 (Dinner with our Lead Pastors), Coffee with a staff member, information to start serving (We may even omit this. Don't we get this info when we meet with them in-person? Does Discover 101 talk about the importance of serving at the church?)
+
+    For groups, I would do a big thing below the form that `Check out our Growth Groups`. But I would only have that when we want them signing up. Now would not be a great time nor would the month of December. When it's not a good time, I'd say something along the lines of this:
+
+    > Growth Groups will be relaunching [Soon/On Date/next month], keep an eye out for more updates at our Sunday services.
+
+-   Groups Page Dream/wish list -- These items seem like a lower priority
+-   Prayer page -- We can do whatever you want. Does Gabe have a vision for this? We can add a photo to each station. We can add a photo to the landing page, I would just need some direction.
+
+## After that stuff is done list.
+
 -   Add "Announcement" (or "news") schema and pages (similar to events, but not tied to a specific date).
 -   Support embedded images and youtube videos
--   Improve styling on the staff page
--   Add staff details for Lead team members
 -   Design tweaks
     -   Decrease the header height on mobile devices
     -   Fix exit animation of the navigation
 -   Photo gallery experience (for things like Easter and Trunk or Treat)
--   ~~Port over all sermons~~
--   ~~Add former staff (who use to preach for the sermon archives)~~
--   ~~How do we play Ustream videos~~ We can't Ustream deleted them all.
--   Where are we hosting audio (.mp3 files)
+-   Work with Boone and Gabe for old messages and podcast links
 -   Allow the text on the contact page to be modified in the CMS.
-
-## vNext (TBD)
-
--   Nothing as of now
 
 ---
 
@@ -70,10 +57,6 @@ title: 'Venture Site Roadmap'
 -   Youth picture: get one from Tony
 -   Groups picture: use from the current groups page
 -   List of ministries goes below the highlights three
-
-### Give page
-
--   direct port over
 
 ### REACH page
 

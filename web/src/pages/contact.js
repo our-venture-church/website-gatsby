@@ -7,6 +7,7 @@ import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 import { Form, FormField } from '../theme/components';
 import { encode } from '../lib/helpers';
 import EmailLink from '../components/EmailLink';
+import EmailInput from '../components/EmailInput';
 
 export const query = graphql`
     query ContactPageQuery {
@@ -92,6 +93,7 @@ class ContactPage extends React.Component {
                                         name="name"
                                         value={name}
                                         onChange={this.handleChange}
+                                        placeholder="Enter your name"
                                         required
                                     />
                                 </FormField>
@@ -99,13 +101,11 @@ class ContactPage extends React.Component {
                                     <label htmlFor="contact-form-email">
                                         Email
                                     </label>
-                                    <input
+                                    <EmailInput
                                         id="contact-form-email"
-                                        type="email"
                                         name="email"
                                         value={email}
                                         onChange={this.handleChange}
-                                        required
                                     />
                                 </FormField>
                                 <FormField>

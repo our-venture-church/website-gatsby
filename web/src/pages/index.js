@@ -234,8 +234,8 @@ const IndexPage = () => {
                 }
                 events {
                     title
-                    beginAt(formatString: "YYYY-MM-DD")
-                    endAt(formatString: "YYYY-MM-DD")
+                    beginAt(formatString: "MMM D")
+                    endAt(formatString: "MMM D")
                     image {
                         asset {
                             _id
