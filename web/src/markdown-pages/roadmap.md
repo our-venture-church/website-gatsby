@@ -1,6 +1,6 @@
 ---
 path: '/site/roadmap'
-lastUpdate: '2020-01-14'
+lastUpdate: '2020-01-17'
 title: 'Venture Site Roadmap'
 ---
 
@@ -9,7 +9,7 @@ title: 'Venture Site Roadmap'
 -   Groups Page missing info: Shipped
 -   Groups Page Filtering: Shipped
 -   Groups Page Start-a-group: Shipped
--   Who We Are Page: Jan 17
+-   Who We Are Page: ~~Jan 17~~ -- in progress Jan 21
 -   Staff Page: Jan 24
 -   What We Do: Jan 24
 -   Add links to the "I'm new" page: Jan 24
