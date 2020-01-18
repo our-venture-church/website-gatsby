@@ -68,9 +68,7 @@ const LingoPage = props => {
                 {dictionary.map(item => (
                     <React.Fragment>
                         <dt>{item.term}</dt>
-                        <dd>
-                            <BlockContent blocks={item.definition} />
-                        </dd>
+                        <dd>{item.definition}</dd>
                     </React.Fragment>
                 ))}
             </dl>
