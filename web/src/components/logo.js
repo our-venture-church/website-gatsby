@@ -29,7 +29,8 @@ const StyledMark = styled.svg`
 
 const Logo = ({ handleLogoClick }) => (
     <StyledLogoLink to="/" aria-label="Home page">
-        <StyledMark viewBox="0 0 2412.42 661.56" fill="#fff">
+        <StyledMark viewBox="0 0 2412.42 661.56" fill="#fff" focusable="false">
+            <title>Venture Church Logo</title>
             <g className="logo-mark">
                 <path fill="#ffe534" d="M0 0l422 662 176-276L352 0H0z" />
                 <path d="M547 0l149 233L844 0H547z" />

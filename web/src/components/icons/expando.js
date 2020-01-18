@@ -10,12 +10,14 @@ const StyledExpando = styled.svg`
     width: 1.2em;
 `;
 
-const Expando = ({ direction }) => (
+const Expando = ({ direction, ...rest }) => (
     <StyledExpando
         viewBox="0 0 10 10"
         fill="none"
         stroke="currentColor"
         strokeWidth="1px"
+        focusable="false"
+        {...rest}
     >
         <title>Expandable</title>
         <polyline
