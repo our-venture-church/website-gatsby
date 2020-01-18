@@ -31,7 +31,7 @@ const StyledCopyright = styled.p`
     text-align: center;
 `;
 
-const StyledNoBreak = styled.span`
+const StyledPhoneLink = styled.a`
     white-space: nowrap;
 `;
 
@@ -40,13 +40,22 @@ const Footer = ({ phoneNumber, siteTitle, socialLinks }) => (
         <StyledSocialLinkList>
             {socialLinks.map(item => (
                 <StyledSocialItem key={item.title}>
-                    <SocialLink url={item.url} text={item.text} title={item.title} />
+                    <SocialLink
+                        url={item.url}
+                        text={item.text}
+                        title={item.title}
+                    />
                 </StyledSocialItem>
             ))}
         </StyledSocialLinkList>
         <StyledCopyright>
             © {new Date().getFullYear()} {siteTitle}. All rights reserved.{' '}
-            <StyledNoBreak aria-label="Phone number">{phoneNumber}</StyledNoBreak>
+            <StyledPhoneLink
+                href={`tel:${phoneNumber}`}
+                aria-label="Phone number"
+            >
+                {phoneNumber}
+            </StyledPhoneLink>
         </StyledCopyright>
     </FooterStyled>
 );

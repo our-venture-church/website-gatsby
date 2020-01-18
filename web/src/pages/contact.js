@@ -130,7 +130,10 @@ class ContactPage extends React.Component {
 
                     <h2>Contact Info:</h2>
                     <ul>
-                        <li>Phone: {phoneNumber}</li>
+                        <li>
+                            Phone:{' '}
+                            <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
+                        </li>
                         <li>
                             Email: <EmailLink emailAddress={contactEmail} />
                         </li>

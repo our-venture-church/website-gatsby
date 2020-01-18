@@ -4,7 +4,6 @@ import colors from '../theme/tokens/colors';
 
 const StyledSkipLink = styled.a`
     align-items: center;
-    color: ${colors.charcoalBlack} !important;
     display: flex;
     height: 1px;
     justify-content: center;
@@ -14,6 +13,10 @@ const StyledSkipLink = styled.a`
     text-align: center;
     text-decoration: underline;
     width: 1px;
+
+    &&& {
+        color: ${colors.charcoalBlack};
+    }
 
     &:focus,
     &:active {

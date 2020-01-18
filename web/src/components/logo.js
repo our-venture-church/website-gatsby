@@ -28,7 +28,7 @@ const StyledMark = styled.svg`
 `;
 
 const Logo = ({ handleLogoClick }) => (
-    <StyledLogoLink to="/" aria-label="Home page">
+    <StyledLogoLink to="/" aria-label="Venture Church Home page">
         <StyledMark viewBox="0 0 2412.42 661.56" fill="#fff" focusable="false">
             <title>Venture Church Logo</title>
             <g className="logo-mark">
