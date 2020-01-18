@@ -5,8 +5,6 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import BlockContent from '../components/block-content';
 import styled from 'styled-components';
-import { buildImageObj } from '../lib/helpers';
-import { imageUrlFor } from '../lib/image-url';
 import { getDefaultPadding } from '../utils/styles';
 import colors from '../theme/tokens/colors';
 
@@ -45,9 +43,8 @@ const LingoPage = props => {
                 seoDescription
                 _rawBlurb
                 dictionary {
-                    definition {
-                        term
-                    }
+                    definition
+                    term
                 }
             }
         }
