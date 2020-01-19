@@ -96,7 +96,7 @@ const Layout = ({ children }) => {
                 navigation={navigation}
                 pathChanged={pathChanged}
             />
-            <main role="main" id="main-content" tabindex="-1">
+            <main role="main" id="main-content">
                 {children}
             </main>
             <Footer
