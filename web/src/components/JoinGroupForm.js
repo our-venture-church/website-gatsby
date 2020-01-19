@@ -69,7 +69,7 @@ class JoinGroupForm extends React.Component {
                             joining this group.
                         </p>
                         <Form
-                            action="POST"
+                            action="/groups/join/thanks"
                             name="join-a-group"
                             onSubmit={this.handleSubmit}
                             data-netlify="true"
