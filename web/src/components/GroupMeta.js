@@ -54,8 +54,9 @@ const GroupMeta = ({
         <div>
             <StyledP>
                 {getTitleForValue('day', day)}{' '}
-                {meetingFrequency ? `(${meetingFrequency}) ` : null}at {time} in{' '}
-                {city}.
+                {meetingFrequency && `(${meetingFrequency})`}
+                {time && ` at ${time}`}
+                {city && ` in ${city}`}.
             </StyledP>
             <StyledList>
                 {metaData.map(item =>

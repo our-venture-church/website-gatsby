@@ -101,7 +101,7 @@ class StartGroup extends React.Component {
                             </p>
 
                             <Form
-                                action="POST"
+                                action="groups/start/thanks"
                                 name="start-group"
                                 onSubmit={this.handleSubmit}
                                 data-netlify="true"

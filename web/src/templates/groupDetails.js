@@ -30,6 +30,7 @@ export const query = graphql`
                 title
             }
             meetingFrequency
+            leader
         }
     }
 `;
@@ -70,6 +71,7 @@ const GroupDetailsTemplate = props => {
                             {group._rawDescription && (
                                 <BlockContent blocks={group._rawDescription} />
                             )}
+                            {group.leader && <p>Led by {group.leader}</p>}
                             <GroupMeta {...group} />
                         </div>
 

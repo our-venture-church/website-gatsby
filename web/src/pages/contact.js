@@ -78,7 +78,7 @@ class ContactPage extends React.Component {
                         <React.Fragment>
                             <p>Fill out this form to get ahold of us.</p>
                             <Form
-                                action="POST"
+                                action="/contact/thanks"
                                 name="contact"
                                 onSubmit={this.handleSubmit}
                                 data-netlify="true"
