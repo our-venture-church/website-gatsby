@@ -15,17 +15,28 @@ const StyledNarrowPageWrapper = styled(NarrowPageWrapper)`
     position: relative;
 `;
 
-const StyledLinkAsButton = styled(LinkAsButton)`
-    margin-bottom: 2rem;
+const StyledBtnGroup = styled.div`
+    span {
+        display: none;
+        @media (min-width: 360px) {
+            display: inline;
+        }
+    }
 
-    @media (min-width: 380px) {
+    @media (min-width: 620px) {
         position: absolute;
         top: 2rem;
         right: 1rem;
     }
+    margin-bottom: 2rem;
+`;
 
-    @media (min-width: 500px) {
-        right: 2rem;
+const StyledLinkAsButton = styled(LinkAsButton)`
+    display: block;
+    margin-bottom: 0.75em;
+
+    @media (min-width: 360px) {
+        display: inline-block;
     }
 `;
 
@@ -101,9 +112,15 @@ const MinistryDetailsTemplate = props => {
             <StyledNarrowPageWrapper includePadding={true}>
                 <h1>{name}</h1>
                 {name === 'Groups' && (
-                    <StyledLinkAsButton to="/groups/join">
-                        Join a Group
-                    </StyledLinkAsButton>
+                    <StyledBtnGroup>
+                        <StyledLinkAsButton to="/groups/join">
+                            Join a Group
+                        </StyledLinkAsButton>{' '}
+                        <span>or</span>{' '}
+                        <StyledLinkAsButton to="/groups/start">
+                            Start a Group
+                        </StyledLinkAsButton>
+                    </StyledBtnGroup>
                 )}
                 <BlockContent blocks={_rawOverview} />
                 <h2>Contact Us</h2>
