@@ -5,10 +5,9 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import BlockContent from '../components/block-content';
 import styled from 'styled-components';
-// import { buildImageObj } from '../lib/helpers';
-// import { imageUrlFor } from '../lib/image-url';
 import { getDefaultPadding } from '../utils/styles';
 import colors from '../theme/tokens/colors';
+import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 
 const getMobileBackgroundImageStyles = url => `
     background-image: url('${url}')
@@ -56,7 +55,9 @@ const ReachPage = props => {
             <StyledIntroBlock>
                 <h1>{title}</h1>
             </StyledIntroBlock>
-            <BlockContent blocks={_rawContent} />
+            <NarrowPageWrapper includePadding={true}>
+                <BlockContent blocks={_rawContent} />
+            </NarrowPageWrapper>
         </Layout>
     );
 };

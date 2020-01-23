@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Form, FormField } from '../theme/components';
 import { encode } from '../lib/helpers';
+import EmailInput from './EmailInput';
 
 const StyledFormWrapper = styled.div`
     margin: 0 auto;
@@ -102,12 +103,11 @@ class JoinGroupForm extends React.Component {
                             </FormField>
                             <FormField>
                                 <label htmlFor="join-form-email">Email</label>
-                                <input
+                                <EmailInput
                                     id="join-form-email"
-                                    type="email"
                                     name="email"
                                     value={email}
-                                    onChange={this.handleChange}
+                                    changeHandler={this.handleChange}
                                     required
                                 />
                             </FormField>

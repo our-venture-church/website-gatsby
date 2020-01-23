@@ -105,7 +105,7 @@ class ContactPage extends React.Component {
                                         id="contact-form-email"
                                         name="email"
                                         value={email}
-                                        onChange={this.handleChange}
+                                        changeHandler={this.handleChange}
                                     />
                                 </FormField>
                                 <FormField>
