@@ -52,18 +52,7 @@ class ContactPage extends React.Component {
         } = this.props.data.sanitySiteSettings;
         const { name, email, message, sendSuccess, sendError } = this.state;
         const showMessage = sendSuccess || sendError;
-        const statusMessage =
-            showMessage && sendSuccess ? (
-                <p>
-                    Your message was sent. We'll contact you if your message
-                    necessitates a reply.
-                </p>
-            ) : (
-                <p>
-                    There was a problem sending your message. Please email us
-                    directly as <EmailLink emailAddress={contactEmail} />.
-                </p>
-            );
+
         return (
             <Layout>
                 <SEO title="Contact" description="Contact us" />
@@ -73,7 +62,18 @@ class ContactPage extends React.Component {
                 >
                     <h1>Contact Us</h1>
                     {showMessage ? (
-                        { statusMessage }
+                        sendSuccess ? (
+                            <p>
+                                Your message was sent. We'll contact you if your
+                                message necessitates a reply.
+                            </p>
+                        ) : (
+                            <p>
+                                There was a problem sending your message. Please
+                                email us directly as{' '}
+                                <EmailLink emailAddress={contactEmail} />.
+                            </p>
+                        )
                     ) : (
                         <React.Fragment>
                             <p>Fill out this form to get ahold of us.</p>

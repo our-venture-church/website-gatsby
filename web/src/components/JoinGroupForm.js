@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Form, FormField } from '../theme/components';
 import { encode } from '../lib/helpers';
 import EmailInput from './EmailInput';
+import EmailLink from './EmailLink';
 
 const StyledFormWrapper = styled.div`
     margin: 0 auto;
@@ -53,16 +54,25 @@ class JoinGroupForm extends React.Component {
             sendError,
         } = this.state;
         const showMessage = sendSuccess || sendError;
-        const message =
-            showMessage && sendSuccess
-                ? "Your request was sent. We'll contact you with more information."
-                : 'There was a problem sending your request. Please email your request to groups@ourventure.church.';
+
         return (
             <StyledFormWrapper>
                 <h3>Sign-up</h3>
 
                 {showMessage ? (
-                    <p>{message}</p>
+                    showMessage && sendSuccess ? (
+                        <p>
+                            Your request was sent. We'll contact you with more
+                            information.
+                        </p>
+                    ) : (
+                        <p>
+                            There was a problem sending your request. Please
+                            email your request to{' '}
+                            <EmailLink emailAddress="groups@ourventure.church" />
+                            .
+                        </p>
+                    )
                 ) : (
                     <React.Fragment>
                         <p>
