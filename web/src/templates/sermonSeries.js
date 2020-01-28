@@ -11,6 +11,7 @@ import Layout from '../components/layout';
 import DetailPage from '../layouts/DetailPage';
 import Grid from '../layouts/Grid';
 import { VideoContainer } from '../theme/components';
+import { Button, VisuallyHidden } from '../theme/components';
 
 const StyledSeriesSubTitle = styled.h2`
     margin-bottom: 2rem;
@@ -25,6 +26,10 @@ const StyledSermonTitle = styled.h3`
 const StyledSermonSpeaker = styled.div`
     font-size: 0.875rem;
     margin-bottom: 0.25em;
+`;
+
+const AudioContainer = styled.p`
+    margin-top: 0.5rem;
 `;
 
 export const query = graphql`
@@ -57,6 +62,7 @@ export const query = graphql`
                     name
                 }
                 date(formatString: "M/D/YYYY")
+                audio
             }
         }
     }
@@ -132,6 +138,22 @@ const SermonSeriesTemplate = props => {
                                                 }}
                                             />
                                         </VideoContainer>
+                                    )}
+                                    {sermon.audio && (
+                                        <AudioContainer>
+                                            <Button
+                                                as="a"
+                                                href={sermon.audio}
+                                                inverted={true}
+                                            >
+                                                Listen to the
+                                                <VisuallyHidden>
+                                                    {' '}
+                                                    {sermon.title}
+                                                </VisuallyHidden>{' '}
+                                                Podcast
+                                            </Button>
+                                        </AudioContainer>
                                     )}
                                 </li>
                             ))}

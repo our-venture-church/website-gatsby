@@ -7,6 +7,7 @@ import SEO from '../components/seo';
 import BlockContent from '../components/block-content';
 import PageIntroWithText from '../components/PageIntroWithText';
 import MediumPageWrapper from '../layouts/MediumPageWrapper';
+import LinkAsButton from '../components/LinkAsButton';
 
 const StyledSection = styled.div`
     padding: 2rem;
@@ -16,6 +17,20 @@ const StyledSection = styled.div`
         margin-bottom: 0.5rem;
     }
 `;
+
+const WhoWeAreSection = ({ text, title, link, index }) => {
+    return (
+        <StyledSection>
+            <h2>{title}</h2>
+            <p>{text}</p>
+            {index === 1 ? (
+                <Link to={link.href}>{link.text}</Link>
+            ) : (
+                <LinkAsButton to={link.href}>{link.text}</LinkAsButton>
+            )}
+        </StyledSection>
+    );
+};
 
 const WhoWeArePage = props => {
     const data = useStaticQuery(graphql`
@@ -52,12 +67,8 @@ const WhoWeArePage = props => {
                 <BlockContent blocks={_rawBlurb} />
             </PageIntroWithText>
             <MediumPageWrapper includeSidePadding={true}>
-                {contentBlock.map(({ text, title, link }) => (
-                    <StyledSection>
-                        <h2>{title}</h2>
-                        <p>{text}</p>
-                        <Link to={link.href}>{link.text}</Link>
-                    </StyledSection>
+                {contentBlock.map((block, index) => (
+                    <WhoWeAreSection {...block} index={index} />
                 ))}
             </MediumPageWrapper>
         </Layout>

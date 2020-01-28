@@ -4,10 +4,12 @@ import colors from './tokens/colors';
 export const Form = styled.form``;
 
 export const Button = styled.button`
-    background: ${colors.ventureYellow};
+    background: ${props =>
+        props.inverted ? colors.charcoalBlack : colors.ventureYellow};
     border: 1px solid ${colors.ventureYellow};
     border-radius: 3px;
-    color: ${colors.charcoalBlack};
+    color: ${props =>
+        props.inverted ? colors.ventureYellow : colors.charcoalBlack};
     cursor: pointer;
     display: ${props => (props.fullSize ? 'block' : 'inline-block')};
     padding: 0.5em 0.75em;
@@ -152,4 +154,14 @@ export const SocialLinkList = styled.ul`
             padding-right: 0;
         }
     }
+`;
+
+export const VisuallyHidden = styled.span`
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
 `;
