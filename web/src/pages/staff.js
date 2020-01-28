@@ -124,21 +124,6 @@ const StaffPage = () => {
                         }
                     }
                 }
-                campusPastors {
-                    id
-                    name
-                    personType
-                    title
-                    honorific
-                    slug {
-                        current
-                    }
-                    image {
-                        asset {
-                            _id
-                        }
-                    }
-                }
                 staff {
                     id
                     name
@@ -158,16 +143,12 @@ const StaffPage = () => {
         }
     `);
 
-    const { title, leadTeam, campusPastors, staff } = data.sanityStaffPage;
+    const { title, leadTeam, staff } = data.sanityStaffPage;
 
     const staffLists = [
         {
-            title: 'Lead Team',
+            title: 'Lead Pastor',
             members: leadTeam,
-        },
-        {
-            title: 'Campus Pastors',
-            members: campusPastors,
         },
         {
             title: 'Staff',

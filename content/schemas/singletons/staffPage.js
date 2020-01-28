@@ -23,17 +23,6 @@ export default {
             ],
         },
         {
-            name: 'campusPastors',
-            type: 'array',
-            ttile: 'Campus Pastors',
-            of: [
-                {
-                    type: 'reference',
-                    to: [{ type: 'person' }],
-                },
-            ],
-        },
-        {
             name: 'staff',
             type: 'array',
             ttile: 'Staff',
