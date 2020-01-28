@@ -11,6 +11,8 @@ import SEO from '../components/seo';
 import BasicPageIntro from '../components/BasicPageIntro';
 import { getDefaultPadding } from '../utils/styles';
 import colors from '../theme/tokens/colors';
+import EmailLink from '../components/EmailLink';
+import Email from '../components/icons/email';
 
 const StyledLayout = styled.div`
     ${getDefaultPadding()};
@@ -57,13 +59,27 @@ const StyledStaffImagePlaceholder = styled.div`
     }
 `;
 
+const StyledStaffInfo = styled.div`
+    display: flex;
+    flex-wrap: nowrap;
+`;
+
 const StyledStaffName = styled.h3`
+    flex: 1;
     span {
         display: block;
         font-size: 0.75em;
         font-weight: normal;
         margin-top: 0.25em;
     }
+`;
+
+const StyledEmailLink = styled(EmailLink)`
+    border: none;
+    margin-right: -0.67em;
+    margin-top: -0.5em;
+    padding: 0.67em;
+    text-decoration: none;
 `;
 
 const getStaffMember = staffObj => {
@@ -86,9 +102,19 @@ const getStaffMember = staffObj => {
             ) : (
                 <StyledStaffImagePlaceholder></StyledStaffImagePlaceholder>
             )}
-            <StyledStaffName>
-                {displayName} <span>{staffObj.title}</span>
-            </StyledStaffName>
+            <StyledStaffInfo>
+                <StyledStaffName>
+                    {displayName} <span>{staffObj.title}</span>
+                </StyledStaffName>
+                {staffObj.email && (
+                    <StyledEmailLink
+                        emailAddress={staffObj.email}
+                        aria-label={`Email ${displayName}`}
+                    >
+                        <Email aria-hidden="true" />
+                    </StyledEmailLink>
+                )}
+            </StyledStaffInfo>
         </StyledStaffItem>
     );
 };
@@ -138,6 +164,7 @@ const StaffPage = () => {
                             _id
                         }
                     }
+                    email
                 }
             }
         }
