@@ -14,7 +14,7 @@ export default {
         {
             name: 'leadTeam',
             type: 'array',
-            ttile: 'Lead Team',
+            title: 'Lead Team',
             of: [
                 {
                     type: 'reference',
@@ -25,7 +25,7 @@ export default {
         {
             name: 'staff',
             type: 'array',
-            ttile: 'Staff',
+            title: 'Staff',
             of: [
                 {
                     type: 'reference',

@@ -19,7 +19,7 @@ export default {
         {
             name: 'events',
             type: 'array',
-            ttile: 'Events',
+            title: 'Events',
             of: [
                 {
                     type: 'reference',
