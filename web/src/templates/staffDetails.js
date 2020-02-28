@@ -9,9 +9,7 @@ import BlockContent from '../components/block-content';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
-import EmailLink from '../components/EmailLink';
 import SocialLink from '../components/SocialLink';
-import Email from '../components/icons/email';
 import ArrowLeft from '../components/icons/arrowLeft';
 
 const DetailLayout = styled.div`
@@ -97,6 +95,31 @@ const Content = styled.div`
     }
 `;
 
+const StyledStaffImagePlaceholder = styled.div`
+    background: ${colors.cinderGray};
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    position: relative;
+
+    &:before {
+        color: ${colors.charcoalBlack};
+        content: 'Photo coming soon';
+        text-align: center;
+        display: block;
+        top: 50%;
+        position: absolute;
+        width: 100%;
+        margin-top: -0.5em;
+        line-height: 1;
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        padding-bottom: 100%;
+    }
+`;
+
 export const query = graphql`
     query PersonDetailsTemplateQuery($id: String!) {
         person: sanityPerson(id: { eq: $id }) {
@@ -139,15 +162,19 @@ const PersonDetailsTemplate = props => {
                         <ArrowLeft aria-hidden="true" />
                         View all staff
                     </Breadcrumb>
-                    <HeroImage
-                        src={imageUrlFor(buildImageObj(image))
-                            .width(1200)
-                            .height(1200)
-                            .fit('crop')
-                            .auto('format')
-                            .url()}
-                        alt={displayName}
-                    />
+                    {image ? (
+                        <HeroImage
+                            src={imageUrlFor(buildImageObj(image))
+                                .width(1200)
+                                .height(1200)
+                                .fit('crop')
+                                .auto('format')
+                                .url()}
+                            alt={displayName}
+                        />
+                    ) : (
+                        <StyledStaffImagePlaceholder></StyledStaffImagePlaceholder>
+                    )}
                     <HeadingGroup>
                         <HeadingText>
                             <h1>{displayName}</h1>
