@@ -23,6 +23,7 @@ const DetailLayout = styled.div`
 `;
 
 const Breadcrumb = styled(Link)`
+    align-items: center;
     border: 0;
     display: inline-flex;
     margin-bottom: 1rem;
@@ -33,7 +34,6 @@ const Breadcrumb = styled(Link)`
     }
 
     svg {
-        align-items: center;
         background: rgba(0, 0, 0, 0.35);
         border-radius: 50%;
         display: inline-block;
