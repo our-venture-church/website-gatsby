@@ -50,22 +50,6 @@ export default {
             },
             validation: Rule => Rule.required(),
         },
-        // {
-        //     name: 'beginTime',
-        //     title: 'What time does the event start?',
-        //     type: 'string',
-        //     inputComponent: TimePicker,
-        // },
-        // {
-        //     name: 'endTime',
-        //     title: 'What time does the event end?',
-        //     type: 'richDate',
-        //     options: {
-        //         timeFormat: 'h:mm A',
-        //         timeStep: 30,
-        //         inputDate: false,
-        //     },
-        // },
         {
             name: 'endAt',
             title: 'End date',

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 
 import { buildImageObj } from '../lib/helpers';
@@ -27,6 +27,10 @@ const StyledStaffList = styled.ul`
 
 const StyledStaffItem = styled.li`
     list-style: none;
+`;
+
+const StaffImageLink = styled(Link)`
+    border: none;
 `;
 
 const StyledStaffImage = styled.img`
@@ -59,9 +63,11 @@ const StyledStaffImagePlaceholder = styled.div`
     }
 `;
 
-const StyledStaffInfo = styled.div`
+const StyledStaffInfo = styled(Link)`
+    border-bottom: 0;
     display: flex;
     flex-wrap: nowrap;
+    text-decoration: none;
 `;
 
 const StyledStaffName = styled.h3`
@@ -89,20 +95,22 @@ const getStaffMember = staffObj => {
 
     return (
         <StyledStaffItem key={staffObj.id}>
-            {staffObj.image ? (
-                <StyledStaffImage
-                    src={imageUrlFor(buildImageObj(staffObj.image))
-                        .width(600)
-                        .height(600)
-                        .fit('crop')
-                        .auto('format')
-                        .url()}
-                    alt=""
-                />
-            ) : (
-                <StyledStaffImagePlaceholder></StyledStaffImagePlaceholder>
-            )}
-            <StyledStaffInfo>
+            <StaffImageLink to={`/staff/${staffObj.slug.current}`}>
+                {staffObj.image ? (
+                    <StyledStaffImage
+                        src={imageUrlFor(buildImageObj(staffObj.image))
+                            .width(600)
+                            .height(600)
+                            .fit('crop')
+                            .auto('format')
+                            .url()}
+                        alt=""
+                    />
+                ) : (
+                    <StyledStaffImagePlaceholder></StyledStaffImagePlaceholder>
+                )}
+            </StaffImageLink>
+            <StyledStaffInfo to={`/staff/${staffObj.slug.current}`}>
                 <StyledStaffName>
                     {displayName} <span>{staffObj.title}</span>
                 </StyledStaffName>

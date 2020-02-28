@@ -25,6 +25,20 @@ export default {
             of: [{ type: 'whoWeAreBlock' }],
         },
         {
+            title: 'Staff Photos',
+            name: 'staffPhotos',
+            description: 'Photos that go in the "Staff" section.',
+            type: 'array',
+            of: [
+                {
+                    type: 'image',
+                    options: {
+                        hotspot: true,
+                    },
+                },
+            ],
+        },
+        {
             title: 'SEO Description',
             name: 'seoDescription',
             type: 'seoDescription',

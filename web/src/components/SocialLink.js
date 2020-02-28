@@ -15,16 +15,16 @@ const SocialLink = ({ title, url, text }) => {
         let icon;
         switch (title.toLowerCase()) {
             case 'facebook':
-                icon = <Facebook />;
+                icon = <Facebook aria-hidden="true" />;
                 break;
             case 'instagram':
-                icon = <Instagram />;
+                icon = <Instagram aria-hidden="true" />;
                 break;
             case 'youtube':
-                icon = <YouTube />;
+                icon = <YouTube aria-hidden="true" />;
                 break;
             case 'email':
-                icon = <Email />;
+                icon = <Email aria-hidden="true" />;
                 break;
             default:
                 icon = <span>{title}</span>;

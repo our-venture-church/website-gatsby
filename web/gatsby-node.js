@@ -82,7 +82,7 @@ async function createPersonPages(graphql, actions, reporter) {
     eventEdges.forEach(edge => {
         const id = edge.node.id;
         const slug = edge.node.slug.current;
-        const path = `/who-we-are/staff/${slug}/`;
+        const path = `/staff/${slug}/`;
 
         reporter.info(`Creating staff details page: ${path}`);
 
