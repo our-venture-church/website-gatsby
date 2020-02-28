@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 
@@ -11,6 +11,7 @@ import Layout from '../components/layout';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
 import SocialLink from '../components/SocialLink';
 import ArrowLeft from '../components/icons/arrowLeft';
+import colors from '../theme/tokens/colors';
 
 const DetailLayout = styled.div`
     display: grid;
