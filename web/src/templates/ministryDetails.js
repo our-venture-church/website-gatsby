@@ -10,9 +10,57 @@ import { SocialLinkList } from '../theme/components';
 import LinkAsButton from '../components/LinkAsButton';
 import EmailLink from '../components/EmailLink';
 import PhoneNumber from '../components/PhoneNumber';
+import { buildImageObj } from '../lib/helpers';
+import { imageUrlFor } from '../lib/image-url';
+import { getDefaultPadding } from '../utils/styles';
+import colors from '../theme/tokens/colors';
 
 const StyledNarrowPageWrapper = styled(NarrowPageWrapper)`
     position: relative;
+`;
+
+const getMobileBackgroundImageStyles = url => `
+    background-image: url('${url}')
+`;
+
+const getDesktopBackgroundImageStyles = url => `
+    @media (min-width: 820px) {
+        background-image: url('${url}')
+    }
+`;
+
+const StyledIntroBlock = styled.div`
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid ${colors.ventureYellow};
+
+    > div {
+        ${getDefaultPadding()}
+        margin: auto;
+        max-width: 800px;
+        position: relative;
+        padding-bottom: 4rem;
+        padding-top: 3rem;
+    }
+
+    h1 {
+        span {
+            background: ${colors.ventureYellow};
+            color: ${colors.charcoalBlack};
+            box-decoration-break: clone;
+            box-shadow: 0.5rem 0 0 ${colors.ventureYellow},
+                -0.5rem 0 0 ${colors.ventureYellow};
+            line-height: 1.6;
+        }
+    }
+
+    ${props =>
+        props.mobileImage && getMobileBackgroundImageStyles(props.mobileImage)}
+
+    ${props =>
+        props.desktopImage &&
+        getDesktopBackgroundImageStyles(props.desktopImage)}
 `;
 
 const StyledBtnGroup = styled.div`
@@ -65,9 +113,17 @@ export const query = graphql`
                 type
                 url
             }
-            leader {
-                name
-                honorific
+            bannerImage {
+                desktopSize {
+                    asset {
+                        _id
+                    }
+                }
+                mobileSize {
+                    asset {
+                        _id
+                    }
+                }
             }
         }
     }
@@ -103,25 +159,66 @@ const getContactText = (phone, email) => {
 
 const MinistryDetailsTemplate = props => {
     const { data } = props;
-    const { name, email, _rawOverview, phone, socialLinks, leader } =
+    const { name, email, _rawOverview, phone, socialLinks, bannerImage } =
         data && data.sanityMinistry;
-    console.log(leader);
+
+    const bgImages = {};
+    let desktopImage;
+    let mobileImage;
+
+    if (bannerImage) {
+        const { desktopSize, mobileSize } = bannerImage;
+
+        if (desktopSize && desktopSize.asset) {
+            desktopImage = imageUrlFor(buildImageObj(desktopSize))
+                .width(1200)
+                .height(Math.floor((9 / 16) * 1200))
+                .fit('crop')
+                .auto('format')
+                .url();
+        }
+
+        if (mobileSize && mobileSize.asset) {
+            mobileImage = imageUrlFor(buildImageObj(mobileSize))
+                .width(1200)
+                .height(Math.floor((9 / 16) * 1200))
+                .fit('crop')
+                .auto('format')
+                .url();
+        }
+
+        if (mobileImage) {
+            bgImages.mobileImage = mobileImage;
+            if (desktopImage) {
+                bgImages.desktopImage = desktopImage;
+            }
+        } else if (desktopImage) {
+            bgImages.mobileImage = desktopImage;
+        }
+    }
+
     return (
         <Layout>
             <SEO title={`${name}`} description="" />
+            <StyledIntroBlock {...bgImages}>
+                <div>
+                    <h1>
+                        <span>{name}</span>
+                    </h1>
+                    {name === 'Groups' && (
+                        <StyledBtnGroup>
+                            <StyledLinkAsButton to="/groups/join">
+                                Join a Group
+                            </StyledLinkAsButton>{' '}
+                            <span>or</span>{' '}
+                            <StyledLinkAsButton to="/groups/start">
+                                Start a Group
+                            </StyledLinkAsButton>
+                        </StyledBtnGroup>
+                    )}
+                </div>{' '}
+            </StyledIntroBlock>
             <StyledNarrowPageWrapper includePadding={true}>
-                <h1>{name}</h1>
-                {name === 'Groups' && (
-                    <StyledBtnGroup>
-                        <StyledLinkAsButton to="/groups/join">
-                            Join a Group
-                        </StyledLinkAsButton>{' '}
-                        <span>or</span>{' '}
-                        <StyledLinkAsButton to="/groups/start">
-                            Start a Group
-                        </StyledLinkAsButton>
-                    </StyledBtnGroup>
-                )}
                 <BlockContent blocks={_rawOverview} />
                 <h2>Contact Us</h2>
                 {(phone || email) && getContactText(phone, email)}

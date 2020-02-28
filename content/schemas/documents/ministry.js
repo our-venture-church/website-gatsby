@@ -21,6 +21,11 @@ export default {
             },
         },
         {
+            name: 'bannerImage',
+            type: 'bannerImage',
+            title: 'Banner Image',
+        },
+        {
             name: 'overview',
             title: 'Overview',
             type: 'blockContent',
