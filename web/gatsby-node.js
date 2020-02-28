@@ -58,9 +58,7 @@ async function createPersonPages(graphql, actions, reporter) {
             allSanityPerson(
                 filter: {
                     slug: { current: { ne: null } }
-                    personType: {
-                        nin: ["guestSpeaker", "formerStaff", "volunteer"]
-                    }
+                    personType: { nin: ["guestSpeaker", "formerStaff"] }
                 }
             ) {
                 edges {
