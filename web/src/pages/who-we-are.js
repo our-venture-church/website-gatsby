@@ -10,6 +10,7 @@ import LinkAsButton from '../components/LinkAsButton';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 import colors from '../theme/tokens/colors';
+import { getDefaultPadding } from '../utils/styles';
 
 const StyledSection = styled.div`
     background: ${props => (props.odd ? 'rgba(0,0,0,0.2)' : 'transparent')};
@@ -121,6 +122,33 @@ const ReachList = styled.ul`
     }
 `;
 
+const HistoryTimeline = styled.ol`
+    list-style: none;
+    margin: 0 auto;
+    max-width: 550px;
+    ${getDefaultPadding()};
+`;
+
+const TimelineItem = styled.li`
+    align-items: center;
+    display: flex;
+    margin-bottom: 2rem;
+`;
+
+const TimelineItemContent = styled.div`
+    flex: 1;
+    margin-left: 1rem;
+
+    h3 {
+        font-size: 16px;
+        margin-bottom: 0.25rem;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+`;
+
 const WhoWeAreSection = ({ text, title, link, index, staffPhotos }) => {
     let extraContent = null;
     let sectionProps = {};
@@ -220,19 +248,21 @@ const WhoWeAreSection = ({ text, title, link, index, staffPhotos }) => {
 
     if (title === 'History') {
         extraContent = (
-            <ol>
-                <li>
+            <HistoryTimeline>
+                <TimelineItem>
                     <svg width="75" height="75" viewBox="0 0 75 75">
                         <path d="M52.3 14.3l-18-4.1v54.4l18-4.1V14.3zM40.8 42.2c-0.6 0-1.2-0.3-1.5-0.8l-2.9 0.4c0 0-0.1 0-0.1 0 -0.4 0-0.7-0.3-0.7-0.6 -0.1-0.4 0.2-0.8 0.6-0.9l2.9-0.4c0.2-0.8 0.9-1.3 1.7-1.3 1 0 1.8 0.8 1.8 1.8S41.8 42.2 40.8 42.2z"></path>
                         <path d="M37.5 0C16.8 0 0 16.8 0 37.5S16.8 75 37.5 75 75 58.2 75 37.5 58.2 0 37.5 0zM53.8 61.9l-21 4.7v-5.3h-8V13.7h8V8.4l21 4.7V61.9z"></path>
                     </svg>
-                    <h3>2004</h3>
-                    <p>
-                        Canyon Creek Church launches at Heatherwood Middle
-                        School
-                    </p>
-                </li>
-                <li>
+                    <TimelineItemContent>
+                        <h3>2004</h3>
+                        <p>
+                            Canyon Creek Church launches at Heatherwood Middle
+                            School
+                        </p>
+                    </TimelineItemContent>
+                </TimelineItem>
+                <TimelineItem>
                     <svg width="75" height="75" viewBox="0 0 75 75">
                         <path d="M52 44c0.5-0.1 0.9-0.2 1.4-0.5s0.8-0.5 1.1-0.9c0.3-0.4 0.6-0.8 0.7-1.3 0.1-0.5 0.2-1 0.1-1.6 -0.1-0.7-0.3-1.2-0.6-1.6 -0.3-0.4-0.7-0.7-1.1-0.9 -0.4-0.2-0.9-0.3-1.4-0.3 -0.5 0-1 0-1.5 0.1l-2.5 0.5 1.3 7L52 44zM50.9 38.4c0.3-0.1 0.6-0.1 0.9-0.1 0.3 0 0.6 0.1 0.8 0.2s0.5 0.3 0.6 0.5c0.2 0.2 0.3 0.6 0.4 1 0.1 0.4 0.1 0.7 0 1 -0.1 0.3-0.2 0.5-0.4 0.7 -0.2 0.2-0.4 0.4-0.7 0.5 -0.3 0.1-0.6 0.2-0.9 0.3l-0.8 0.1 -0.7-4.1L50.9 38.4z"></path>
                         <polygon points="44.6 38 42.9 38.4 44.2 45.4 48.6 44.6 48.3 43.1 45.6 43.6 "></polygon>
@@ -242,10 +272,12 @@ const WhoWeAreSection = ({ text, title, link, index, staffPhotos }) => {
                         <polygon points="23.1 54.6 60.3 54.6 60.3 43.9 23.1 50.6 "></polygon>
                         <polygon points="23.1 40.2 60.3 33.5 60.3 29.1 23.1 29.1 "></polygon>
                     </svg>
-                    <h3>2007</h3>
-                    <p>CCC purchases it's first building on Ash Way</p>
-                </li>
-                <li>
+                    <TimelineItemContent>
+                        <h3>2007</h3>
+                        <p>CCC purchases it's first building on Ash Way</p>
+                    </TimelineItemContent>
+                </TimelineItem>
+                <TimelineItem>
                     <svg width="75" height="75" viewBox="0 0 75 75">
                         <path d="M52 44c0.5-0.1 0.9-0.2 1.4-0.5s0.8-0.5 1.1-0.9c0.3-0.4 0.6-0.8 0.7-1.3 0.1-0.5 0.2-1 0.1-1.6 -0.1-0.7-0.3-1.2-0.6-1.6 -0.3-0.4-0.7-0.7-1.1-0.9 -0.4-0.2-0.9-0.3-1.4-0.3 -0.5 0-1 0-1.5 0.1l-2.5 0.5 1.3 7L52 44zM50.9 38.4c0.3-0.1 0.6-0.1 0.9-0.1 0.3 0 0.6 0.1 0.8 0.2s0.5 0.3 0.6 0.5c0.2 0.2 0.3 0.6 0.4 1 0.1 0.4 0.1 0.7 0 1 -0.1 0.3-0.2 0.5-0.4 0.7 -0.2 0.2-0.4 0.4-0.7 0.5 -0.3 0.1-0.6 0.2-0.9 0.3l-0.8 0.1 -0.7-4.1L50.9 38.4z"></path>
                         <polygon points="44.6 38 42.9 38.4 44.2 45.4 48.6 44.6 48.3 43.1 45.6 43.6 "></polygon>
@@ -255,48 +287,62 @@ const WhoWeAreSection = ({ text, title, link, index, staffPhotos }) => {
                         <polygon points="23.1 54.6 60.3 54.6 60.3 43.9 23.1 50.6 "></polygon>
                         <polygon points="23.1 40.2 60.3 33.5 60.3 29.1 23.1 29.1 "></polygon>
                     </svg>
-                    <h3>2011</h3>
-                    <p>REACH Initiative is launched</p>
-                </li>
-                <li>
+                    <TimelineItemContent>
+                        <h3>2011</h3>
+                        <p>REACH Initiative is launched</p>
+                    </TimelineItemContent>
+                </TimelineItem>
+                <TimelineItem>
                     <svg width="75" height="75" viewBox="0 0 75 75">
                         <path d="M37.5 0C24.8 0 13.5 6.4 6.8 16h16.4v33.5h4.5V26c0 0 6.8-0.1 13.5 0 4.5 0.1 5.2 4.8 5.2 4.8v7.7c0 0 1.3 0 7.1 0s5.5 5.5 5.5 5.5v5.5h3.9v5.8H52c0 4.4-3.6 8-8 8s-8-3.6-8-8H4.5C10.9 67.1 23.3 75 37.5 75 58.2 75 75 58.2 75 37.5 75 16.8 58.2 0 37.5 0z"></path>
                         <path d="M39.7 29.2c-3-0.1-8.5 0-8.5 0v9.4h11.3v-5.8C42.5 32.8 42.8 29.3 39.7 29.2z"></path>
                         <path d="M37.5 55.4c0 3.6 2.9 6.5 6.5 6.5 3.6 0 6.5-2.9 6.5-6.5s-2.9-6.5-6.5-6.5C40.4 48.9 37.5 51.8 37.5 55.4zM43.9 51.8c2 0 3.6 1.6 3.6 3.6s-1.6 3.6-3.6 3.6c-2 0-3.6-1.6-3.6-3.6S41.9 51.8 43.9 51.8z"></path>
                     </svg>
-                    <h3>2016</h3>
-                    <p>Central Campus is purchased in the city of Mill Creek</p>
-                </li>
-                <li>
+                    <TimelineItemContent>
+                        <h3>2016</h3>
+                        <p>
+                            Central Campus is purchased in the city of Mill
+                            Creek
+                        </p>
+                    </TimelineItemContent>
+                </TimelineItem>
+                <TimelineItem>
                     <svg width="75" height="75" viewBox="0 0 75 75">
                         <path d="M37.5 0C24.8 0 13.5 6.4 6.8 16h16.4v33.5h4.5V26c0 0 6.8-0.1 13.5 0 4.5 0.1 5.2 4.8 5.2 4.8v7.7c0 0 1.3 0 7.1 0s5.5 5.5 5.5 5.5v5.5h3.9v5.8H52c0 4.4-3.6 8-8 8s-8-3.6-8-8H4.5C10.9 67.1 23.3 75 37.5 75 58.2 75 75 58.2 75 37.5 75 16.8 58.2 0 37.5 0z"></path>
                         <path d="M39.7 29.2c-3-0.1-8.5 0-8.5 0v9.4h11.3v-5.8C42.5 32.8 42.8 29.3 39.7 29.2z"></path>
                         <path d="M37.5 55.4c0 3.6 2.9 6.5 6.5 6.5 3.6 0 6.5-2.9 6.5-6.5s-2.9-6.5-6.5-6.5C40.4 48.9 37.5 51.8 37.5 55.4zM43.9 51.8c2 0 3.6 1.6 3.6 3.6s-1.6 3.6-3.6 3.6c-2 0-3.6-1.6-3.6-3.6S41.9 51.8 43.9 51.8z"></path>
                     </svg>
-                    <h3>2018</h3>
-                    <p>
-                        Break ground on a new building for the Central Campus.
-                    </p>
-                </li>
-                <li>
+                    <TimelineItemContent>
+                        <h3>2018</h3>
+                        <p>
+                            Break ground on a new building for the Central
+                            Campus.
+                        </p>
+                    </TimelineItemContent>
+                </TimelineItem>
+                <TimelineItem>
                     <svg width="75" height="75" viewBox="0 0 75 75">
                         <path d="M37.5 0C24.8 0 13.5 6.4 6.8 16h16.4v33.5h4.5V26c0 0 6.8-0.1 13.5 0 4.5 0.1 5.2 4.8 5.2 4.8v7.7c0 0 1.3 0 7.1 0s5.5 5.5 5.5 5.5v5.5h3.9v5.8H52c0 4.4-3.6 8-8 8s-8-3.6-8-8H4.5C10.9 67.1 23.3 75 37.5 75 58.2 75 75 58.2 75 37.5 75 16.8 58.2 0 37.5 0z"></path>
                         <path d="M39.7 29.2c-3-0.1-8.5 0-8.5 0v9.4h11.3v-5.8C42.5 32.8 42.8 29.3 39.7 29.2z"></path>
                         <path d="M37.5 55.4c0 3.6 2.9 6.5 6.5 6.5 3.6 0 6.5-2.9 6.5-6.5s-2.9-6.5-6.5-6.5C40.4 48.9 37.5 51.8 37.5 55.4zM43.9 51.8c2 0 3.6 1.6 3.6 3.6s-1.6 3.6-3.6 3.6c-2 0-3.6-1.6-3.6-3.6S41.9 51.8 43.9 51.8z"></path>
                     </svg>
-                    <h3>2019</h3>
-                    <p>Change name from Canyon Creek to Venture</p>
-                </li>
-                <li>
+                    <TimelineItemContent>
+                        <h3>2019</h3>
+                        <p>Change name from Canyon Creek to Venture</p>
+                    </TimelineItemContent>
+                </TimelineItem>
+                <TimelineItem>
                     <svg width="75" height="75" viewBox="0 0 75 75">
                         <path d="M37.5 0C24.8 0 13.5 6.4 6.8 16h16.4v33.5h4.5V26c0 0 6.8-0.1 13.5 0 4.5 0.1 5.2 4.8 5.2 4.8v7.7c0 0 1.3 0 7.1 0s5.5 5.5 5.5 5.5v5.5h3.9v5.8H52c0 4.4-3.6 8-8 8s-8-3.6-8-8H4.5C10.9 67.1 23.3 75 37.5 75 58.2 75 75 58.2 75 37.5 75 16.8 58.2 0 37.5 0z"></path>
                         <path d="M39.7 29.2c-3-0.1-8.5 0-8.5 0v9.4h11.3v-5.8C42.5 32.8 42.8 29.3 39.7 29.2z"></path>
                         <path d="M37.5 55.4c0 3.6 2.9 6.5 6.5 6.5 3.6 0 6.5-2.9 6.5-6.5s-2.9-6.5-6.5-6.5C40.4 48.9 37.5 51.8 37.5 55.4zM43.9 51.8c2 0 3.6 1.6 3.6 3.6s-1.6 3.6-3.6 3.6c-2 0-3.6-1.6-3.6-3.6S41.9 51.8 43.9 51.8z"></path>
                     </svg>
-                    <h3>2020</h3>
-                    <p>Grand Opening of our brand new central campus.</p>
-                </li>
-            </ol>
+                    <TimelineItemContent>
+                        <h3>2020</h3>
+                        <p>Grand Opening of our brand new central campus.</p>
+                    </TimelineItemContent>
+                </TimelineItem>
+            </HistoryTimeline>
         );
     }
 

@@ -47,6 +47,7 @@ import prayerStations from './objects/prayerStations';
 import phoneNumber from './objects/phoneNumber';
 import navItem from './objects/navItem';
 import blockLink from './objects/blockLink';
+import timelineItem from './objects/timelineItem';
 import whoWeAreBlock from './objects/whoWeAreBlock';
 import beliefsPage from './singletons/beliefsPage';
 import historyPage from './singletons/historyPage';
@@ -112,5 +113,6 @@ export default createSchema({
         richDate,
         blockLink,
         whoWeAreBlock,
+        timelineItem,
     ]),
 });
