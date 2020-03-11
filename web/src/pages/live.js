@@ -12,6 +12,11 @@ import { Banner, VisuallyHidden } from '../theme/components';
 import YouTube from '../components/icons/youtube';
 import Facebook from '../components/icons/facebook';
 
+const LiveStreamTitle = styled.h1`
+    font-size: 24px;
+    text-align: center;
+`;
+
 const StreamingList = styled.ul`
     display: flex;
     justify-content: center;
@@ -73,7 +78,7 @@ const LiveStreamPage = props => {
 
             <Banner>
                 <NarrowPageWrapper includePadding>
-                    <VisuallyHidden as="h2">Streaming on</VisuallyHidden>
+                    <LiveStreamTitle>{title}</LiveStreamTitle>
                     <StreamingList>
                         <StreamingListItem>
                             <StreamingLink href={facebookStreamingLink}>
@@ -92,7 +97,6 @@ const LiveStreamPage = props => {
             </Banner>
 
             <NarrowPageWrapper includePadding>
-                <h1>{title}</h1>
                 <BlockContent blocks={_rawWelcome} />
             </NarrowPageWrapper>
         </Layout>

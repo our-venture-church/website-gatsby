@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 
 import Layout from '../components/layout';
@@ -61,14 +61,6 @@ const StyledSeriesList = styled.ul`
 const SermonsPage = props => {
     const data = useStaticQuery(graphql`
         query SermonsPageQuery {
-            sanitySiteSettings {
-                socialLinks {
-                    url
-                    title
-                    text
-                }
-            }
-
             sanityWatchListenPage {
                 pageIntro {
                     title
@@ -100,9 +92,6 @@ const SermonsPage = props => {
 
     const { nodes: series } = data.allSanitySeries;
     const { title, seoDescription } = data.sanityWatchListenPage.pageIntro;
-    const facebookLink = data.sanitySiteSettings.socialLinks.filter(
-        item => item.title === 'Facebook'
-    )[0];
 
     return (
         <Layout>
@@ -110,7 +99,7 @@ const SermonsPage = props => {
 
             <StyledTopSection>
                 <BasicPageIntro title={title} />
-                <a href={facebookLink.url}>Stream Service</a>
+                <Link to="/live">Stream Service</Link>
             </StyledTopSection>
 
             <StyledSeriesList>
