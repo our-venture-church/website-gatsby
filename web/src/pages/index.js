@@ -231,6 +231,7 @@ const IndexPage = () => {
                         }
                     }
                     link
+                    textPosition
                 }
                 events {
                     title
