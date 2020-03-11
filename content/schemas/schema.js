@@ -29,6 +29,7 @@ import beliefsPage from './singletons/beliefsPage';
 import historyPage from './singletons/historyPage';
 import lingoPage from './singletons/lingoPage';
 import reachPage from './singletons/reachPage';
+import liveStreamPage from './singletons/liveStreamPage';
 
 import bannerImage from './objects/bannerImage';
 import basicPageIntro from './objects/basicPageIntro';
@@ -78,6 +79,7 @@ export default createSchema({
         // page,
 
         homePage,
+        liveStreamPage,
         imNewPage,
         locationsPage,
         givePage,

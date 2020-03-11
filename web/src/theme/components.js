@@ -165,3 +165,8 @@ export const VisuallyHidden = styled.span`
     clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap;
 `;
+
+export const Banner = styled.div`
+    background: ${colors.ventureYellow};
+    color: ${colors.charcoalBlack};
+`;
