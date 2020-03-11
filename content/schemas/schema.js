@@ -12,7 +12,8 @@ import ministry from './documents/ministry';
 import campus from './documents/campus';
 import event from './documents/event';
 import group from './documents/group';
-import page from './documents/page';
+import announcement from './documents/announcement';
+// import page from './documents/page';
 import prayerVenture from './documents/prayerVenture';
 
 import homePage from './singletons/homePage';
@@ -24,6 +25,10 @@ import staffPage from './singletons/staffPage';
 import watchListenPage from './singletons/watchListenPage';
 import whatWeDoPage from './singletons/whatWeDoPage';
 import whoWeArePage from './singletons/whoWeArePage';
+import beliefsPage from './singletons/beliefsPage';
+import historyPage from './singletons/historyPage';
+import lingoPage from './singletons/lingoPage';
+import reachPage from './singletons/reachPage';
 
 import bannerImage from './objects/bannerImage';
 import basicPageIntro from './objects/basicPageIntro';
@@ -37,6 +42,7 @@ import internalLinkWithText from './objects/internalLinkWithText';
 import location from './objects/location';
 import pageIntro from './objects/pageIntro';
 import richText from './objects/richText';
+import update from './objects/update';
 import seoDescription from './objects/seoDescription';
 import socialLink from './objects/socialLink';
 import socialMediaLink from './objects/socialMediaLink';
@@ -49,11 +55,7 @@ import navItem from './objects/navItem';
 import blockLink from './objects/blockLink';
 import timelineItem from './objects/timelineItem';
 import whoWeAreBlock from './objects/whoWeAreBlock';
-import beliefsPage from './singletons/beliefsPage';
-import historyPage from './singletons/historyPage';
 import definitionItem from './objects/definitionItem';
-import lingoPage from './singletons/lingoPage';
-import reachPage from './singletons/reachPage';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -71,8 +73,9 @@ export default createSchema({
         sermon,
         series,
         group,
-        page,
         siteSettings,
+        announcement,
+        // page,
 
         homePage,
         imNewPage,
@@ -114,5 +117,6 @@ export default createSchema({
         blockLink,
         whoWeAreBlock,
         timelineItem,
+        update,
     ]),
 });

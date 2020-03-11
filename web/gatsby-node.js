@@ -253,6 +253,43 @@ async function createEventPages(graphql, actions, reporter) {
     });
 }
 
+async function createAnnouncementPages(graphql, actions, reporter) {
+    const { createPage } = actions;
+    const result = await graphql(`
+        {
+            allSanityAnnouncement(filter: { slug: { current: { ne: null } } }) {
+                edges {
+                    node {
+                        id
+                        slug {
+                            current
+                        }
+                    }
+                }
+            }
+        }
+    `);
+
+    if (result.errors) throw result.errors;
+
+    const announcementEdges =
+        (result.data.allSanityAnnouncement || {}).edges || [];
+
+    announcementEdges.forEach(edge => {
+        const id = edge.node.id;
+        const slug = edge.node.slug.current;
+        const path = `/announcement/${slug}/`;
+
+        reporter.info(`Creating announcement page: ${path}`);
+
+        createPage({
+            path,
+            component: require.resolve('./src/templates/announcement.js'),
+            context: { id },
+        });
+    });
+}
+
 async function createGroupPages(graphql, actions, reporter) {
     const { createPage } = actions;
     const result = await graphql(`
@@ -334,6 +371,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     await createPersonPages(graphql, actions, reporter);
     await createPrayerStationPages(graphql, actions, reporter);
     await createEventPages(graphql, actions, reporter);
+    await createAnnouncementPages(graphql, actions, reporter);
     await createGroupPages(graphql, actions, reporter);
     await createMarkdownPages(graphql, actions, reporter);
 };
