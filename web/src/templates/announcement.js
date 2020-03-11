@@ -15,7 +15,7 @@ export const query = graphql`
             updates {
                 title
                 text
-                date
+                date(formatString: "D/M/YYYY")
             }
         }
     }
@@ -32,7 +32,7 @@ const StyledTitle = styled.h1`
 const AnnouncementTemplate = props => {
     const { data } = props;
     const announcement = data && data.announcement;
-    const { title, _rawContent } = announcement;
+    const { title, _rawContent, updates } = announcement;
     return (
         <Layout>
             <SEO title={title} />
@@ -40,6 +40,20 @@ const AnnouncementTemplate = props => {
                 <StyledWrapper>
                     <StyledTitle>{title}</StyledTitle>
                     {_rawContent && <BlockContent blocks={_rawContent} />}
+                    {updates.length > 0 && (
+                        <React.Fragment>
+                            <h2>Updates:</h2>
+                            <ul>
+                                {updates.map(update => (
+                                    <li>
+                                        {update.title} - {update.text}
+                                        <br />
+                                        {update.date}
+                                    </li>
+                                ))}
+                            </ul>
+                        </React.Fragment>
+                    )}
                 </StyledWrapper>
             </NarrowPageWrapper>
         </Layout>

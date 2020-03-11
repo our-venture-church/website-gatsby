@@ -18,8 +18,7 @@ const StyledHero = styled.div`
     margin-bottom: 2rem;
 
     > a {
-        align-items: ${props =>
-            props.textPosition === 'topCenter' ? 'flex-start' : 'center'};;
+        align-items: center;
         border: 0;
         display: flex;
         text-decoration: none;
@@ -28,11 +27,8 @@ const StyledHero = styled.div`
 `;
 
 const StyledHeroText = styled.h2`
-    margin: ${props =>
-        props.textPosition === 'topCenter'
-            ? 'calc(10% - 1vw) auto 0'
-            : 'auto 1rem'};
-    max-width: 80%;
+    margin: auto 1rem;
+    max-width: 620px;
 
     @media (min-width: 500px) {
         padding: 0 2rem;
@@ -50,7 +46,7 @@ const StyledHeroText = styled.h2`
     }
 `;
 
-const Hero = ({ text, image, link, textPosition }) => (
+const Hero = ({ text, image, link }) => (
     <StyledHero
         backgroundImage={imageUrlFor(buildImageObj(image))
             .width(1200)
@@ -58,10 +54,9 @@ const Hero = ({ text, image, link, textPosition }) => (
             .fit('crop')
             .auto('format')
             .url()}
-        textPosition={textPosition}
     >
         <Link to={link}>
-            <StyledHeroText textPosition={textPosition}>
+            <StyledHeroText>
                 <span>{text}</span>
             </StyledHeroText>
         </Link>

@@ -3,12 +3,11 @@ import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import Layout from '../components/layout';
-import BasicPageIntro from '../components/BasicPageIntro';
 import SEO from '../components/seo';
 import BlockContent from '../components/block-content';
 import colors from '../theme/tokens/colors';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
-import { Banner, VisuallyHidden } from '../theme/components';
+import { Banner } from '../theme/components';
 import YouTube from '../components/icons/youtube';
 import Facebook from '../components/icons/facebook';
 

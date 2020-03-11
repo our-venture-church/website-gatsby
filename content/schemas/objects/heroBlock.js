@@ -5,19 +5,8 @@ export default {
     fields: [
         {
             name: 'text',
-            type: 'string',
+            type: 'text',
             title: 'Text',
-        },
-        {
-            name: 'textPosition',
-            type: 'string',
-            title: 'Text Position',
-            options: {
-                list: [
-                    { title: 'Default', value: 'default' },
-                    { title: 'Top - Centered', value: 'topCenter' },
-                ],
-            },
         },
         {
             name: 'link',
