@@ -26,9 +26,22 @@ const StreamingListItem = styled.li`
 
 const StreamingLink = styled.a`
     align-items: center;
+    border: none;
+    color: ${colors.charcoalBlack};
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: ${colors.charcoalBlack};
+        text-decoration: underline;
+    }
+
+    svg {
+        font-size: 48px;
+    }
 `;
 
 const LiveStreamPage = props => {
@@ -60,7 +73,7 @@ const LiveStreamPage = props => {
 
             <Banner>
                 <NarrowPageWrapper includePadding>
-                    <h2>Streaming on:</h2>
+                    <VisuallyHidden as="h2">Streaming on</VisuallyHidden>
                     <StreamingList>
                         <StreamingListItem>
                             <StreamingLink href={facebookStreamingLink}>
