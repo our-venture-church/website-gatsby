@@ -5,15 +5,22 @@ import styled from 'styled-components';
 
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
+import colors from '../theme/tokens/colors';
 
 const StyledEvent = styled.div`
     > a {
         border: none;
         display: block;
         text-decoration: none;
+
+        &:hover img {
+            border-color: ${colors.ventureYellow};
+        }
     }
 
     img {
+        border: 5px solid rgba(0, 0, 0, 0.15);
+        border-radius: 3px;
         margin-bottom: 0.25rem;
     }
 `;
