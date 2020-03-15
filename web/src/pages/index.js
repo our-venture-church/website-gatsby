@@ -227,7 +227,11 @@ const StreamingLiveContent = styled.div`
 const useMountEffect = func => useEffect(func, []);
 const checkDateIsSunday = () => {
     const today = new Date();
-    if (today.getDay() === 0) {
+    if (
+        today.getDay() === 0 &&
+        today.getUTCHours() < 20 &&
+        today.getUTCHours() > 14
+    ) {
         return true;
     }
 
@@ -300,7 +304,7 @@ const IndexPage = () => {
     const currentSeries = nodes[0];
 
     useMountEffect(() => {
-        if (!state.promoLiveStream && checkDateIsSunday) {
+        if (!state.promoLiveStream && checkDateIsSunday()) {
             setState({ ...state, promoLiveStream: true });
         }
     });
