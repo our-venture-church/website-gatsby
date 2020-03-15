@@ -21,7 +21,8 @@ const StyledEvent = styled.div`
     img {
         border: 5px solid rgba(0, 0, 0, 0.15);
         border-radius: 3px;
-        margin-bottom: 0.25rem;
+        margin: 0 -5px 0.25rem;
+        max-width: calc(100% + 10px);
     }
 `;
 
