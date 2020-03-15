@@ -35,7 +35,16 @@ const StyledWrapper = styled.div`
 
 const StyledImage = styled.img`
     border-bottom: 1px solid ${colors.ventureYellow};
-    margin-bottom: 0.5rem;
+    display: block;
+    margin: 0 0 0.5rem;
+
+    @media (min-width: 500px) {
+        border: 5px solid rgba(0, 0, 0, 0.15);
+        border-radius: 3px;
+        margin: 2rem auto 0.5rem;
+        max-width: 800px;
+        width: 100%;
+    }
 `;
 
 const StyledTitle = styled.h1`
@@ -49,19 +58,19 @@ const AnnouncementTemplate = props => {
     return (
         <Layout>
             <SEO title={title} />
+            {image && (
+                <StyledImage
+                    src={imageUrlFor(buildImageObj(image))
+                        .width(800)
+                        .height(Math.floor((9 / 16) * 800))
+                        .fit('crop')
+                        .auto('format')
+                        .url()}
+                    alt=""
+                />
+            )}
             <NarrowPageWrapper>
                 <StyledWrapper>
-                    {image && (
-                        <StyledImage
-                            src={imageUrlFor(buildImageObj(image))
-                                .width(800)
-                                .height(Math.floor((9 / 16) * 800))
-                                .fit('crop')
-                                .auto('format')
-                                .url()}
-                            alt=""
-                        />
-                    )}
                     <StyledTitle>{title}</StyledTitle>
                     {_rawContent && <BlockContent blocks={_rawContent} />}
                     {updates.length > 0 && (

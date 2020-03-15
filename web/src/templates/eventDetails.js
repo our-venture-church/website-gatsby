@@ -32,7 +32,16 @@ export const query = graphql`
 
 const StyledImage = styled.img`
     border-bottom: 1px solid ${colors.ventureYellow};
-    margin-bottom: 0.5rem;
+    display: block;
+    margin: 0 0 0.5rem;
+
+    @media (min-width: 800px) {
+        border: 5px solid rgba(0, 0, 0, 0.15);
+        border-radius: 3px;
+        margin: 2rem auto 0.5rem;
+        max-width: 800px;
+        width: 100%;
+    }
 `;
 
 const StyledWrapper = styled.div`
@@ -40,7 +49,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledEventTitle = styled.h1`
-    margin-bottom: 0.25rem;
+    margin: 2rem 0 0.25rem;
 `;
 
 const StyledDate = styled.div`
@@ -71,7 +80,7 @@ const EventDetailsTemplate = props => {
     return (
         <Layout>
             <SEO title={title} description="" />
-            <NarrowPageWrapper>
+            {image && (
                 <StyledImage
                     src={imageUrlFor(buildImageObj(image))
                         .width(800)
@@ -81,6 +90,8 @@ const EventDetailsTemplate = props => {
                         .url()}
                     alt=""
                 />
+            )}
+            <NarrowPageWrapper>
                 <StyledWrapper>
                     <StyledEventTitle>{title}</StyledEventTitle>
                     <StyledDate>
