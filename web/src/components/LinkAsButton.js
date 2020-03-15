@@ -4,12 +4,60 @@ import { Link as GatsbyLink } from 'gatsby';
 import styled from 'styled-components';
 import colors from '../theme/tokens/colors';
 
+const linkBg = props => {
+    switch (props.buttonStyle) {
+        case 'alternative':
+            return colors.white;
+        default:
+            return colors.charcoalBlack;
+    }
+};
+
+const linkColor = props => {
+    switch (props.buttonStyle) {
+        case 'secondary':
+            return colors.mintBlue;
+        case 'alternative':
+            return colors.charcoalBlack;
+        default:
+            return colors.ventureYellow;
+    }
+};
+
+const focusBg = props => {
+    switch (props.buttonStyle) {
+        case 'secondary':
+            return colors.mintBlue;
+        default:
+            return colors.charcoalBlack;
+    }
+};
+
+const focusBorderColor = props => {
+    switch (props.buttonStyle) {
+        case 'secondary':
+            return colors.mintBlue;
+        case 'alternative':
+            return colors.charcoalBlack;
+        default:
+            return colors.ventureYellow;
+    }
+};
+
+const focusColor = props => {
+    switch (props.buttonStyle) {
+        case 'alternative':
+            return colors.white;
+        default:
+            return colors.charcoalBlack;
+    }
+};
+
 const StyledLink = styled(GatsbyLink)`
-    background: ${colors.charcoalBlack};
+    background: ${props => linkBg(props)};
     border: 1px solid currentColor;
     border-radius: 3px;
-    color: ${props =>
-        props.secondary ? colors.mintBlue : colors.ventureYellow};
+    color: ${props => linkColor(props)};
     display: ${props => (props.fullSize ? 'block' : 'inline-block')};
     padding: 0.5em 0.75em;
     text-align: center;
@@ -17,19 +65,17 @@ const StyledLink = styled(GatsbyLink)`
 
     &:hover,
     &:focus {
-        background-color: ${props =>
-            props.secondary ? colors.mintBlue : colors.ventureYellow};
-        border-color: ${props =>
-            props.secondary ? colors.mintBlue : colors.ventureYellow};
-        color: ${colors.charcoalBlack};
+        background-color: ${props => focusBg(props)};
+        border-color: ${props => focusBorderColor(props)};
+        color: ${props => focusColor(props)};
     }
 `;
 
-const LinkAsButton = ({ to, children, fullSize, secondary, className }) => (
+const LinkAsButton = ({ to, children, fullSize, buttonStyle, className }) => (
     <StyledLink
         to={to}
         fullSize={fullSize}
-        secondary={secondary}
+        buttonStyle={buttonStyle}
         className={className}
     >
         {children}
@@ -41,13 +87,13 @@ LinkAsButton.propTypes = {
     className: PropTypes.string,
     to: PropTypes.string.isRequired,
     fullSize: PropTypes.bool,
-    secondary: PropTypes.bool,
+    buttonStyle: PropTypes.string,
 };
 
 LinkAsButton.defaultProps = {
     className: '',
     fullSize: false,
-    secondary: false,
+    buttonStyle: '',
 };
 
 export default LinkAsButton;

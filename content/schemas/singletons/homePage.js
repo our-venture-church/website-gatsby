@@ -27,6 +27,12 @@ export default {
                 },
             ],
         },
+        {
+            name: 'liveStream',
+            type: 'string',
+            title: 'Live Stream Text',
+            description: "On Sunday's the home page upsells the live stream.",
+        },
     ],
     preview: {
         select: { title: 'welcome.title' },

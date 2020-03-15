@@ -7,6 +7,7 @@ import { HERO_TYPES } from '../constants';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 import colors from '../theme/tokens/colors';
+import { VisuallyHidden } from '../theme/components';
 
 const StyledHero = styled.div`
     background: url('${props => props.backgroundImage}');
@@ -46,7 +47,7 @@ const StyledHeroText = styled.h2`
     }
 `;
 
-const Hero = ({ text, image, link }) => (
+const Hero = ({ text, image, link, altText }) => (
     <StyledHero
         backgroundImage={imageUrlFor(buildImageObj(image))
             .width(1200)
@@ -56,9 +57,13 @@ const Hero = ({ text, image, link }) => (
             .url()}
     >
         <Link to={link}>
-            <StyledHeroText>
-                <span>{text}</span>
-            </StyledHeroText>
+            {text ? (
+                <StyledHeroText>
+                    <span>{text}</span>
+                </StyledHeroText>
+            ) : (
+                <VisuallyHidden>{altText}</VisuallyHidden>
+            )}
         </Link>
     </StyledHero>
 );
@@ -69,9 +74,15 @@ Hero.propTypes = {
         HERO_TYPES.SERVICE_TIMES,
         HERO_TYPES.CUSTOM,
     ]).isRequired,
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
     image: PropTypes.object.isRequired,
     link: PropTypes.string.isRequired,
+    altText: PropTypes.string,
+};
+
+Hero.defaultProps = {
+    text: '',
+    altText: '',
 };
 
 export default Hero;

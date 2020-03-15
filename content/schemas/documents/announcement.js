@@ -24,6 +24,15 @@ export default {
             validation: Rule => Rule.required(),
         },
         {
+            name: 'image',
+            title: 'Image',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+            validation: Rule => Rule.required(),
+        },
+        {
             name: 'content',
             title: 'Content',
             type: 'richText',

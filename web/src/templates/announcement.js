@@ -5,12 +5,20 @@ import SEO from '../components/seo';
 import Layout from '../components/layout';
 import BlockContent from '../components/block-content';
 import NarrowPageWrapper from '../layouts/NarrowPageWrapper';
+import { buildImageObj } from '../lib/helpers';
+import { imageUrlFor } from '../lib/image-url';
+import colors from '../theme/tokens/colors';
 import { getDefaultPadding } from '../utils/styles';
 
 export const query = graphql`
     query AnnouncementTemplateQuery($id: String!) {
         announcement: sanityAnnouncement(id: { eq: $id }) {
             title
+            image {
+                asset {
+                    _id
+                }
+            }
             _rawContent
             updates {
                 title
@@ -25,6 +33,11 @@ const StyledWrapper = styled.div`
     ${getDefaultPadding()};
 `;
 
+const StyledImage = styled.img`
+    border-bottom: 1px solid ${colors.ventureYellow};
+    margin-bottom: 0.5rem;
+`;
+
 const StyledTitle = styled.h1`
     margin: 2rem 0 1rem;
 `;
@@ -32,12 +45,23 @@ const StyledTitle = styled.h1`
 const AnnouncementTemplate = props => {
     const { data } = props;
     const announcement = data && data.announcement;
-    const { title, _rawContent, updates } = announcement;
+    const { title, _rawContent, updates, image } = announcement;
     return (
         <Layout>
             <SEO title={title} />
             <NarrowPageWrapper>
                 <StyledWrapper>
+                    {image && (
+                        <StyledImage
+                            src={imageUrlFor(buildImageObj(image))
+                                .width(800)
+                                .height(Math.floor((9 / 16) * 800))
+                                .fit('crop')
+                                .auto('format')
+                                .url()}
+                            alt=""
+                        />
+                    )}
                     <StyledTitle>{title}</StyledTitle>
                     {_rawContent && <BlockContent blocks={_rawContent} />}
                     {updates.length > 0 && (

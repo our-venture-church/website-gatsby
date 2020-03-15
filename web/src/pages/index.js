@@ -1,5 +1,5 @@
-import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import React, { useEffect, useState } from 'react';
+import { useStaticQuery, graphql, Link, navigate } from 'gatsby';
 import styled from 'styled-components';
 
 import { buildImageObj } from '../lib/helpers';
@@ -198,7 +198,45 @@ const StyledLinkAsButton = styled(LinkAsButton)`
     margin: auto;
 `;
 
+const StreamingLive = styled.div`
+    background: ${colors.ventureYellow};
+    color: ${colors.charcoalBlack};
+    cursor: pointer;
+`;
+
+const StreamingLiveContent = styled.div`
+    ${getDefaultPadding};
+    align-items: center;
+    border-bottom: 1px solid ${colors.ventureYellow};
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+
+    p {
+        margin: 0;
+    }
+
+    a {
+        margin-left: 1.5em;
+        white-space: nowrap;
+    }
+`;
+
+const useMountEffect = func => useEffect(func, []);
+const checkDateIsSunday = () => {
+    const today = new Date();
+    if (today.getDay() === 0) {
+        return true;
+    }
+
+    return false;
+};
+
 const IndexPage = () => {
+    const [state, setState] = useState({ promoLiveStream: false });
+
     const data = useStaticQuery(graphql`
         query HomepageQuery {
             allSanitySeries(
@@ -232,6 +270,7 @@ const IndexPage = () => {
                     }
                     link
                 }
+                liveStream
                 events {
                     title
                     beginAt(formatString: "MMM D")
@@ -250,13 +289,35 @@ const IndexPage = () => {
         }
     `);
 
-    const { heroType, welcome, customHero, events } = data.sanityHomePage;
+    const {
+        heroType,
+        welcome,
+        customHero,
+        events,
+        liveStream,
+    } = data.sanityHomePage;
     const { nodes } = data.allSanitySeries;
     const currentSeries = nodes[0];
+
+    useMountEffect(() => {
+        if (!state.promoLiveStream && checkDateIsSunday) {
+            setState({ ...state, promoLiveStream: true });
+        }
+    });
 
     return (
         <Layout>
             <SEO title="Home" />
+            <StreamingLive onClick={() => navigate('/live')}>
+                {state.promoLiveStream && (
+                    <StreamingLiveContent>
+                        <p>{liveStream}</p>
+                        <LinkAsButton to="/live" buttonStyle="alternative">
+                            Join us now!
+                        </LinkAsButton>
+                    </StreamingLiveContent>
+                )}
+            </StreamingLive>
             <Hero type={heroType} {...customHero} />
             <StyledBelowFold>
                 <StyledWelcomeTitle>{welcome.title}</StyledWelcomeTitle>

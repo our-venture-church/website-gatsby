@@ -115,10 +115,18 @@ const WhatWeDoPage = () => {
         }
     `);
 
-    const { title, seoDescription, blurb, highlightedMinistries } = data.sanityWhatWeDoPage;
-    const ministries = data && data.allSanityMinistry && data.allSanityMinistry.nodes;
+    const {
+        title,
+        seoDescription,
+        blurb,
+        highlightedMinistries,
+    } = data.sanityWhatWeDoPage;
+    const ministries =
+        data && data.allSanityMinistry && data.allSanityMinistry.nodes;
 
-    const highlightedMinistryIds = highlightedMinistries.map(entry => entry.ministry._id);
+    const highlightedMinistryIds = highlightedMinistries.map(
+        entry => entry.ministry._id
+    );
 
     return (
         <Layout>
@@ -130,32 +138,42 @@ const WhatWeDoPage = () => {
                         <TagMe secondary={true}>Feature Ministries</TagMe>
                     </h2>
                     <StyledHighlightedList>
-                        {highlightedMinistries.map(({ ministry, blurb, image }, index) => (
-                            <StyledHighlightedMinistry key={ministry._id}>
-                                <StyledMinistryInfo oddIndex={index % 2 === 1}>
-                                    <StyledMinistryTitle>
-                                        <Link to={`/${ministry.slug.current}`}>
-                                            {ministry.name}
-                                        </Link>
-                                    </StyledMinistryTitle>
-                                    <StyledMinistryBlurb>{blurb}</StyledMinistryBlurb>
-                                    <p>
-                                        <LinkAsButton to={`/${ministry.slug.current}`}>
-                                            Learn more about {ministry.name}
-                                        </LinkAsButton>
-                                    </p>
-                                </StyledMinistryInfo>
-                                <StyledMinistryImage
-                                    src={imageUrlFor(buildImageObj(image))
-                                        .width(800)
-                                        .height(800)
-                                        .fit('crop')
-                                        .auto('format')
-                                        .url()}
-                                    alt=""
-                                />
-                            </StyledHighlightedMinistry>
-                        ))}
+                        {highlightedMinistries.map(
+                            ({ ministry, blurb, image }, index) => (
+                                <StyledHighlightedMinistry key={ministry._id}>
+                                    <StyledMinistryInfo
+                                        oddIndex={index % 2 === 1}
+                                    >
+                                        <StyledMinistryTitle>
+                                            <Link
+                                                to={`/${ministry.slug.current}`}
+                                            >
+                                                {ministry.name}
+                                            </Link>
+                                        </StyledMinistryTitle>
+                                        <StyledMinistryBlurb>
+                                            {blurb}
+                                        </StyledMinistryBlurb>
+                                        <p>
+                                            <LinkAsButton
+                                                to={`/${ministry.slug.current}`}
+                                            >
+                                                Learn more about {ministry.name}
+                                            </LinkAsButton>
+                                        </p>
+                                    </StyledMinistryInfo>
+                                    <StyledMinistryImage
+                                        src={imageUrlFor(buildImageObj(image))
+                                            .width(800)
+                                            .height(800)
+                                            .fit('crop')
+                                            .auto('format')
+                                            .url()}
+                                        alt=""
+                                    />
+                                </StyledHighlightedMinistry>
+                            )
+                        )}
                     </StyledHighlightedList>
                 </MediumPageWrapper>
             )}
@@ -164,7 +182,12 @@ const WhatWeDoPage = () => {
                 {ministries && (
                     <StyledOtherMinistriesList>
                         {ministries
-                            .filter(ministry => !highlightedMinistryIds.includes(ministry._id))
+                            .filter(
+                                ministry =>
+                                    !highlightedMinistryIds.includes(
+                                        ministry._id
+                                    )
+                            )
                             .sort((a, b) => {
                                 const nameA = a.name.toUpperCase();
                                 const nameB = b.name.toUpperCase();
@@ -181,7 +204,7 @@ const WhatWeDoPage = () => {
                                     <LinkAsButton
                                         to={`/${slug.current}`}
                                         fullSize={true}
-                                        secondary={true}
+                                        buttonStyle="secondary"
                                     >
                                         {name}
                                     </LinkAsButton>
