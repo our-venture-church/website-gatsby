@@ -5,12 +5,21 @@ import NarrowPageWrapper from './NarrowPageWrapper';
 import colors from '../theme/tokens/colors';
 
 const StyledImage = styled.div`
-    border-bottom: 1px solid ${colors.ventureYellow};
     margin: 0 auto 0.5rem;
     max-width: 800px;
 
     img {
-        margin-bottom: 0;
+        border-bottom: 1px solid ${colors.ventureYellow};
+        display: block;
+        margin: 0 0 0.5rem;
+
+        @media (min-width: 800px) {
+            border: 5px solid rgba(0, 0, 0, 0.15);
+            border-radius: 3px;
+            margin: 2rem auto 0.5rem;
+            max-width: 800px;
+            width: 100%;
+        }
     }
 `;
 

@@ -38,7 +38,7 @@ const StyledImage = styled.img`
     display: block;
     margin: 0 0 0.5rem;
 
-    @media (min-width: 500px) {
+    @media (min-width: 800px) {
         border: 5px solid rgba(0, 0, 0, 0.15);
         border-radius: 3px;
         margin: 2rem auto 0.5rem;
