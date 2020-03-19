@@ -345,7 +345,7 @@ const IndexPage = () => {
                     </StyledSeriesLink>
                 </StyledCurrentSeries>
                 <StyledEvents>
-                    <h2>Upcoming Events</h2>
+                    <h2>Stay Connected</h2>
                     <StyledEventsList>
                         {events.map(event => (
                             <li key={event.id}>
@@ -354,7 +354,7 @@ const IndexPage = () => {
                         ))}
                     </StyledEventsList>
                     <StyledLinkAsButton to="/events">
-                        See all events
+                        See what's happening
                     </StyledLinkAsButton>
                 </StyledEvents>
             </StyledBelowFold>
