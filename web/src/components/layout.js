@@ -47,6 +47,14 @@ const Layout = ({ children }) => {
                     }
                 }
             }
+            sanityWhoWeArePage {
+                contentBlock {
+                    text
+                    link {
+                        href
+                    }
+                }
+            }
         }
     `);
 
@@ -57,6 +65,7 @@ const Layout = ({ children }) => {
         mainNav: navigation,
     } = data.sanitySiteSettings;
     const { nodes: ministries } = data.allSanityMinistry;
+    const { contentBlock: whoWeAreSubPages } = data.sanityWhoWeArePage;
 
     const whatWeDoIndex = navigation.findIndex(
         ({ href }) => href === '/what-we-do'
@@ -77,6 +86,18 @@ const Layout = ({ children }) => {
             }
             return 0;
         });
+
+    const whoWeAreIndex = navigation.findIndex(
+        ({ href }) => href === '/who-we-are'
+    );
+    if (whoWeAreIndex > 0) {
+        navigation[whoWeAreIndex].subLinks = whoWeAreSubPages.map(
+            whoWeAreSubPage => ({
+                text: whoWeAreSubPage.text,
+                href: whoWeAreSubPage.link.href,
+            })
+        );
+    }
 
     let pathChanged = false;
 
