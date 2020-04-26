@@ -24,16 +24,16 @@ const linkColor = props => {
     }
 };
 
-const focusBg = props => {
+const hoverBg = props => {
     switch (props.buttonStyle) {
         case 'secondary':
             return colors.mintBlue;
         default:
-            return colors.charcoalBlack;
+            return colors.ventureYellow;
     }
 };
 
-const focusBorderColor = props => {
+const hoverBorderColor = props => {
     switch (props.buttonStyle) {
         case 'secondary':
             return colors.mintBlue;
@@ -44,7 +44,7 @@ const focusBorderColor = props => {
     }
 };
 
-const focusColor = props => {
+const hoverColor = props => {
     switch (props.buttonStyle) {
         case 'alternative':
             return colors.white;
@@ -63,11 +63,10 @@ const StyledLink = styled(GatsbyLink)`
     text-align: center;
     text-decoration: none;
 
-    &:hover,
-    &:focus {
-        background-color: ${props => focusBg(props)};
-        border-color: ${props => focusBorderColor(props)};
-        color: ${props => focusColor(props)};
+    &:hover {
+        background-color: ${props => hoverBg(props)};
+        border-color: ${props => hoverBorderColor(props)};
+        color: ${props => hoverColor(props)};
     }
 `;
 

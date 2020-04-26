@@ -13,22 +13,49 @@ import colors from '../theme/tokens/colors';
 import { getDefaultPadding } from '../utils/styles';
 
 const StyledSection = styled.div`
+    align-items: center;
     background: ${props => (props.odd ? 'rgba(0,0,0,0.2)' : 'transparent')};
     min-height: 65vh;
 
     display: ${props => (props.flex ? 'flex' : 'block')};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    ${getDefaultPadding()};
+    padding-bottom: 40px;
+    padding-top: 40px;
     text-align: ${props => (props.centeredText ? 'center' : 'left')};
 
-    > div:first-child {
-        flex: 1 0;
+    ${props =>
+        props.staffSection &&
+        `
+        display: flex;
+        flex-direction: row;
         margin: auto;
+        max-width: 1150px;
+
+        > div:first-child {
+            display: flex;
+            flex: 1 0;
+            flex-direction: column;
+            justify-content: center;
+            margin: auto;
+            padding-right: 40px;
+        }
+        `}
+
+    > div:first-child {
+        margin: 0 auto;
         max-width: 550px;
-        padding: 40px;
+        /* padding: 40px; */
     }
 
-    h2,
-    p {
+    h2 {
         margin-bottom: 0.5rem;
+    }
+
+    p {
+        margin-bottom: 0.75rem;
     }
 `;
 
@@ -37,12 +64,12 @@ const StaffPhotos = styled.div`
 
     @media (min-width: 620px) {
         display: block;
-        margin-right: 2rem;
         position: relative;
         width: 25%;
     }
 
     @media (min-width: 800px) {
+        height: 515px;
         transform: scale(0.75);
         width: 50%;
     }
@@ -54,8 +81,15 @@ const StaffPhotos = styled.div`
     img {
         border: 5px solid rgba(0, 0, 0, 0.1);
         border-radius: 2px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
         max-width: 100px;
         width: auto;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
 
         @media (min-width: 800px) {
             max-width: 220px;
@@ -72,27 +106,27 @@ const StaffPhotos = styled.div`
 
         img:nth-child(1) {
             right: 245px;
-            top: 45px;
+            top: 25px;
         }
 
         img:nth-child(2) {
             right: 245px;
-            top: 290px;
+            top: 270px;
         }
 
         img:nth-child(3) {
             right: 80px;
-            top: 0;
+            top: -20px;
         }
 
         img:nth-child(4) {
             right: 0;
-            top: 165px;
+            top: 145px;
         }
 
         img:nth-child(5) {
             right: 80px;
-            top: 410px;
+            top: 390px;
         }
     }
 `;
@@ -101,7 +135,7 @@ const ReachList = styled.ul`
     display: flex;
     flex-direction: column;
     list-style: none;
-    margin: 1rem auto;
+    margin: 3rem auto 0;
     max-width: 700px;
     width: 100%;
 
@@ -111,8 +145,16 @@ const ReachList = styled.ul`
 
     li {
         flex: 1;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2.5rem;
         text-align: center;
+
+        @media (min-width: 550px) {
+            margin-bottom: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 
     svg {
@@ -124,15 +166,30 @@ const ReachList = styled.ul`
 
 const HistoryTimeline = styled.ol`
     list-style: none;
-    margin: 0 auto;
+    margin: 3rem 0 0;
     max-width: 550px;
-    ${getDefaultPadding()};
 `;
 
 const TimelineItem = styled.li`
     align-items: center;
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    transition: 300ms color ease-out;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &:nth-child(2n) {
+        color: ${colors.cloudGray};
+    }
+    &:nth-child(4n - 1) {
+        color: ${colors.cinderGray};
+    }
+
+    &:hover {
+        color: ${colors.ventureYellow};
+    }
 `;
 
 const TimelineItemContent = styled.div`
@@ -154,7 +211,7 @@ const WhoWeAreSection = ({ text, title, link, index, staffPhotos }) => {
     let sectionProps = {};
 
     if (title === 'Our Staff') {
-        sectionProps.flex = true;
+        sectionProps.staffSection = true;
         extraContent = (
             <StaffPhotos>
                 {staffPhotos.map(staffPhoto => {
@@ -254,6 +311,8 @@ const WhoWeAreSection = ({ text, title, link, index, staffPhotos }) => {
             <HistoryTimeline>
                 <TimelineItem>
                     <svg
+                        aria-hidden={true}
+                        focusable="false"
                         fill="currentColor"
                         width="75"
                         height="75"
@@ -272,6 +331,8 @@ const WhoWeAreSection = ({ text, title, link, index, staffPhotos }) => {
                 </TimelineItem>
                 <TimelineItem>
                     <svg
+                        aria-hidden={true}
+                        focusable="false"
                         fill="currentColor"
                         width="75"
                         height="75"
@@ -292,18 +353,14 @@ const WhoWeAreSection = ({ text, title, link, index, staffPhotos }) => {
                 </TimelineItem>
                 <TimelineItem>
                     <svg
+                        aria-hidden={true}
+                        focusable="false"
                         fill="currentColor"
                         width="75"
                         height="75"
-                        viewBox="0 0 75 75"
+                        viewBox="71.7 33.4 336.4 336.4"
                     >
-                        <path d="M52 44c0.5-0.1 0.9-0.2 1.4-0.5s0.8-0.5 1.1-0.9c0.3-0.4 0.6-0.8 0.7-1.3 0.1-0.5 0.2-1 0.1-1.6 -0.1-0.7-0.3-1.2-0.6-1.6 -0.3-0.4-0.7-0.7-1.1-0.9 -0.4-0.2-0.9-0.3-1.4-0.3 -0.5 0-1 0-1.5 0.1l-2.5 0.5 1.3 7L52 44zM50.9 38.4c0.3-0.1 0.6-0.1 0.9-0.1 0.3 0 0.6 0.1 0.8 0.2s0.5 0.3 0.6 0.5c0.2 0.2 0.3 0.6 0.4 1 0.1 0.4 0.1 0.7 0 1 -0.1 0.3-0.2 0.5-0.4 0.7 -0.2 0.2-0.4 0.4-0.7 0.5 -0.3 0.1-0.6 0.2-0.9 0.3l-0.8 0.1 -0.7-4.1L50.9 38.4z"></path>
-                        <polygon points="44.6 38 42.9 38.4 44.2 45.4 48.6 44.6 48.3 43.1 45.6 43.6 "></polygon>
-                        <path d="M30.7 42c0.1-0.1 0.2-0.1 0.3-0.2 0.1 0 0.2-0.1 0.3-0.1 0.2 0 0.5 0 0.7 0 0.3 0.1 0.5 0.2 0.6 0.3l0.9-1.3c-0.4-0.2-0.8-0.4-1.2-0.4s-0.9-0.1-1.3 0c-0.3 0.1-0.6 0.2-1 0.3 -0.3 0.1-0.6 0.3-0.8 0.5 -0.2 0.2-0.4 0.5-0.5 0.8 -0.1 0.3-0.1 0.7-0.1 1 0.1 0.3 0.2 0.6 0.3 0.8s0.3 0.4 0.5 0.5c0.2 0.1 0.4 0.2 0.6 0.3 0.2 0.1 0.5 0.1 0.7 0.1 0.2 0 0.5 0.1 0.7 0.1 0.2 0 0.4 0.1 0.5 0.1 0.1 0.1 0.2 0.1 0.3 0.2 0.1 0.1 0.1 0.2 0.2 0.3 0 0.1 0 0.3 0 0.4 0 0.1-0.1 0.2-0.2 0.3 -0.1 0.1-0.2 0.1-0.3 0.2 -0.1 0-0.2 0.1-0.4 0.1 -0.3 0.1-0.6 0-0.9-0.1 -0.3-0.1-0.6-0.2-0.8-0.4l-0.9 1.3c0.4 0.3 0.8 0.4 1.3 0.5 0.5 0.1 1 0.1 1.5 0 0.3-0.1 0.7-0.2 1-0.3 0.3-0.1 0.6-0.3 0.8-0.6 0.2-0.2 0.4-0.5 0.5-0.8s0.1-0.7 0-1.1c-0.1-0.3-0.2-0.6-0.4-0.8s-0.4-0.4-0.6-0.5c-0.2-0.1-0.5-0.2-0.8-0.3 -0.3 0-0.5-0.1-0.8-0.1 -0.2 0-0.3 0-0.5-0.1 -0.1 0-0.3-0.1-0.4-0.1 -0.1 0-0.2-0.1-0.3-0.2 -0.1-0.1-0.1-0.2-0.1-0.3 0-0.1 0-0.3 0-0.4C30.5 42.1 30.6 42 30.7 42z"></path>
-                        <path d="M36.3 45.9c0.4 0.3 0.8 0.4 1.3 0.5 0.5 0.1 1 0.1 1.6 0 0.5-0.1 1-0.3 1.5-0.5 0.4-0.3 0.8-0.6 1.1-1s0.5-0.8 0.6-1.3c0.1-0.5 0.1-1 0-1.6 -0.1-0.6-0.3-1.1-0.6-1.5 -0.3-0.4-0.6-0.8-1-1s-0.8-0.4-1.3-0.5c-0.5-0.1-1-0.1-1.6 0 -0.5 0.1-1 0.3-1.5 0.5 -0.4 0.3-0.8 0.6-1.1 1 -0.3 0.4-0.5 0.8-0.6 1.3 -0.1 0.5-0.1 1 0 1.6 0.1 0.6 0.3 1 0.6 1.5C35.6 45.3 35.9 45.7 36.3 45.9zM36.6 42.2c0-0.3 0.1-0.5 0.3-0.8s0.3-0.4 0.6-0.6c0.2-0.2 0.5-0.3 0.8-0.3 0.3-0.1 0.6 0 0.8 0 0.3 0.1 0.5 0.2 0.7 0.3s0.4 0.4 0.5 0.6c0.1 0.2 0.2 0.5 0.3 0.8 0.1 0.3 0.1 0.6 0 0.9 -0.1 0.3-0.1 0.5-0.3 0.8 -0.1 0.2-0.3 0.4-0.6 0.6 -0.2 0.2-0.5 0.3-0.8 0.3 -0.3 0.1-0.6 0-0.8 0 -0.3-0.1-0.5-0.2-0.7-0.3 -0.2-0.2-0.4-0.4-0.5-0.6 -0.1-0.2-0.2-0.5-0.3-0.9C36.5 42.8 36.5 42.5 36.6 42.2z"></path>
-                        <path d="M37.5 0C16.8 0 0 16.8 0 37.5c0 13.1 6.7 24.6 16.8 31.3V24.3h-6.8c-0.4 0-0.7-0.3-0.7-0.7s0.3-0.7 0.8-0.7h6.8V16.1c0-0.4 0.3-0.7 0.8-0.7s0.8 0.3 0.8 0.8v6.7h45.4c0.4 0 0.8 0.3 0.8 0.8s-0.3 0.8-0.7 0.8H18.3v45.4c5.6 3.4 12.2 5.3 19.2 5.3 20.7 0 37.5-16.8 37.5-37.5C75 16.8 58.2 0 37.5 0zM61.8 43.6v12.5H21.6v-5.2l-0.9 0.2L19 41l2.7-0.5V27.6h40.2v5.6l0.5-0.1 1.8 10L61.8 43.6z"></path>
-                        <polygon points="23.1 54.6 60.3 54.6 60.3 43.9 23.1 50.6 "></polygon>
-                        <polygon points="23.1 40.2 60.3 33.5 60.3 29.1 23.1 29.1 "></polygon>
+                        <path d="M408.1 201.6a168.2 168.2 0 11-336.4 0 168.2 168.2 0 01336.4 0zm-99.8 2L267 279.4h42.5l40.8-75.5-40.6-75.5H268zm-68 0L199 279.4h42.5l40.8-75.5-40.6-75.5H200zm-65.9-.4L133.2 279h42.4l40.8-75.4-40.6-75.6h-41.6z" />
                     </svg>
                     <TimelineItemContent>
                         <h3>2011</h3>
@@ -312,6 +369,8 @@ const WhoWeAreSection = ({ text, title, link, index, staffPhotos }) => {
                 </TimelineItem>
                 <TimelineItem>
                     <svg
+                        aria-hidden={true}
+                        focusable="false"
                         fill="currentColor"
                         width="75"
                         height="75"
@@ -350,6 +409,8 @@ const WhoWeAreSection = ({ text, title, link, index, staffPhotos }) => {
                 </TimelineItem>
                 <TimelineItem>
                     <svg
+                        aria-hidden={true}
+                        focusable="false"
                         fill="currentColor"
                         width="75"
                         height="75"
@@ -364,14 +425,14 @@ const WhoWeAreSection = ({ text, title, link, index, staffPhotos }) => {
                 </TimelineItem>
                 <TimelineItem>
                     <svg
+                        aria-hidden={true}
+                        focusable="false"
                         fill="currentColor"
                         width="75"
                         height="75"
-                        viewBox="0 0 75 75"
+                        viewBox="71.7 33.4 336.4 336.4"
                     >
-                        <path d="M37.5 0C24.8 0 13.5 6.4 6.8 16h16.4v33.5h4.5V26c0 0 6.8-0.1 13.5 0 4.5 0.1 5.2 4.8 5.2 4.8v7.7c0 0 1.3 0 7.1 0s5.5 5.5 5.5 5.5v5.5h3.9v5.8H52c0 4.4-3.6 8-8 8s-8-3.6-8-8H4.5C10.9 67.1 23.3 75 37.5 75 58.2 75 75 58.2 75 37.5 75 16.8 58.2 0 37.5 0z"></path>
-                        <path d="M39.7 29.2c-3-0.1-8.5 0-8.5 0v9.4h11.3v-5.8C42.5 32.8 42.8 29.3 39.7 29.2z"></path>
-                        <path d="M37.5 55.4c0 3.6 2.9 6.5 6.5 6.5 3.6 0 6.5-2.9 6.5-6.5s-2.9-6.5-6.5-6.5C40.4 48.9 37.5 51.8 37.5 55.4zM43.9 51.8c2 0 3.6 1.6 3.6 3.6s-1.6 3.6-3.6 3.6c-2 0-3.6-1.6-3.6-3.6S41.9 51.8 43.9 51.8z"></path>
+                        <path d="M172.6 205.1c0 12.2-3 21.5-9 27.8-6 6.4-14.7 9.6-26.3 9.6-11.3 0-20-3.2-26.1-9.6-6-6.4-9.1-15.7-9.1-27.9 0-12 3-21.2 9-27.6 6-6.4 14.8-9.5 26.3-9.5 11.6 0 20.3 3.1 26.2 9.4 6 6.3 9 15.6 9 27.8zm-49.9 0c0 14 4.9 21 14.6 21 5 0 8.7-1.6 11-5 2.4-3.5 3.6-8.8 3.6-16 0-7.2-1.2-12.5-3.6-16-2.4-3.4-6-5.2-10.9-5.2-9.8 0-14.7 7.1-14.7 21.2zm115.5-13c0 8-2.4 14.3-7.1 18.7a28.9 28.9 0 01-20.4 6.6h-5.5v24h-19.6V169h25.1c9.2 0 16 2 20.6 6 4.6 4 7 9.7 7 17zm-33-7.3v16.7h3.6c3 0 5.3-.9 7-2.5a9 9 0 002.6-6.8c0-5-2.7-7.4-8.1-7.4zm87.6 40.7v16h-43V169h43v15.7h-23.4v11.4H291v15.7h-21.8v13.7zm81.7-56.5v72.5h-25.7l-26.5-51h-.4c.6 8 1 14 1 18.3v32.7h-17.4V169H331l26.4 50.4h.3a290 290 0 01-.7-17.6V169zM239.9 33.4a168.2 168.2 0 100 336.5 168.2 168.2 0 000-336.5z" />
                     </svg>
                     <TimelineItemContent>
                         <h3>2020</h3>
@@ -435,7 +496,7 @@ const WhoWeArePage = props => {
         <Layout>
             <SEO title={title} description={seoDescription} />
 
-            <PageIntroWithText title={title}>
+            <PageIntroWithText title={title} noMargin={true}>
                 <BlockContent blocks={_rawBlurb} />
             </PageIntroWithText>
             {contentBlock.map((block, index) => (
