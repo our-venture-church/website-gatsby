@@ -49,7 +49,7 @@ const Layout = ({ children }) => {
             }
             sanityWhoWeArePage {
                 contentBlock {
-                    text
+                    title
                     link {
                         href
                     }
@@ -93,7 +93,7 @@ const Layout = ({ children }) => {
     if (whoWeAreIndex > 0) {
         navigation[whoWeAreIndex].subLinks = whoWeAreSubPages.map(
             whoWeAreSubPage => ({
-                text: whoWeAreSubPage.text,
+                text: whoWeAreSubPage.title,
                 href: whoWeAreSubPage.link.href,
             })
         );
