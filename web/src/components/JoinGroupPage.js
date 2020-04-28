@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
@@ -44,168 +44,156 @@ const StyledFilteredEntries = styled.span`
     margin-left: 1rem;
 `;
 
-class JoinGroupPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showFilters: false,
-            filters:
-                typeof window !== 'undefined' && window.location
-                    ? parseQueryParamString(window.location.hash)
-                    : [],
-        };
-    }
+const getInitialFilterState =
+    typeof window !== 'undefined' && window.location
+        ? parseQueryParamString(window.location.hash)
+        : [];
 
-    componentDidMount() {
+const JoinGroupPage = ({ data }) => {
+    const [showFilters, setShowFilters] = useState(false);
+    const [filterState, setFilterState] = useState(getInitialFilterState);
+
+    useEffect(() => {
         window.onhashchange = e => {
-            this.setState({
-                filters: parseQueryParamString(window.location.hash),
-            });
+            setFilterState(parseQueryParamString(window.location.hash));
         };
-    }
+    }, []);
 
-    openFilterDialog = () => {
-        this.setState({
-            showFilters: true,
-        });
+    const openFilterDialog = () => {
+        setShowFilters(true);
     };
 
-    closeFilterDialog = () => {
-        this.setState({
-            showFilters: false,
-        });
+    const closeFilterDialog = () => {
+        setShowFilters(false);
     };
 
-    render() {
-        const { data } = this.props;
-        const { nodes: groups } = data.allSanityGroup;
-        const { nodes: campuses } = data.allSanityCampus;
+    const { nodes: groups } = data.allSanityGroup;
+    const { nodes: campuses } = data.allSanityCampus;
 
-        const filters = [
-            {
-                title: 'Day of the week',
-                type: 'checkbox',
-                nameAttr: 'day',
-                options: GROUPS_DAY,
-            },
-            {
-                title: 'Gender',
-                type: 'checkbox',
-                nameAttr: 'gender',
-                options: GROUPS_GENDER,
-            },
-            {
-                title: 'Age',
-                type: 'checkbox',
-                nameAttr: 'age',
-                options: GROUPS_AGE,
-            },
-            {
-                title: 'Kids',
-                type: 'checkbox',
-                nameAttr: 'kids',
-                options: GROUPS_KID_FRIENDLY,
-            },
-            {
-                title: 'Campus',
-                type: 'checkbox',
-                nameAttr: 'campus',
-                options: campuses.map(campus => ({
-                    title: campus.title,
-                    value: campus.id,
-                })),
-            },
-        ];
+    const filters = [
+        {
+            title: 'Day of the week',
+            type: 'checkbox',
+            nameAttr: 'day',
+            options: GROUPS_DAY,
+        },
+        {
+            title: 'Gender',
+            type: 'checkbox',
+            nameAttr: 'gender',
+            options: GROUPS_GENDER,
+        },
+        {
+            title: 'Age',
+            type: 'checkbox',
+            nameAttr: 'age',
+            options: GROUPS_AGE,
+        },
+        {
+            title: 'Kids',
+            type: 'checkbox',
+            nameAttr: 'kids',
+            options: GROUPS_KID_FRIENDLY,
+        },
+        {
+            title: 'Campus',
+            type: 'checkbox',
+            nameAttr: 'campus',
+            options: campuses.map(campus => ({
+                title: campus.title,
+                value: campus.id,
+            })),
+        },
+    ];
 
-        const exclusionFilters = this.state.filters;
+    const exclusionFilters = filterState;
 
-        const filteredGroups = groups.filter(group => {
-            return !exclusionFilters.some(filter => {
-                return filter.value.some(val => {
-                    if (filter.key === 'campus' && group[filter.key]) {
-                        return val === group[filter.key].id;
-                    }
-                    return val === group[filter.key];
-                });
+    const filteredGroups = groups.filter(group => {
+        return !exclusionFilters.some(filter => {
+            return filter.value.some(val => {
+                if (filter.key === 'campus' && group[filter.key]) {
+                    return val === group[filter.key].id;
+                }
+                return val === group[filter.key];
             });
         });
+    });
 
-        return (
-            <Layout>
-                <SEO
-                    title="Join a Group"
-                    description="Find a group to live life with. We have groups all over the area."
-                />
-                <BasicPageIntro title="Join a Group" />
-                <StyledContainer>
-                    {filteredGroups && filteredGroups.length > 0 ? (
-                        <div>
-                            <StyledButton onClick={this.openFilterDialog}>
-                                Filter Results
-                            </StyledButton>
-                            <StyledFilteredEntries>
-                                {filteredGroups.length} group
-                                {filteredGroups.length !== 1 && 's'} found
-                            </StyledFilteredEntries>
-                            <Grid>
-                                {filteredGroups.map(group => {
-                                    const groupUrl = `/groups/join/${group.slug.current}`;
-                                    return (
-                                        <li key={group.id}>
-                                            <h2>
-                                                <Link to={groupUrl}>
-                                                    {group.title}
-                                                </Link>
-                                            </h2>
-                                            <p>{group.blurb}</p>
-                                            {group.status === 'closed' ? (
-                                                <p>
-                                                    This group is{' '}
-                                                    <StyledClosed>
-                                                        closed
-                                                    </StyledClosed>{' '}
-                                                    and not accepting new
-                                                    registrations.
-                                                </p>
-                                            ) : (
-                                                <Fragment>
-                                                    <GroupMeta {...group} />
-                                                    <LinkAsButton
-                                                        to={groupUrl}
-                                                        aria-label="Get details or join"
-                                                    >
-                                                        Join
-                                                    </LinkAsButton>
-                                                </Fragment>
-                                            )}
-                                        </li>
-                                    );
-                                })}
-                            </Grid>
-                        </div>
-                    ) : (
-                        <Fragment>
-                            <p>There are no groups that match your filters.</p>
-                            <Button
-                                onClick={() => {
-                                    window.location.hash = '';
-                                }}
-                            >
-                                Reset Filters
-                            </Button>
-                        </Fragment>
-                    )}
-                </StyledContainer>
-                <FilterGroupsModal
-                    isOpen={this.state.showFilters}
-                    closeModal={this.closeFilterDialog}
-                    allFilters={filters}
-                    setFilters={this.state.filters}
-                />
-            </Layout>
-        );
-    }
-}
+    return (
+        <Layout>
+            <SEO
+                title="Join a Group"
+                description="Find a group to live life with. We have groups all over the area."
+            />
+            <BasicPageIntro title="Join a Group" />
+            <StyledContainer>
+                {filteredGroups && filteredGroups.length > 0 ? (
+                    <div>
+                        <StyledButton onClick={openFilterDialog}>
+                            Filter Results
+                        </StyledButton>
+                        <StyledFilteredEntries>
+                            {filteredGroups.length} group
+                            {filteredGroups.length !== 1 && 's'} found
+                        </StyledFilteredEntries>
+                        <Grid>
+                            {filteredGroups.map(group => {
+                                const groupUrl = `/groups/join/${group.slug.current}`;
+                                return (
+                                    <li key={group.id}>
+                                        <h2>
+                                            <Link to={groupUrl}>
+                                                {group.title}
+                                            </Link>
+                                        </h2>
+                                        <p>{group.blurb}</p>
+                                        {group.status === 'closed' ? (
+                                            <p>
+                                                This group is{' '}
+                                                <StyledClosed>
+                                                    closed
+                                                </StyledClosed>{' '}
+                                                and not accepting new
+                                                registrations.
+                                            </p>
+                                        ) : (
+                                            <Fragment>
+                                                <GroupMeta {...group} />
+                                                <LinkAsButton
+                                                    to={groupUrl}
+                                                    aria-label="Get details or join"
+                                                >
+                                                    Join
+                                                </LinkAsButton>
+                                            </Fragment>
+                                        )}
+                                    </li>
+                                );
+                            })}
+                        </Grid>
+                    </div>
+                ) : (
+                    <Fragment>
+                        <p>There are no groups that match your filters.</p>
+                        <Button
+                            onClick={() => {
+                                window.location.hash = '';
+                            }}
+                        >
+                            Reset Filters
+                        </Button>
+                    </Fragment>
+                )}
+            </StyledContainer>
+            <FilterGroupsModal
+                isOpen={showFilters}
+                closeModal={closeFilterDialog}
+                allFilters={filters}
+                setFilters={filterState}
+            />
+        </Layout>
+    );
+};
 
 JoinGroupPage.propTypes = {};
 
