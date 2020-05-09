@@ -40,29 +40,29 @@ const StyledLogo = styled(Logo)`
 
 const THROTTLE_TIME = 250;
 
+const handleResize = dispatch => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1050) {
+        dispatch({ type: ENABLE_NAV_DRAWER });
+    } else {
+        dispatch({ type: DISABLE_NAV_DRAWER });
+    }
+};
+
 const Header = ({ navigation, pathChanged }) => {
     const dispatch = useContext(DispatchContext);
     const state = useContext(LayoutContext);
     const { navOpen, navDrawer } = state;
 
-    const handleResize = () => {
-        if (typeof window !== 'undefined' && window.innerWidth < 1050) {
-            dispatch({ type: ENABLE_NAV_DRAWER });
-        } else {
-            dispatch({ type: DISABLE_NAV_DRAWER });
-        }
-    };
-
     useEffect(() => {
         if (typeof window !== 'undefined') {
+            handleResize(dispatch);
             window.addEventListener(
                 'resize',
-                _throttled(handleResize, THROTTLE_TIME),
+                _throttled(handleResize.bind(this, dispatch), THROTTLE_TIME),
                 this
             );
-            handleResize();
         }
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         if (pathChanged && navOpen) {
