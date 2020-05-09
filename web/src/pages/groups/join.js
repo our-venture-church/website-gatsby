@@ -25,9 +25,23 @@ const StyledContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-gap: 1rem;
+    margin-top: -1rem;
 
     @media (min-width: 839px) {
         grid-gap: 4rem;
+    }
+`;
+
+const Sticky = styled.div`
+    background: ${colors.charcoalBlack};
+    padding-top: 1rem;
+    position: sticky;
+    top: 0;
+`;
+
+const StyledGroupTitle = styled.h2`
+    a {
+        text-decoration: none;
     }
 `;
 
@@ -169,23 +183,25 @@ const Join = props => {
             <StyledContainer>
                 {filteredGroups && filteredGroups.length > 0 ? (
                     <div>
-                        <StyledButton onClick={openFilterDialog}>
-                            Filter Results
-                        </StyledButton>
-                        <StyledFilteredEntries>
-                            {filteredGroups.length} group
-                            {filteredGroups.length !== 1 && 's'} found
-                        </StyledFilteredEntries>
+                        <Sticky>
+                            <StyledButton onClick={openFilterDialog}>
+                                Filter Results
+                            </StyledButton>
+                            <StyledFilteredEntries>
+                                {filteredGroups.length} group
+                                {filteredGroups.length !== 1 && 's'} found
+                            </StyledFilteredEntries>
+                        </Sticky>
                         <Grid>
                             {filteredGroups.map(group => {
                                 const groupUrl = `/groups/join/${group.slug.current}`;
                                 return (
                                     <li key={group.id}>
-                                        <h2>
+                                        <StyledGroupTitle>
                                             <Link to={groupUrl}>
                                                 {group.title}
                                             </Link>
-                                        </h2>
+                                        </StyledGroupTitle>
                                         <p>{group.blurb}</p>
                                         {group.status === 'closed' ? (
                                             <p>

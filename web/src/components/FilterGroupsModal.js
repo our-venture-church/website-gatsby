@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
 import { Fieldset, InlineCheckbox, Button } from '../theme/components';
-import { filterChangeHandler, isFiltered } from '../lib/groups';
+import {
+    filterChangeHandler,
+    isFiltered,
+    parseQueryParamString,
+} from '../lib/groups';
 
 const FilterGroupsModal = ({ isOpen, closeModal, allFilters, setFilters }) => {
+    const [updatedFilters, setUpdatedFilers] = useState(window.location.hash);
+
+    const updateUrlAndClose = () => {
+        window.location.hash = updatedFilters;
+        closeModal();
+    };
+
     return (
         <Modal
-            closeModal={closeModal}
+            closeModal={updateUrlAndClose}
             isOpen={isOpen}
             title="Filter Groups"
             label="Filters the groups search result"
         >
-            <form onSubmit={closeModal}>
+            <form onSubmit={updateUrlAndClose}>
                 {allFilters.map(fieldset => {
                     return (
                         <Fieldset key={fieldset.title}>
@@ -24,12 +35,21 @@ const FilterGroupsModal = ({ isOpen, closeModal, allFilters, setFilters }) => {
                                         name={fieldset.nameAttr}
                                         id={`filter-${fieldset.nameAttr}-${index}`}
                                         value={option.value}
-                                        onChange={filterChangeHandler}
+                                        onChange={e => {
+                                            setUpdatedFilers(
+                                                filterChangeHandler(
+                                                    e,
+                                                    updatedFilters
+                                                )
+                                            );
+                                        }}
                                         checked={
                                             !isFiltered(
                                                 fieldset.nameAttr,
                                                 option.value,
-                                                setFilters
+                                                parseQueryParamString(
+                                                    updatedFilters
+                                                )
                                             )
                                         }
                                     />
@@ -43,7 +63,7 @@ const FilterGroupsModal = ({ isOpen, closeModal, allFilters, setFilters }) => {
                         </Fieldset>
                     );
                 })}
-                <Button onClick={closeModal} fullSize>
+                <Button type="submit" fullSize>
                     See matching groups
                 </Button>
             </form>

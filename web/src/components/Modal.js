@@ -42,6 +42,8 @@ const ReactModalAdapter = ({
         contentLabel={label}
         className={modalClassName}
         portalClassName={className}
+        appElement={document.getElementById('___gatsby')}
+        parentSelector={() => document.body}
         {...props}
     >
         <h2>{title}</h2>
