@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -8,7 +8,8 @@ import {
     OPEN_DROPDOWN,
     CLOSE_DROPDOWN,
 } from '../constants';
-import { reducer, initialState } from '../utils/headerReducer';
+import LayoutContext from '../utils/LayoutContext';
+import DispatchContext from '../utils/DispatchContext';
 
 import NavItem from './navItem';
 
@@ -41,8 +42,9 @@ const HOME_PAGE_NAV_ITEM = {
     href: '/',
 };
 
-const Nav = ({ items, isOpen, navDrawer, closeDropdown }) => {
-    const [state, dispatch] = useReducer(reducer, initialState);
+const Nav = ({ items, isOpen, navDrawer }) => {
+    const dispatch = useContext(DispatchContext);
+    const state = useContext(LayoutContext);
     const { currentDropdown } = state;
 
     /**

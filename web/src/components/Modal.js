@@ -110,7 +110,7 @@ const Modal = styled(ReactModalAdapter).attrs({
 `;
 
 Modal.propTypes = {
-    isOpen: PropTypes.string,
+    isOpen: PropTypes.bool,
     closeModal: PropTypes.func,
     label: PropTypes.string,
     title: PropTypes.string,

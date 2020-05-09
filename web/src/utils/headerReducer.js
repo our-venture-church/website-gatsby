@@ -39,12 +39,12 @@ const reducer = (state, action) => {
         case ENABLE_NAV_DRAWER:
             return {
                 ...state,
-                navDrawerEnabled: true,
+                navDrawer: true,
             };
         case DISABLE_NAV_DRAWER:
             return {
                 ...state,
-                navDrawerEnabled: false,
+                navDrawer: false,
             };
         default:
             return state;
