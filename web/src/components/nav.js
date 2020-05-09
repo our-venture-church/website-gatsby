@@ -42,10 +42,10 @@ const HOME_PAGE_NAV_ITEM = {
     href: '/',
 };
 
-const Nav = ({ items, isOpen, navDrawer }) => {
+const Nav = ({ items }) => {
     const dispatch = useContext(DispatchContext);
     const state = useContext(LayoutContext);
-    const { currentDropdown } = state;
+    const { currentDropdown, navDrawer, navOpen: isOpen } = state;
 
     /**
      * Compares the currently opened dropdown with the dropdown being toggled and calls the
@@ -110,7 +110,6 @@ const Nav = ({ items, isOpen, navDrawer }) => {
 };
 
 Nav.propTypes = {
-    isOpen: PropTypes.bool,
     items: PropTypes.arrayOf(
         PropTypes.shape({
             text: PropTypes.string.isRequired,
@@ -123,12 +122,6 @@ Nav.propTypes = {
             ),
         })
     ).isRequired,
-    navDrawer: PropTypes.bool,
-};
-
-Nav.defaultProps = {
-    isOpen: true,
-    navDrawer: false,
 };
 
 export default Nav;

@@ -60,6 +60,7 @@ const Header = ({ navigation, pathChanged }) => {
                 _throttled(handleResize, THROTTLE_TIME),
                 this
             );
+            handleResize();
         }
     }, []);
 
@@ -89,7 +90,7 @@ const Header = ({ navigation, pathChanged }) => {
         <StyledHeader navOpen={navOpen}>
             <StyledLogo navDrawer={navDrawer} />
             <Hamburger handleButtonClick={toggleNav} isOpen={navOpen} />
-            <Nav items={navigation} isOpen={navOpen} navDrawer={navDrawer} />
+            <Nav items={navigation} />
         </StyledHeader>
     );
 };
