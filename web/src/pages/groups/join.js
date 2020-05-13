@@ -11,7 +11,7 @@ import { parseQueryParamString } from '../../lib/groups';
 import { getDefaultPadding } from '../../utils/styles';
 import Grid from '../../layouts/Grid';
 import colors from '../../theme/tokens/colors';
-import { Button } from '../../theme/components';
+import { Button, VisuallyHidden } from '../../theme/components';
 import GroupMeta from '../../components/GroupMeta';
 import {
     GROUPS_DAY,
@@ -41,6 +41,7 @@ const Sticky = styled.div`
 
 const StyledGroupTitle = styled.h2`
     a {
+        border: none;
         text-decoration: none;
     }
 `;
@@ -58,7 +59,7 @@ const StyledFilteredEntries = styled.span`
     margin-left: 1rem;
 `;
 
-const getInitialFilterState =
+const initialFilterState =
     typeof window !== 'undefined' && window.location
         ? parseQueryParamString(window.location.hash)
         : [];
@@ -105,7 +106,7 @@ const Join = props => {
     `);
 
     const [showFilters, setShowFilters] = useState(false);
-    const [filterState, setFilterState] = useState(getInitialFilterState);
+    const [filterState, setFilterState] = useState(initialFilterState);
 
     useEffect(() => {
         window.onhashchange = e => {
@@ -185,7 +186,18 @@ const Join = props => {
                     <div>
                         <Sticky>
                             <StyledButton onClick={openFilterDialog}>
-                                Filter Results
+                                Filters{' '}
+                                {filterState.length > 0 && (
+                                    <Fragment>
+                                        &middot;{' '}
+                                        {filterState.reduce(
+                                            (accumulator, currentValue) =>
+                                                accumulator.value.length +
+                                                currentValue.value.length
+                                        )}{' '}
+                                        <VisuallyHidden>set</VisuallyHidden>
+                                    </Fragment>
+                                )}
                             </StyledButton>
                             <StyledFilteredEntries>
                                 {filteredGroups.length} group
