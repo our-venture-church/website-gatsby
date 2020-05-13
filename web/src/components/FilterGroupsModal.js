@@ -57,7 +57,9 @@ const FilterGroupsModal = ({ isOpen, closeModal, allFilters }) => {
     const [updatedFilters, setUpdatedFilers] = useState(window.location.hash);
 
     const updateUrlAndClose = () => {
-        window.location.hash = updatedFilters;
+        if (typeof window !== 'undefined') {
+            window.location.hash = updatedFilters;
+        }
         closeModal();
     };
 
