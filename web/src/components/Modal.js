@@ -42,7 +42,11 @@ const ReactModalAdapter = ({
         contentLabel={label}
         className={modalClassName}
         portalClassName={className}
-        appElement={document.getElementById('___gatsby')}
+        appElement={
+            typeof document !== 'undefined'
+                ? document.getElementById('___gatsby')
+                : null
+        }
         parentSelector={() => document.body}
         {...props}
     >
