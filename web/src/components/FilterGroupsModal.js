@@ -54,7 +54,9 @@ const ModalButtons = styled.div`
 `;
 
 const FilterGroupsModal = ({ isOpen, closeModal, allFilters }) => {
-    const [updatedFilters, setUpdatedFilers] = useState(window.location.hash);
+    const [updatedFilters, setUpdatedFilers] = useState(
+        typeof window !== 'undefined' ? window.location.hash : ''
+    );
 
     const updateUrlAndClose = () => {
         if (typeof window !== 'undefined') {
