@@ -42,6 +42,12 @@ const ReactModalAdapter = ({
         contentLabel={label}
         className={modalClassName}
         portalClassName={className}
+        appElement={
+            typeof document !== 'undefined'
+                ? document.getElementById('___gatsby')
+                : null
+        }
+        parentSelector={() => document.body}
         {...props}
     >
         <h2>{title}</h2>
@@ -92,7 +98,6 @@ const Modal = styled(ReactModalAdapter).attrs({
         }
 
         > h2 {
-            border-bottom: 1px solid ${colors.ventureYellow};
             margin-left: -1rem;
             margin-right: -1rem;
             padding-bottom: 1.45rem;
@@ -110,7 +115,7 @@ const Modal = styled(ReactModalAdapter).attrs({
 `;
 
 Modal.propTypes = {
-    isOpen: PropTypes.string,
+    isOpen: PropTypes.bool,
     closeModal: PropTypes.func,
     label: PropTypes.string,
     title: PropTypes.string,

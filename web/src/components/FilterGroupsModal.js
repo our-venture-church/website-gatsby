@@ -1,18 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Modal from './Modal';
-import { Fieldset, InlineCheckbox, Button } from '../theme/components';
-import { filterChangeHandler, isFiltered } from '../lib/groups';
+import {
+    Fieldset,
+    InlineCheckbox,
+    Button,
+    TextButton,
+} from '../theme/components';
+import {
+    filterChangeHandler,
+    isFiltered,
+    parseQueryParamString,
+} from '../lib/groups';
+import colors from '../theme/tokens/colors';
 
-const FilterGroupsModal = ({ isOpen, closeModal, allFilters, setFilters }) => {
+const StyledModal = styled(Modal)`
+    .ReactModal__Content {
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    h2 {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    fieldset {
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        @media (min-width: 500px) {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+    form {
+        margin-bottom: 0;
+    }
+`;
+
+const ModalButtons = styled.div`
+    background: ${colors.charcoalBlack};
+    border-top: 1px solid #fff;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    position: sticky;
+
+    @media (min-width: 500px) {
+        padding: 1.5rem 2rem;
+    }
+`;
+
+const FilterGroupsModal = ({ isOpen, closeModal, allFilters }) => {
+    const [updatedFilters, setUpdatedFilers] = useState(
+        typeof window !== 'undefined' ? window.location.hash : ''
+    );
+
+    const updateUrlAndClose = () => {
+        if (typeof window !== 'undefined') {
+            window.location.hash = updatedFilters;
+        }
+        closeModal();
+    };
+
     return (
-        <Modal
-            closeModal={closeModal}
+        <StyledModal
+            closeModal={updateUrlAndClose}
             isOpen={isOpen}
             title="Filter Groups"
             label="Filters the groups search result"
+            className="filter-dialog"
         >
-            <form onSubmit={closeModal}>
+            <form onSubmit={updateUrlAndClose}>
                 {allFilters.map(fieldset => {
                     return (
                         <Fieldset key={fieldset.title}>
@@ -24,12 +85,21 @@ const FilterGroupsModal = ({ isOpen, closeModal, allFilters, setFilters }) => {
                                         name={fieldset.nameAttr}
                                         id={`filter-${fieldset.nameAttr}-${index}`}
                                         value={option.value}
-                                        onChange={filterChangeHandler}
+                                        onChange={e => {
+                                            setUpdatedFilers(
+                                                filterChangeHandler(
+                                                    e,
+                                                    updatedFilters
+                                                )
+                                            );
+                                        }}
                                         checked={
                                             !isFiltered(
                                                 fieldset.nameAttr,
                                                 option.value,
-                                                setFilters
+                                                parseQueryParamString(
+                                                    updatedFilters
+                                                )
                                             )
                                         }
                                     />
@@ -43,11 +113,19 @@ const FilterGroupsModal = ({ isOpen, closeModal, allFilters, setFilters }) => {
                         </Fieldset>
                     );
                 })}
-                <Button onClick={closeModal} fullSize>
-                    See matching groups
-                </Button>
+                <ModalButtons>
+                    <TextButton
+                        type="button"
+                        onClick={() => {
+                            setUpdatedFilers('');
+                        }}
+                    >
+                        Reset
+                    </TextButton>
+                    <Button type="submit">See matching groups</Button>
+                </ModalButtons>
             </form>
-        </Modal>
+        </StyledModal>
     );
 };
 

@@ -5,21 +5,17 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from 'react';
+import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import Header from './header';
 import Footer from './footer';
 import SkipLink from './skipLink';
-import '../styles/reset.css';
-import { createGlobalStyle } from 'styled-components';
-
-const GlobalStyle = createGlobalStyle`
-    .ReactModal__Body--open {
-        overflow: hidden;
-    }
-`;
+import { reducer, initialState } from '../utils/headerReducer';
+import LayoutContext from '../utils/LayoutContext';
+import DispatchContext from '../utils/DispatchContext';
+import { GlobalStyle } from '../styles/reset';
 
 let currentPath;
 
@@ -64,8 +60,10 @@ const Layout = ({ children }) => {
         socialLinks: social,
         mainNav: navigation,
     } = data.sanitySiteSettings;
+
     const { nodes: ministries } = data.allSanityMinistry;
     const { contentBlock: whoWeAreSubPages } = data.sanityWhoWeArePage;
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     const whatWeDoIndex = navigation.findIndex(
         ({ href }) => href === '/what-we-do'
@@ -110,23 +108,25 @@ const Layout = ({ children }) => {
     }
 
     return (
-        <React.Fragment>
-            <SkipLink />
-            <Header
-                siteTitle={siteName}
-                navigation={navigation}
-                pathChanged={pathChanged}
-            />
-            <main role="main" id="main-content">
-                {children}
-            </main>
-            <Footer
-                phoneNumber={phone}
-                siteTitle={siteName}
-                socialLinks={social}
-            />
-            <GlobalStyle />
-        </React.Fragment>
+        <DispatchContext.Provider value={dispatch}>
+            <LayoutContext.Provider value={state}>
+                <GlobalStyle />
+                <SkipLink />
+                <Header
+                    siteTitle={siteName}
+                    navigation={navigation}
+                    pathChanged={pathChanged}
+                />
+                <main role="main" id="main-content">
+                    {children}
+                </main>
+                <Footer
+                    phoneNumber={phone}
+                    siteTitle={siteName}
+                    socialLinks={social}
+                />
+            </LayoutContext.Provider>
+        </DispatchContext.Provider>
     );
 };
 

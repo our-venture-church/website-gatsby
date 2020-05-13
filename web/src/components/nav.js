@@ -1,10 +1,15 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { KEYCODES } from '../constants';
-import { openDropdown, closeDropdown, closeNav } from '../actions';
+import {
+    KEYCODES,
+    CLOSE_NAV,
+    OPEN_DROPDOWN,
+    CLOSE_DROPDOWN,
+} from '../constants';
+import LayoutContext from '../utils/LayoutContext';
+import DispatchContext from '../utils/DispatchContext';
 
 import NavItem from './navItem';
 
@@ -37,27 +42,29 @@ const HOME_PAGE_NAV_ITEM = {
     href: '/',
 };
 
-class Nav extends Component {
-    constructor(props) {
-        super(props);
-        this.toggleDropdown = this.toggleDropdown.bind(this);
-        this.handleNavItemKeyUp = this.handleNavItemKeyUp.bind(this);
-    }
+const Nav = ({ items }) => {
+    const dispatch = useContext(DispatchContext);
+    const state = useContext(LayoutContext);
+    const { currentDropdown, navDrawer, navOpen: isOpen } = state;
 
     /**
      * Compares the currently opened dropdown with the dropdown being toggled and calls the
      * appropriate action function.
      * @param {string} id identifies which dropdown menu should be toggled
      */
-    toggleDropdown(e) {
+    const toggleDropdown = e => {
         const id = e.currentTarget.dataset.id;
-        const { currentDropdown, openDropdown, closeDropdown } = this.props;
         if (id === currentDropdown) {
-            closeDropdown();
+            dispatch({
+                type: CLOSE_DROPDOWN,
+            });
         } else {
-            openDropdown(id);
+            dispatch({
+                type: OPEN_DROPDOWN,
+                payload: id,
+            });
         }
-    }
+    };
 
     /**
      * Handles keyUp events from navItems. If the escape key is pressed, it tries to close
@@ -66,48 +73,43 @@ class Nav extends Component {
      *  @param {Integer} e.keyCode
      * @param {*} openedDropdown
      */
-    handleNavItemKeyUp(e, openedDropdown) {
-        const { closeDropdown, closeNav, isOpen } = this.props;
+    const handleNavItemKeyUp = (e, openedDropdown) => {
         if (e.keyCode === KEYCODES.ESC && openedDropdown) {
-            closeDropdown();
+            dispatch({
+                type: CLOSE_DROPDOWN,
+            });
             e.stopPropagation();
         } else if (e.keyCode === KEYCODES.ESC && isOpen) {
-            closeNav();
+            dispatch({ type: CLOSE_NAV });
             e.stopPropagation();
         }
-    }
+    };
 
-    render() {
-        const { items, isOpen, currentDropdown, navDrawer } = this.props;
-
-        return (
-            <StyledNav isOpen={isOpen} navDrawer={navDrawer}>
-                <NavList isOpen={isOpen} navDrawer={navDrawer}>
-                    {isOpen && (
-                        <NavItem
-                            {...HOME_PAGE_NAV_ITEM}
-                            handleKeyUp={this.handleNavItemKeyUp}
-                        />
-                    )}
-                    {items.map(item => (
-                        <NavItem
-                            {...item}
-                            key={item.href}
-                            isOpen={item.href === currentDropdown}
-                            handleArrowClick={this.toggleDropdown}
-                            handleKeyUp={this.handleNavItemKeyUp}
-                            stackedNav={navDrawer}
-                        />
-                    ))}
-                </NavList>
-            </StyledNav>
-        );
-    }
-}
+    return (
+        <StyledNav isOpen={isOpen} navDrawer={navDrawer}>
+            <NavList isOpen={isOpen} navDrawer={navDrawer}>
+                {isOpen && (
+                    <NavItem
+                        {...HOME_PAGE_NAV_ITEM}
+                        handleKeyUp={handleNavItemKeyUp}
+                    />
+                )}
+                {items.map(item => (
+                    <NavItem
+                        {...item}
+                        key={item.href}
+                        isOpen={item.href === currentDropdown}
+                        handleArrowClick={toggleDropdown}
+                        handleKeyUp={handleNavItemKeyUp}
+                        stackedNav={navDrawer}
+                    />
+                ))}
+            </NavList>
+        </StyledNav>
+    );
+};
 
 Nav.propTypes = {
-    closeDropdown: PropTypes.func,
-    isOpen: PropTypes.bool,
     items: PropTypes.arrayOf(
         PropTypes.shape({
             text: PropTypes.string.isRequired,
@@ -120,27 +122,6 @@ Nav.propTypes = {
             ),
         })
     ).isRequired,
-    navDrawer: PropTypes.bool,
-    openDropdown: PropTypes.func,
 };
 
-Nav.defaultProps = {
-    isOpen: true,
-    navDrawer: false,
-    openDropdown: null,
-};
-
-const mapStateToProps = state => ({
-    currentDropdown: state.currentDropdown,
-});
-
-const mapDispatchToProps = {
-    openDropdown,
-    closeDropdown,
-    closeNav,
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Nav);
+export default Nav;

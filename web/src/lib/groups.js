@@ -157,17 +157,15 @@ const buildQueryParam = (currentState, change) => {
     return stringifyFilterState(updatedFilterState);
 };
 
-export const filterChangeHandler = e => {
+export const filterChangeHandler = (e, currentHash) => {
     const { name, value, checked } = e.target;
-    const updatedQueryParam = buildQueryParam(window.location.hash, {
+    const updatedQueryParam = buildQueryParam(currentHash, {
         name,
         value,
         checked,
     });
 
-    window.location.hash = updatedQueryParam;
-
-    return;
+    return updatedQueryParam;
 };
 
 export const isFiltered = (key, value, filterState) => {

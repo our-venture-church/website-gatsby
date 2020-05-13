@@ -1,4 +1,3 @@
-import { createStore as reduxCreateStore } from 'redux';
 import {
     OPEN_NAV,
     CLOSE_NAV,
@@ -7,6 +6,12 @@ import {
     ENABLE_NAV_DRAWER,
     DISABLE_NAV_DRAWER,
 } from '../constants';
+
+const initialState = {
+    currentDropdown: null,
+    navDrawerEnabled: true,
+    navOpen: true,
+};
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -34,23 +39,16 @@ const reducer = (state, action) => {
         case ENABLE_NAV_DRAWER:
             return {
                 ...state,
-                navDrawerEnabled: true,
+                navDrawer: true,
             };
         case DISABLE_NAV_DRAWER:
             return {
                 ...state,
-                navDrawerEnabled: false,
+                navDrawer: false,
             };
         default:
             return state;
     }
 };
 
-const initialState = {
-    currentDropdown: null,
-    navDrawerEnabled: true,
-    navOpen: false,
-};
-
-const createStore = () => reduxCreateStore(reducer, initialState);
-export default createStore;
+export { reducer, initialState };

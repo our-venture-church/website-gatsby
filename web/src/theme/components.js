@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'gatsby';
 import colors from './tokens/colors';
 
 export const Form = styled.form``;
@@ -22,6 +23,15 @@ export const Button = styled.button`
         border-color: ${colors.ventureYellow};
         color: ${colors.charcoalBlack};
     }
+`;
+
+export const TextButton = styled.button`
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
 `;
 
 export const FormField = styled.div`
@@ -169,4 +179,33 @@ export const VisuallyHidden = styled.span`
 export const Banner = styled.div`
     background: ${colors.ventureYellow};
     color: ${colors.charcoalBlack};
+`;
+
+export const NavLink = styled(Link)`
+    border-bottom: 0;
+    border-top: ${props => (props.stackedNav ? '1px solid #595959' : 'none')};
+    display: block;
+    padding: ${props =>
+        props.stackedNav ? `0.66em 3.75rem 0.66em 1rem` : `.5em 0.25em`};
+    text-align: ${props => (props.stackedNav ? `left` : `center`)};
+    text-decoration: none;
+
+    ${props =>
+        !props.stackedNav &&
+        `
+            border: 1px solid transparent;
+            margin: 0 5px;
+            border-radius: 3px;
+        `}
+
+    &:hover,
+    &:focus {
+        border-color: currentColor;
+        color: ${colors.ventureYellow};
+        text-decoration: ${props => (props.stackedNav ? 'underline' : 'none')};
+    }
+
+    @media (min-width: 500px) {
+        ${props => props.stackedNav && 'padding-left: 2rem;'}
+    }
 `;

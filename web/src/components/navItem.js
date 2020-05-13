@@ -1,9 +1,8 @@
-import { Link } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import colors from '../theme/tokens/colors';
+import { NavLink } from '../theme/components';
 
 import Expando from './icons/expando';
 
@@ -34,34 +33,6 @@ const ExpandoButton = styled.button`
     top: 0;
 `;
 
-const NavLink = styled(Link)`
-    border-bottom: 0;
-    border-top: ${props => (props.stackedNav ? '1px solid #595959' : 'none')};
-    display: block;
-    padding: ${props => (props.stackedNav ? `0.66em 3.75rem 0.66em 1rem` : `.5em 0.25em`)};
-    text-align: ${props => (props.stackedNav ? `left` : `center`)};
-    text-decoration: none;
-
-    ${props =>
-        !props.stackedNav &&
-        `
-            border: 1px solid transparent;
-            margin: 0 5px;
-            border-radius: 3px;
-        `}
-
-    &:hover,
-    &:focus {
-        border-color: currentColor;
-        color: ${colors.ventureYellow};
-        text-decoration: ${props => (props.stackedNav ? 'underline' : 'none')};
-    }
-
-    @media (min-width: 500px) {
-        ${props => props.stackedNav && 'padding-left: 2rem;'}
-    }
-`;
-
 const buildSubNav = ({ text, href }, stackedNav) => (
     <StyledNavItem key={href}>
         <NavLink to={href} stackedNav={stackedNav}>
@@ -70,7 +41,15 @@ const buildSubNav = ({ text, href }, stackedNav) => (
     </StyledNavItem>
 );
 
-const NavItem = ({ handleArrowClick, handleKeyUp, href, isOpen, stackedNav, subLinks, text }) => {
+const NavItem = ({
+    handleArrowClick,
+    handleKeyUp,
+    href,
+    isOpen,
+    stackedNav,
+    subLinks,
+    text,
+}) => {
     return (
         <StyledNavItem
             open={isOpen}
@@ -95,7 +74,9 @@ const NavItem = ({ handleArrowClick, handleKeyUp, href, isOpen, stackedNav, subL
                     )}
                     {isOpen && (
                         <NavList isOpen={isOpen}>
-                            {subLinks.map(item => buildSubNav(item, stackedNav))}
+                            {subLinks.map(item =>
+                                buildSubNav(item, stackedNav)
+                            )}
                         </NavList>
                     )}
                 </React.Fragment>
