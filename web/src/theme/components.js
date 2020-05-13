@@ -25,6 +25,15 @@ export const Button = styled.button`
     }
 `;
 
+export const TextButton = styled.button`
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+`;
+
 export const FormField = styled.div`
     margin-bottom: 2rem;
 

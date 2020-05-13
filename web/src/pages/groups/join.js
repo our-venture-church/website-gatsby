@@ -245,7 +245,6 @@ const Join = props => {
                 isOpen={showFilters}
                 closeModal={closeFilterDialog}
                 allFilters={filters}
-                setFilters={filterState}
             />
         </Layout>
     );

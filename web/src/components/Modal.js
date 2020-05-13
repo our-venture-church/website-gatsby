@@ -94,7 +94,6 @@ const Modal = styled(ReactModalAdapter).attrs({
         }
 
         > h2 {
-            border-bottom: 1px solid ${colors.ventureYellow};
             margin-left: -1rem;
             margin-right: -1rem;
             padding-bottom: 1.45rem;

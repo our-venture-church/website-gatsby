@@ -12,17 +12,10 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Header from './header';
 import Footer from './footer';
 import SkipLink from './skipLink';
-import '../styles/reset.css';
-import { createGlobalStyle } from 'styled-components';
 import { reducer, initialState } from '../utils/headerReducer';
 import LayoutContext from '../utils/LayoutContext';
 import DispatchContext from '../utils/DispatchContext';
-
-const GlobalStyle = createGlobalStyle`
-    .ReactModal__Body--open {
-        overflow: hidden;
-    }
-`;
+import { GlobalStyle } from '../styles/reset';
 
 let currentPath;
 
@@ -117,6 +110,7 @@ const Layout = ({ children }) => {
     return (
         <DispatchContext.Provider value={dispatch}>
             <LayoutContext.Provider value={state}>
+                <GlobalStyle />
                 <SkipLink />
                 <Header
                     siteTitle={siteName}
@@ -131,7 +125,6 @@ const Layout = ({ children }) => {
                     siteTitle={siteName}
                     socialLinks={social}
                 />
-                <GlobalStyle />
             </LayoutContext.Provider>
         </DispatchContext.Provider>
     );
