@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from '../theme/tokens/colors';
+import { fadeIn } from '../theme/animations';
 
 const StyledHamburger = styled.button`
+    animation: ${fadeIn} 500ms;
     background: none;
     border: 0;
     font-size: 1rem;

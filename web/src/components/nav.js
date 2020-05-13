@@ -10,6 +10,7 @@ import {
 } from '../constants';
 import LayoutContext from '../utils/LayoutContext';
 import DispatchContext from '../utils/DispatchContext';
+import { fadeIn } from '../theme/animations';
 
 import NavItem from './navItem';
 
@@ -26,6 +27,7 @@ const getBottomVal = isOpen => (isOpen ? '0%' : '100%');
 
 const StyledNav = styled.nav`
     align-self: ${props => (props.navDrawer ? 'start' : 'center')};
+    animation: ${fadeIn} 500ms;
     justify-self: ${props => (props.navDrawer ? 'unset' : 'end')};
     right: ${props => (props.navDrawer ? getBottomVal(props.isOpen) : 'auto')};
     display: block;

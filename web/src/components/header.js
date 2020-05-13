@@ -3,7 +3,6 @@ import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import _throttled from 'lodash.throttle';
 
-import Hamburger from './Hamburger';
 import {
     CLOSE_NAV,
     OPEN_NAV,
@@ -14,6 +13,7 @@ import LayoutContext from '../utils/LayoutContext';
 import DispatchContext from '../utils/DispatchContext';
 
 import Logo from './logo';
+import Hamburger from './Hamburger';
 import Nav from './nav';
 
 import colors from '../theme/tokens/colors';
