@@ -195,7 +195,7 @@ export const GlobalStyle = createGlobalStyle`
         font: inherit;
     }
     html {
-        font: 112.5%/1.45em Verdana, sans-serif;
+        font: 100%/1.45em Verdana, sans-serif;
         box-sizing: border-box;
         overflow-y: scroll;
     }
