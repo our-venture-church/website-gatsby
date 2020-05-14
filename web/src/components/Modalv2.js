@@ -1,12 +1,11 @@
 import React from 'react';
 import MuiModal from '@material-ui/core/Modal';
+import Fade from '@material-ui/core/Fade';
 import styled from 'styled-components';
 import colors from '../theme/tokens/colors';
 import X from './icons/x';
-import { fadeIn, slideUp } from '../theme/animations';
 
 const StyledModal = styled(MuiModal)`
-    animation: ${fadeIn} 250ms;
     border: none;
     outline: none;
 
@@ -38,7 +37,6 @@ const StyledCloseBtn = styled.button`
 
 const Flex = styled.div`
     align-content: center;
-    animation: ${slideUp} 250ms;
     display: flex;
     height: 100%;
     justify-content: center;
@@ -99,17 +97,22 @@ const ModalContent = styled.div`
 `;
 
 const Modal = ({ children, isOpen, closeModal, title, ...rest }) => (
-    <StyledModal open={isOpen} onClose={closeModal}>
-        <Flex>
-            <ModalContent {...rest}>
-                {title && <h2>{title}</h2>}
-                <StyledCloseBtn onClick={closeModal} aria-label="Close dialog">
-                    <X />
-                </StyledCloseBtn>
-                {children}
-            </ModalContent>
-        </Flex>
-    </StyledModal>
+    <Fade in={isOpen}>
+        <StyledModal open={true} onClose={closeModal}>
+            <Flex>
+                <ModalContent {...rest}>
+                    {title && <h2>{title}</h2>}
+                    <StyledCloseBtn
+                        onClick={closeModal}
+                        aria-label="Close dialog"
+                    >
+                        <X />
+                    </StyledCloseBtn>
+                    {children}
+                </ModalContent>
+            </Flex>
+        </StyledModal>
+    </Fade>
 );
 
 export default Modal;
