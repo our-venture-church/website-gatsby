@@ -47,6 +47,9 @@ const ModalContent = styled.div`
     border: none;
     border-bottom: 3px solid ${colors.ventureYellow};
     border-radius: 3px;
+    box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.4),
+        0px 24px 38px 3px rgba(0, 0, 0, 0.28),
+        0px 9px 46px 8px rgba(0, 0, 0, 0.24);
     margin: auto;
     outline: none;
     overflow: auto;
