@@ -195,11 +195,15 @@ export const NavLink = styled(Link)`
             border: 1px solid transparent;
             margin: 0 5px;
             border-radius: 3px;
+
+            &:hover,
+            &:focus {
+                border-color: currentColor;
+            }
         `}
 
     &:hover,
     &:focus {
-        border-color: currentColor;
         color: ${colors.ventureYellow};
         text-decoration: ${props => (props.stackedNav ? 'underline' : 'none')};
     }
