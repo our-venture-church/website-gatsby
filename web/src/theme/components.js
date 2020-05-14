@@ -90,11 +90,10 @@ export const FormField = styled.div`
         border-radius: 3px;
         color: ${colors.charcoalBlack};
         cursor: pointer;
-        display: block;
+        display: inline-block;
         padding: 0.5em 0.75em;
-        text-align: center;
+        text-align: right;
         text-decoration: none;
-        width: 100%;
 
         &:hover,
         &:focus {

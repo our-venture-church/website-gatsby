@@ -4,11 +4,9 @@ import styled from 'styled-components';
 
 import SEO from '../../components/seo';
 import Layout from '../../components/layout';
-import BasicPageIntro from '../../components/BasicPageIntro';
 import LinkAsButton from '../../components/LinkAsButton';
 import FilterGroupsModal from '../../components/FilterGroupsModal';
 import { parseQueryParamString } from '../../lib/groups';
-import { getDefaultPadding } from '../../utils/styles';
 import Grid from '../../layouts/Grid';
 import colors from '../../theme/tokens/colors';
 import { Button, VisuallyHidden } from '../../theme/components';
@@ -19,9 +17,9 @@ import {
     GROUPS_AGE,
     GROUPS_KID_FRIENDLY,
 } from '../../constants';
+import MediumPageWrapper from '../../layouts/MediumPageWrapper';
 
 const StyledContainer = styled.div`
-    ${getDefaultPadding()}
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-gap: 1rem;
@@ -34,9 +32,11 @@ const StyledContainer = styled.div`
 
 const Sticky = styled.div`
     background: ${colors.charcoalBlack};
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    margin-bottom: 1rem;
     padding-top: 1rem;
     position: sticky;
-    top: 0;
+    top: -1px;
 `;
 
 const StyledGroupTitle = styled.h2`
@@ -52,7 +52,7 @@ const StyledClosed = styled.b`
 `;
 
 const StyledButton = styled(Button)`
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 `;
 
 const StyledFilteredEntries = styled.span`
@@ -180,84 +180,87 @@ const Join = props => {
                 title="Join a Group"
                 description="Find a group to live life with. We have groups all over the area."
             />
-            <BasicPageIntro title="Join a Group" />
-            <StyledContainer>
-                {filteredGroups && filteredGroups.length > 0 ? (
-                    <div>
-                        <Sticky>
-                            <StyledButton onClick={openFilterDialog}>
-                                Filters{' '}
-                                {filterState.length > 0 && (
-                                    <Fragment>
-                                        &middot;{' '}
-                                        {filterState.reduce(
-                                            (accumulator, currentValue) =>
-                                                accumulator.value.length +
-                                                currentValue.value.length
-                                        )}{' '}
-                                        <VisuallyHidden>set</VisuallyHidden>
-                                    </Fragment>
-                                )}
-                            </StyledButton>
-                            <StyledFilteredEntries>
-                                {filteredGroups.length} group
-                                {filteredGroups.length !== 1 && 's'} found
-                            </StyledFilteredEntries>
-                        </Sticky>
-                        <Grid>
-                            {filteredGroups.map(group => {
-                                const groupUrl = `/groups/join/${group.slug.current}`;
-                                return (
-                                    <li key={group.id}>
-                                        <StyledGroupTitle>
-                                            <Link to={groupUrl}>
-                                                {group.title}
-                                            </Link>
-                                        </StyledGroupTitle>
-                                        <p>{group.blurb}</p>
-                                        {group.status === 'closed' ? (
-                                            <p>
-                                                This group is{' '}
-                                                <StyledClosed>
-                                                    closed
-                                                </StyledClosed>{' '}
-                                                and not accepting new
-                                                registrations.
-                                            </p>
-                                        ) : (
-                                            <Fragment>
-                                                <GroupMeta {...group} />
-                                                <LinkAsButton
-                                                    to={groupUrl}
-                                                    aria-label="Get details or join"
-                                                >
-                                                    Join
-                                                </LinkAsButton>
-                                            </Fragment>
-                                        )}
-                                    </li>
-                                );
-                            })}
-                        </Grid>
-                    </div>
-                ) : (
-                    <Fragment>
-                        <p>There are no groups that match your filters.</p>
-                        <Button
-                            onClick={() => {
-                                window.location.hash = '';
-                            }}
-                        >
-                            Reset Filters
-                        </Button>
-                    </Fragment>
-                )}
-            </StyledContainer>
-            <FilterGroupsModal
-                isOpen={showFilters}
-                closeModal={closeFilterDialog}
-                allFilters={filters}
-            />
+            <MediumPageWrapper includePadding>
+                <h1>Join a group</h1>
+
+                <StyledContainer>
+                    {filteredGroups && filteredGroups.length > 0 ? (
+                        <div>
+                            <Sticky>
+                                <StyledButton onClick={openFilterDialog}>
+                                    Filters{' '}
+                                    {filterState.length > 0 && (
+                                        <Fragment>
+                                            &middot;{' '}
+                                            {filterState.reduce(
+                                                (accumulator, currentValue) =>
+                                                    accumulator.value.length +
+                                                    currentValue.value.length
+                                            )}{' '}
+                                            <VisuallyHidden>set</VisuallyHidden>
+                                        </Fragment>
+                                    )}
+                                </StyledButton>
+                                <StyledFilteredEntries>
+                                    {filteredGroups.length} group
+                                    {filteredGroups.length !== 1 && 's'} found
+                                </StyledFilteredEntries>
+                            </Sticky>
+                            <Grid>
+                                {filteredGroups.map(group => {
+                                    const groupUrl = `/groups/join/${group.slug.current}`;
+                                    return (
+                                        <li key={group.id}>
+                                            <StyledGroupTitle>
+                                                <Link to={groupUrl}>
+                                                    {group.title}
+                                                </Link>
+                                            </StyledGroupTitle>
+                                            <p>{group.blurb}</p>
+                                            {group.status === 'closed' ? (
+                                                <p>
+                                                    This group is{' '}
+                                                    <StyledClosed>
+                                                        closed
+                                                    </StyledClosed>{' '}
+                                                    and not accepting new
+                                                    registrations.
+                                                </p>
+                                            ) : (
+                                                <Fragment>
+                                                    <GroupMeta {...group} />
+                                                    <LinkAsButton
+                                                        to={groupUrl}
+                                                        aria-label="Get details or join"
+                                                    >
+                                                        Join
+                                                    </LinkAsButton>
+                                                </Fragment>
+                                            )}
+                                        </li>
+                                    );
+                                })}
+                            </Grid>
+                        </div>
+                    ) : (
+                        <Fragment>
+                            <p>There are no groups that match your filters.</p>
+                            <Button
+                                onClick={() => {
+                                    window.location.hash = '';
+                                }}
+                            >
+                                Reset Filters
+                            </Button>
+                        </Fragment>
+                    )}
+                </StyledContainer>
+                <FilterGroupsModal
+                    isOpen={showFilters}
+                    closeModal={closeFilterDialog}
+                    allFilters={filters}
+                />
+            </MediumPageWrapper>
         </Layout>
     );
 };

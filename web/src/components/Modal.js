@@ -34,6 +34,7 @@ const ReactModalAdapter = ({
     children,
     isOpen,
     label,
+    maxWidth = 'none',
     ...props
 }) => (
     <ReactModal
@@ -48,6 +49,7 @@ const ReactModalAdapter = ({
                 : null
         }
         parentSelector={() => document.body}
+        style={{ content: { maxWidth } }}
         {...props}
     >
         <h2>{title}</h2>
@@ -78,6 +80,7 @@ const Modal = styled(ReactModalAdapter).attrs({
         border-radius: 3px;
         bottom: 0;
         left: 0;
+        margin: auto;
         outline: none;
         overflow: auto;
         padding: 1rem;
@@ -98,6 +101,7 @@ const Modal = styled(ReactModalAdapter).attrs({
         }
 
         > h2 {
+            margin-bottom: 0;
             margin-left: -1rem;
             margin-right: -1rem;
             padding-bottom: 1.45rem;
