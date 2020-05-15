@@ -53,7 +53,7 @@ const ModalContent = styled.div`
     margin: auto;
     outline: none;
     overflow: auto;
-    padding: 1rem;
+    padding: 1rem ${props => props.topPaddingOnly && `0 0`};
     position: relative;
     ${props =>
         props.fullScreen &&
@@ -71,7 +71,7 @@ const ModalContent = styled.div`
     `}
 
     @media (min-width: 500px) {
-        padding: 2rem;
+        padding: 2rem ${props => props.topPaddingOnly && `0 0`};
     }
 
     @media (min-width: 800px) {
