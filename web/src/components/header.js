@@ -25,7 +25,7 @@ const StyledHeader = styled.header`
     display: grid;
     grid-template-columns: ${props => (props.navOpen ? '1fr' : 'auto 1fr')};
     grid-template-rows: auto 1fr;
-    height: 100%;
+    height: ${props => (props.navOpen ? '100%' : 'auto')};
     left: 0;
     overflow: auto;
     position: ${props => (props.navOpen ? 'fixed' : 'static')};

@@ -250,7 +250,7 @@ const Join = props => {
                                     window.location.hash = '';
                                 }}
                             >
-                                Reset Filters
+                                Reset filters
                             </Button>
                         </Fragment>
                     )}

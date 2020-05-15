@@ -10,7 +10,7 @@ import {
 const initialState = {
     currentDropdown: null,
     navDrawerEnabled: true,
-    navOpen: true,
+    navOpen: false,
 };
 
 const reducer = (state, action) => {
