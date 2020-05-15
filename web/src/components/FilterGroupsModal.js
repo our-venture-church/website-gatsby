@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Modal from './Modalv2';
+import Modal from './Modal';
 import {
     Fieldset,
     InlineCheckbox,

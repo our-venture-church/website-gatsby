@@ -12,7 +12,7 @@ import { getDefaultPadding } from '../utils/styles';
 import colors from '../theme/tokens/colors';
 import { Button } from '../theme/components';
 import GroupMeta from '../components/GroupMeta';
-import Modal from '../components/Modalv2';
+import Modal from '../components/Modal';
 
 export const query = graphql`
     query GroupDetailsTemplateQuery($id: String!) {
