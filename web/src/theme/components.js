@@ -90,11 +90,10 @@ export const FormField = styled.div`
         border-radius: 3px;
         color: ${colors.charcoalBlack};
         cursor: pointer;
-        display: block;
+        display: inline-block;
         padding: 0.5em 0.75em;
-        text-align: center;
+        text-align: right;
         text-decoration: none;
-        width: 100%;
 
         &:hover,
         &:focus {
@@ -196,11 +195,15 @@ export const NavLink = styled(Link)`
             border: 1px solid transparent;
             margin: 0 5px;
             border-radius: 3px;
+
+            &:hover,
+            &:focus {
+                border-color: currentColor;
+            }
         `}
 
     &:hover,
     &:focus {
-        border-color: currentColor;
         color: ${colors.ventureYellow};
         text-decoration: ${props => (props.stackedNav ? 'underline' : 'none')};
     }

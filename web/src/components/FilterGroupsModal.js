@@ -41,7 +41,7 @@ const StyledModal = styled(Modal)`
 
 const ModalButtons = styled.div`
     background: ${colors.charcoalBlack};
-    border-top: 1px solid #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
     bottom: 0;
     display: flex;
     justify-content: space-between;
@@ -69,9 +69,9 @@ const FilterGroupsModal = ({ isOpen, closeModal, allFilters }) => {
         <StyledModal
             closeModal={updateUrlAndClose}
             isOpen={isOpen}
-            title="Filter Groups"
-            label="Filters the groups search result"
-            className="filter-dialog"
+            title="Filter groups"
+            fullScreen={true}
+            topPaddingOnly={true}
         >
             <form onSubmit={updateUrlAndClose}>
                 {allFilters.map(fieldset => {
