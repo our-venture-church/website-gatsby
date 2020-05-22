@@ -174,6 +174,13 @@ const Join = props => {
         });
     });
 
+    const numberOfFiltersSet = filterState.reduce(
+        (accumulator, currentValue) => {
+            return accumulator + currentValue.value.length;
+        },
+        0
+    );
+
     return (
         <Layout>
             <SEO
@@ -189,14 +196,9 @@ const Join = props => {
                             <Sticky>
                                 <StyledButton onClick={openFilterDialog}>
                                     Filters{' '}
-                                    {filterState.length > 0 && (
+                                    {numberOfFiltersSet > 0 && (
                                         <Fragment>
-                                            &middot;{' '}
-                                            {filterState.reduce(
-                                                (accumulator, currentValue) =>
-                                                    accumulator.value.length +
-                                                    currentValue.value.length
-                                            )}{' '}
+                                            &middot; {numberOfFiltersSet}{' '}
                                             <VisuallyHidden>set</VisuallyHidden>
                                         </Fragment>
                                     )}

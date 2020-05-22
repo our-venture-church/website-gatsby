@@ -101,20 +101,22 @@ const ModalContent = styled.div`
 
 const Modal = ({ children, isOpen, closeModal, title, ...rest }) => (
     <Fade in={isOpen}>
-        <StyledModal open={true} onClose={closeModal}>
-            <Flex>
-                <ModalContent {...rest}>
-                    {title && <h2>{title}</h2>}
-                    <StyledCloseBtn
-                        onClick={closeModal}
-                        aria-label="Close dialog"
-                    >
-                        <X />
-                    </StyledCloseBtn>
-                    {children}
-                </ModalContent>
-            </Flex>
-        </StyledModal>
+        <div>
+            <StyledModal open={isOpen} onClose={closeModal}>
+                <Flex>
+                    <ModalContent {...rest}>
+                        {title && <h2>{title}</h2>}
+                        <StyledCloseBtn
+                            onClick={closeModal}
+                            aria-label="Close dialog"
+                        >
+                            <X />
+                        </StyledCloseBtn>
+                        {children}
+                    </ModalContent>
+                </Flex>
+            </StyledModal>
+        </div>
     </Fade>
 );
 
